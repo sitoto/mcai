@@ -1,0 +1,5 @@
+<div class="well">
+<label><%= page.title %></label><%= link_to "编辑", edit_page_path(page.id) %>
+<div class="pre">内容：<%= page.body.html_safe %></div>
+<div> <%= format_text page.body %></div>
+</div>

@@ -2,13 +2,30 @@ class PagesController < ApplicationController
   # GET /pages
   # GET /pages.json
   def index
-    @page = Page.notice.last
+    @pages = Page.all
 
     respond_to do |format|
       format.html # index.html.erb
+      format.json { render json: @pages }
+    end
+  end
+  def home 
+    @page = Page.notice.last
+
+    respond_to do |format|
+      format.html # home.html.erb
       format.json { render json: @page }
     end
   end
+
+	def about
+		@page = page.about.last
+	  respond_to do |format|
+      format.html # about.html.erb
+      format.json { render json: @page }
+    end
+ 	
+	end
 
   # GET /pages/1
   # GET /pages/1.json

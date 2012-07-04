@@ -10,6 +10,7 @@ class Page
   field :body, :type => String
 
 	scope :notice, where(:title => "公告") 
+	scope :about, where(:title => "关于") 
 
 
 end
