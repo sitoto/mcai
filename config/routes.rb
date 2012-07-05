@@ -1,5 +1,7 @@
 Mcai::Application.routes.draw do
 
+  namespace :admin do resources :events end
+
   resources :pages do
 		collection do 
 			get "home"
