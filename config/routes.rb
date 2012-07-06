@@ -1,8 +1,8 @@
 Mcai::Application.routes.draw do
 
-
   namespace :admin do 
 		root :to => "admin#index"
+		resources :tasks
 		resources :events 
 	end
 

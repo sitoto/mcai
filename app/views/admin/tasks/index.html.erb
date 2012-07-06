@@ -1,0 +1,31 @@
+<h1>Listing admin_tasks</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Assign</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @admin_tasks.each do |admin_task| %>
+  <tr>
+    <td><%= admin_task.name %></td>
+    <td><%= admin_task.type %></td>
+    <td><%= admin_task.status %></td>
+    <td><%= admin_task.assign %></td>
+    <td><%= admin_task.content %></td>
+    <td><%= link_to 'Show', admin_task %></td>
+    <td><%= link_to 'Edit', edit_admin_task_path(admin_task) %></td>
+    <td><%= link_to 'Destroy', admin_task, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Task', new_admin_task_path %>
