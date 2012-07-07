@@ -2,7 +2,15 @@ Mcai::Application.routes.draw do
 
   namespace :admin do 
 		root :to => "admin#index"
-		resources :tasks
+		resources :tasks  do 
+			collection do 
+				get "douban_group"
+				get "tieba"
+				get "tianyabbs"
+				get "sohubbbs"
+			end
+		end
+
 		resources :events 
 	end
 

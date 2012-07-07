@@ -9,7 +9,15 @@ class Admin::TasksController < ApplicationController
       format.json { render json: @admin_tasks }
     end
   end
-
+	
+	def douban_group
+		@douban_group = DoubanGroup.new
+#		@douban_group.init("http://www.douban.com/group/category/57/")
+		@douban_group.init("http://www.douban.com/group/Junko/discussion")
+	  
+		@lists = @douban_group.get_all_topics
+	
+	end
   # GET /admin/tasks/1
   # GET /admin/tasks/1.json
   def show

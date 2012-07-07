@@ -1,5 +1,13 @@
-<h1>Listing admin_tasks</h1>
+<h1>任务管理</h1>
+<div class="well">
+	<div class="btn-group">
+	  <%= link_to "自动采集豆瓣", douban_group_admin_tasks_path, class: "btn btn-primary btn-large" %> 
+	  <%= link_to "自动采集天涯", tianyabbs_admin_tasks_path, class: "btn btn-primary btn-large" %> 
+	</div>
+</div>
 
+<div class="alert alert-info">
+<h3>所有任务列表</h3>
 <table>
   <tr>
     <th>Name</th>
@@ -25,7 +33,7 @@
   </tr>
 <% end %>
 </table>
-
+</div>
 <br />
 
 <%= link_to 'New Task', new_admin_task_path %>
