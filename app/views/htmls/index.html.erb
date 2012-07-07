@@ -1,0 +1,30 @@
+<h1>Listing htmls</h1>
+
+<table>
+  <tr>
+    <th>Url</th>
+    <th>Body</th>
+    <th>status</th>
+		<th>top</th>
+		<th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @htmls.each do |html| %>
+  <tr>
+    <td><%= html.url %></td>
+    <td><%= html.body.truncate(200) %></td>
+		<td><%= html.status %></td>
+		<td><%= html.top %></td>
+		<td><%= html.created_at %></td>
+    <td><%= link_to 'Show', html %></td>
+    <td><%= link_to 'Edit', edit_html_path(html) %></td>
+    <td><%= link_to 'Destroy', html, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Html', new_html_path %>

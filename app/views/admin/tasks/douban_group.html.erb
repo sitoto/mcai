@@ -1,6 +1,15 @@
 <%- title "采_" -%>
 
 <h1>第一页</h1>
+<ol>
+
+	<% if @do_lists && @do_lists.length > 0 %>
+	<% @do_lists.each_with_index do |t, i|  %>
+		<li><%= t[0] %> | <%= t[1]%> | <%= t[2] %> | <%= t[3] %></li>
+	<% end %>
+	<% end %>
+  
+</ol>
 <table class="tianyapage">
   <tbody >
     <tr>
@@ -31,3 +40,6 @@
   </tbody>
 
 </table>
+<%= @content %>
+
+

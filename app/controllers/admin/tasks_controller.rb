@@ -1,4 +1,7 @@
-class Admin::TasksController < ApplicationController
+#encoding: utf-8
+require 'nokogiri'
+require 'open-uri'
+class Admin::TasksController < AdminController
   # GET /admin/tasks
   # GET /admin/tasks.json
   def index
@@ -11,11 +14,16 @@ class Admin::TasksController < ApplicationController
   end
 	
 	def douban_group
+		url =	"http://www.douban.com/group/Junko/discussion"	
+		from_c = "utf-8"
+		to_c = "utf-8"
 		@douban_group = DoubanGroup.new
-#		@douban_group.init("http://www.douban.com/group/category/57/")
-		@douban_group.init("http://www.douban.com/group/Junko/discussion")
-	  
+		@douban_group.init(url)
+  	@content =  @douban_group.get_page_content
 		@lists = @douban_group.get_all_topics
+		@do_lists = @douban_group.do_or_not
+		@douban_group.save_topics_html
+
 	
 	end
   # GET /admin/tasks/1

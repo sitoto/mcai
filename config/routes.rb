@@ -1,5 +1,7 @@
 Mcai::Application.routes.draw do
 
+  resources :htmls
+
   namespace :admin do 
 		root :to => "admin#index"
 		resources :tasks  do 

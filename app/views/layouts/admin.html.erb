@@ -27,12 +27,14 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="/">PLAY</a>
+          <a class="brand" href="/">后台管理</a>
           <div class="container nav-collapse">
             <ul class="nav">
 	      			<li><%= link_to "首页", admin_root_path %></li>
+				      <li><%= link_to "任务", admin_tasks_path  %></li>
 
 				      <li><%= link_to "事件", admin_events_path  %></li>
+		  	      <li><%= link_to "文档", htmls_path  %></li>
 	    			</ul>
           </div><!--/.nav-collapse -->
         </div>

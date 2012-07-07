@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Url:</b>
+  <%= @html.url %>
+</p>
+
+<p>
+  <b>Body:</b>
+  <%= @html.body %>
+</p>
+
+
+<%= link_to 'Edit', edit_html_path(@html) %> |
+<%= link_to 'Back', htmls_path %>
