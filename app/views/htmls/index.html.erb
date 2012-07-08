@@ -1,16 +1,19 @@
 <h1>Listing htmls</h1>
 
-<table>
+<table class="table table-striped">
+	<thead>
   <tr>
     <th>Url</th>
     <th>Body</th>
     <th>status</th>
 		<th>top</th>
+		<th>Time</th>
 		<th></th>
     <th></th>
     <th></th>
   </tr>
-
+	</thead>
+	<tbody>
 <% @htmls.each do |html| %>
   <tr>
     <td><%= html.url %></td>
@@ -23,6 +26,7 @@
     <td><%= link_to 'Destroy', html, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
+	</tbody>
 </table>
 
 <br />

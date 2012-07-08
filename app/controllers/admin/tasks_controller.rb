@@ -14,7 +14,8 @@ class Admin::TasksController < AdminController
   end
 	
 	def douban_group
-		url =	"http://www.douban.com/group/Junko/discussion"	
+    url = "http://www.douban.com/group/youzhaopin/discussion"
+		#url =	"http://www.douban.com/group/Junko/discussion"	
 		from_c = "utf-8"
 		to_c = "utf-8"
 		@douban_group = DoubanGroup.new
@@ -23,6 +24,7 @@ class Admin::TasksController < AdminController
 		@lists = @douban_group.get_all_topics
 		@do_lists = @douban_group.do_or_not
 		@douban_group.save_topics_html
+#		@douban_group.
 
 	
 	end

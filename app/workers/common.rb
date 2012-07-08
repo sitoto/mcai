@@ -13,7 +13,7 @@ module Common
       if retries > 0  
         sleep sleep_time and retry  
       else  
-				logger.error($!)
+				#logger.error($!)
 				#错误日志
         #TODO Logging..  
       end  

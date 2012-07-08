@@ -1,4 +1,5 @@
 class HtmlsController < ApplicationController
+	layout "admin"
   # GET /htmls
   # GET /htmls.json
   def index

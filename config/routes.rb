@@ -1,5 +1,11 @@
 Mcai::Application.routes.draw do
 
+  get "p/top"
+
+  get "p/show"
+
+  get "p/renew"
+
   resources :htmls
 
   namespace :admin do 

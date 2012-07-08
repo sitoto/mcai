@@ -12,7 +12,7 @@ include Common
 	end
 
 	def get_page_content
-	  @html_stream = safe_open(@first_url , retries = 5, sleep_time = 0.42, headers = {})
+	  @html_stream = safe_open(@first_url , retries = 3, sleep_time = 0.42, headers = {})
 		#@html_stream.encode!("utf-8","gbk")
   end
 
@@ -53,6 +53,6 @@ include Common
 	end
 
   def dehydrate_topic
-
+		
 	end
 end
