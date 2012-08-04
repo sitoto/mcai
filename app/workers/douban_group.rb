@@ -1,5 +1,4 @@
 #encoding: UTF-8
-
 require "nokogiri"
 require "open-uri"
 require "common"
@@ -7,8 +6,9 @@ require "common"
 class DoubanGroup
 include Common
 	#打印出入口地址页的分类页面 url
-	def	init(first_url)
+	def	initialize(first_url)
 		@first_url = first_url
+    #get_page_content
 	end
 
 	def get_page_content

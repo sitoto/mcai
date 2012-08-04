@@ -18,8 +18,7 @@ class Admin::TasksController < AdminController
 		#url =	"http://www.douban.com/group/Junko/discussion"	
 		from_c = "utf-8"
 		to_c = "utf-8"
-		@douban_group = DoubanGroup.new
-		@douban_group.init(url)
+		@douban_group = DoubanGroup.new(url)
   	@content =  @douban_group.get_page_content
 		@lists = @douban_group.get_all_topics
 		@do_lists = @douban_group.do_or_not
