@@ -52,7 +52,29 @@ include Common
 
 	end
 
-  def dehydrate_topic
-		
+  def dehydrate_topic(url)
+    doc =  Nokogiri::HTML(safe_open(url , retries = 3, sleep_time = 0.42, headers = {}))
+
+	  title = doc.at_css("title").text
+    if doc.at_css("div.topic-doc > table.infobox .tablecc")
+      title =  doc.at_css("div.topic-doc > table.infobox .tablecc").text.from(3)
+    end
+
+    category = doc.at_css("div.aside > p > a").text.from(1)
+    lz = doc.at_css("div.topic-doc > h3 > span.pl20 > a").text
+    created_at = doc.at_css("div.topic-doc > h3 > span.color-green").text
+    #from_url = url    #存入首页地址
+    all_page_num =  1
+    if doc.css("div.paginator > a")
+      #获取总页数
+      doc.css("div.paginator > a").each do |link|
+        all_page_num = link.text
+      end
+    end
+
+    Topic.create(title: title, mytitle: title, tags: [category], author: lz,
+             first_time: created_at, from_url: url, last_url: url,
+             pages_count: all_page_num) 
+
 	end
 end

@@ -35,7 +35,8 @@
 
 				      <li><%= link_to "事件", admin_events_path  %></li>
 		  	      <li><%= link_to "文档", htmls_path  %></li>
-	    			</ul>
+		  	      <li><%= link_to "测试", 'p/show'  %></li>
+    			</ul>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -44,20 +45,11 @@
     <div class="container">
       <div class="content">
         <div class="row">
-           <div class="span9">
+           <div class="span12">
 	     <p class="notice"><%= notice %></p>
 	     <p class="alert"><%= alert %></p>
               <%= yield %>
             </div>
-            <div class="span3">
-              <div class="well sidebar-nav">
-                <h3>热点链接</h3>
-                <ul class="nav nav-list">
-                  <li class="nav-header">------------</li>
-                  <li><%= link_to "事件", admin_events_path  %></li>
-                </ul>
-              </div><!--/.well -->
-            </div><!--/span-->
         </div><!--/row-->
       </div><!--/content-->
 

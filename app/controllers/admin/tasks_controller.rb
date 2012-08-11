@@ -15,6 +15,7 @@ class Admin::TasksController < AdminController
 	
 	def douban_group
     url = "http://www.douban.com/group/youzhaopin/discussion"
+    topic_url = "http://www.douban.com/group/topic/31675449/"
 		#url =	"http://www.douban.com/group/Junko/discussion"	
 		from_c = "utf-8"
 		to_c = "utf-8"
@@ -23,7 +24,7 @@ class Admin::TasksController < AdminController
 		@lists = @douban_group.get_all_topics
 		@do_lists = @douban_group.do_or_not
 		@douban_group.save_topics_html
-#		@douban_group.
+		@douban_group.dehydrate_topic(topic_url)
 
 	
 	end

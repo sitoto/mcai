@@ -1,2 +1,6 @@
-<h1>P#show</h1>
-<p>Find me in app/views/p/show.html.erb</p>
+<% title = @topic.mytitle %>
+<h1><%= @topic.mytitle %></h1>
+<br />
+<%= @topic.id %><br/>
+<%= @topic.author %>
+<%= @topic.tags %>
