@@ -71,10 +71,41 @@ include Common
         all_page_num = link.text
       end
     end
+    firstcontent = doc.at_css("div.topic-doc > div.topic-content").inner_html
+    post = Post.new
+    post.author = lz
+    post.created_at = created_at
+    post.level = 1
+    post.my_level = 1
+    post.content = firstcontent
+    post.words_count = firstcontent.length
 
-    Topic.create(title: title, mytitle: title, tags: [category], author: lz,
+
+    @topic = Topic.create(title: title, mytitle: title, tags: [category], author: lz,
              first_time: created_at, from_url: url, last_url: url,
-             pages_count: all_page_num) 
+             pages_count: all_page_num, posts: [post]) 
+#		dehydrate_posts(@topic, doc)
 
-	end
+#	end
+#  def dehydrate_posts(@topic, doc)
+		my_level = @topic.posts_count
+ 
+		doc.css(".reply-doc").each_with_index do |item, i|
+			post = Post.new
+      post.author = item.at_css("a").text
+      post.created_at  = item.at_css("h4").text
+			post.content= item.at_css("p").inner_html
+			post.level = i+1
+			post.words_count = post.content.length
+	    if post.author == @topic.author
+					my_level += 1
+					post.my_level = my_level
+					@topic.inc(:words_count, post.words_count)
+				  @topic.inc(:post_count, 1)	
+					@topic.posts <<  post 
+		  end	
+    end #end for each_with_index
+    @topic.save
+  end
+
 end

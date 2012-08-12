@@ -1,0 +1,12 @@
+<% posts.each do |post|%>
+<div class="row-fluid show-grid">
+  <div class="span10">
+		 <%= raw post.content %>
+	</div>
+	<div class="span2">
+		 <%= post.level %>楼<br />
+		 <%= post.created_at %>
+	</div>
+</div>
+<% end %>
+

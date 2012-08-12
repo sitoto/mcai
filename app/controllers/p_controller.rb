@@ -1,6 +1,6 @@
 class PController < ApplicationController
   def show
-    @topic = Topic.first
+    @topic = Topic.last
   end
 
   def renew
