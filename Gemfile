@@ -67,3 +67,4 @@ gem "meta-tags"#, :require => "meta-tags", :git => "git://github.com/kpumuk/meta
 
 gem "rails-footnotes", ">= 3.7", :group => :development
 gem "therubyracer", :group => :assets, :platform => :ruby
+gem "passenger"
