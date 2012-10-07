@@ -13,20 +13,20 @@ class Admin::TasksController < AdminController
     end
   end
 	
-	def douban_group
+  def douban_group
     url = "http://www.douban.com/group/youzhaopin/discussion"
     #topic_url = "http://www.douban.com/group/topic/31675449/"
     topic_url ="http://www.douban.com/group/topic/20935107/"
-		 #"http://www.douban.com/group/topic/27239346/"
-		#url =	"http://www.douban.com/group/Junko/discussion"	
-		from_c = "utf-8"
-		to_c = "utf-8"
-		@douban_group = DoubanGroup.new(url)
+     #"http://www.douban.com/group/topic/27239346/"
+	#url =	"http://www.douban.com/group/Junko/discussion"	
+	from_c = "utf-8"
+	to_c = "utf-8"
+	@douban_group = DoubanGroup.new(url)
   	@content =  @douban_group.get_page_content
-		@lists = @douban_group.get_all_topics
-		@do_lists = @douban_group.do_or_not
-		@douban_group.save_topics_html
-		@douban_group.dehydrate_topic(topic_url)
+	@lists = @douban_group.get_all_topics
+	@do_lists = @douban_group.do_or_not
+	@douban_group.save_topics_html
+	@douban_group.dehydrate_topic(topic_url)
 
 	
 	end
