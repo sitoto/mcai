@@ -1,5 +1,4 @@
 #encoding: utf-8
-require 'nokogiri'
 require 'open-uri'
 require 'timeout'
 require 'logger' 
@@ -34,8 +33,20 @@ class String
 			self.gsub(%r[<.*>], '')
 		end
 		#去掉 某些 后 然后再去掉 。。。
-		def strip_51job_tag
-			self.gsub(%r[<br.*], '').gsub(%r[<[^>]*>], '')
+		def strip_txt_tag
+			self.gsub(%r[<br>], "\n").gsub(%r[<[^>]*>], '')
 		end
+ 		def strip_href_tag
+			self.gsub(%r[<a[^>]*>], '').gsub("</a>", "")
+		end
+    #获取 日期
+	  def get_datetime
+      regEx = /2\d+-[0-9]+-[0-9]+\D[0-9]+:\d+:\d+/
+      if regEx =~ self
+        return regEx.match(self).to_s
+      else
+        return "0000-00-00 0:0:0"
+      end
+    end
 end #String 
 

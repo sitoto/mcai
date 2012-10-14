@@ -71,30 +71,33 @@ include Common
         all_page_num = link.text
       end
     end
-    firstcontent = doc.at_css("div.topic-doc > div.topic-content").inner_html
+    firstcontent = doc.at_xpath('//div[@class="topic-doc"]//div[@class="topic-content"]/p').inner_html
     post = Post.new
     post.author = lz
     post.created_at = created_at
     post.level = 1
     post.my_level = 1
-    post.content = firstcontent
-    post.words_count = firstcontent.length
+    post.content = firstcontent.to_s.strip_href_tag
+    post.words_count = post.content.length
+
+		@article = Article.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+             first_time: created_at, from_url: url, last_url: url, pages_count: all_page_num) 
+
+    @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+             url: url,   page_num: 1 , posts: [post]) 
 
 
-    @topic = Topic.create(title: title, mytitle: title, tags: [category], author: lz,
-             first_time: created_at, from_url: url, last_url: url,
-             pages_count: all_page_num, posts: [post]) 
 #		dehydrate_posts(@topic, doc)
-
 #	end
 #  def dehydrate_posts(@topic, doc)
+
 		my_level = @topic.posts_count
  
 		doc.css(".reply-doc").each_with_index do |item, i|
 			post = Post.new
       post.author = item.at_css("a").text
-      post.created_at  = item.at_css("h4").text
-			post.content= item.at_css("p").inner_html
+      post.created_at  = item.at_css("h4").text.strip.to(18)
+			post.content= item.at_css("p").inner_html.to_s.strip_href_tag
 			post.level = i+1
 			post.words_count = post.content.length
 	    if post.author == @topic.author
@@ -105,7 +108,11 @@ include Common
 					@topic.posts <<  post 
 		  end	
     end #end for each_with_index
+
+    @article.topics.push(@topic)
+    @article.save
     @topic.save
+
   end
 
 end

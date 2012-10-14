@@ -5,6 +5,7 @@ class Post
   field :created_at, :type => String
   field :level, :type => Integer
   field :my_level, :type => Integer
+  field :page_num, :type => Integer
   field :content, :type => String
   field :words_count, :type => Integer
 
