@@ -19,6 +19,10 @@ module ApplicationHelper
     return false if agent_str =~ /ipad/
     agent_str =~ Regexp.new(MOBILE_USER_AGENTS)
   end
+  def render_page_title
+    title = @page_title ? "#{@page_title} | 脱水吧" : "脱水吧" rescue "脱水吧"
+    content_tag("title", title, nil, false)
+  end
 
   def title(page_title, show_title = true)
     content_for(:title) { page_title.to_s }

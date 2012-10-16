@@ -1,6 +1,13 @@
 class PController < ApplicationController
   def show
-    @topic = Topic.last
+    str = params[:id]
+    arr = str.split(/_/)
+		id = arr[0]
+    page_num = 1
+    unless arr[1].blank?
+      page_num = arr[1]
+    end
+	  @topic = Topic.where(:article_id => id).first
   end
 
   def renew

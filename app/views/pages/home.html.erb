@@ -1,3 +1,4 @@
+<% @page_title = "首页" %>
 	<div class="alert alert-info">
 		<i class="icon-bullhorn"></i> : <%=raw @page.body %>
 	</div>
@@ -11,20 +12,9 @@
 <div class="row-fluid">
   <div class="span4">
 		<h4>最新脱水</h4>
-		<ul class="unstyled">
-			<li><a href="#">[连载]【重排版】哪吒 源自帝都古城的悬疑事件</a></li>
-			<li><a href="#">免费算命，前世今生，找回你的记忆</a></li>
-			<li><a href="#">[连载]【重排版】哪吒 源自帝都古城的悬疑事件</a></li>
-			<li><a href="#">免费算命，前世今生，找回你的记忆</a></li>
-				<li><a href="#">免费算命，前世今生，找回你的记忆</a></li>
-			<li><a href="#">[连载]【重排版】哪吒 源自帝都古城的悬疑事件</a></li>
-			<li><a href="#">免费算命，前世今生，找回你的记忆</a></li>
-			<li><a href="#">免费算命，前世今生，找回你的记忆</a></li>
-			<li><a href="#">[连载]【重排版】哪吒 源自帝都古城的悬疑事件</a></li>
-			<li><a href="#">免费算命，前世今生，找回你的记忆</a></li>
-				<li><a href="#">[连载]【重排版】哪吒 源自帝都古城的悬疑事件</a></li>
-			<li><a href="#">免费算命，前世今生，找回你的记忆</a></li>
-		</ul>
+<ul>
+      <%= render :partial => "item", :collection => @articles %>
+</ul>
 	</div>
 	<div class="span4">
 		<h4>热门推荐</h4>

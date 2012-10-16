@@ -1,10 +1,12 @@
-<% title = @topic.mytitle %>
+<% @page_title = "#{@topic.mytitle.strip}_第#{@topic.page_num}页" %>
+<% @meta_keywords =  @topic.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
 
-	<h1><%= @topic.mytitle %></h1>
+<h1><%= @topic.mytitle %></h1>
+<span>当前页：<%= @topic.page_num %></span>
 
-  <% if @topic.posts && @topic.posts.length > 0 %>
-    <%= render :partial => "post", :locals => {:posts => @topic.posts} %>
-  <% end %>
+<% if @topic.posts && @topic.posts.length > 0 %>
+  <%= render :partial => "post", :locals => {:posts => @topic.posts} %>
+<% end %>
 
 <div class="row-fluid show-grid">
 		<div class="span12">

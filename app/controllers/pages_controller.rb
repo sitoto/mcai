@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   end
   def home 
     @page = Page.notice.last
+		@articles = Article.recent
 
     respond_to do |format|
       format.html # home.html.erb

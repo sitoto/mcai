@@ -23,6 +23,7 @@ class Article
   field :words_count, :type => Integer, default: 100
 	field :like_count, :type => Integer, default: 0
 
+	scope :recent, where(:published => true).desc(:created_at).limit(12)
 
   has_many :topics
 end

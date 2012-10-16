@@ -2,7 +2,9 @@ Mcai::Application.routes.draw do
 
   get "p/top"
 
-  get "p/show"
+  get "p/:id" => "p#show", :as => "p"
+  # match ':controller(/:action(/:id))(.:format)'
+  
 
   get "p/renew"
 
