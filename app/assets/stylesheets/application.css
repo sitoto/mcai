@@ -14,7 +14,8 @@
 */
 body{
 padding-top: 60px;
-
+color: #222;
+background: #F5F9FA;
 }
 .container-fluid{
 padding: 0;
@@ -37,7 +38,7 @@ line-height: 1.62;
   margin-bottom: 20px;
 }
 .show-grid [class*="span"] {
-  background-color: #eee;
+  background-color: #E5ECF9;
   text-align: left;
   -webkit-border-radius: 3px;
      -moz-border-radius: 3px;
@@ -46,12 +47,12 @@ line-height: 1.62;
   line-height: 30px;
 }
 .show-grid:hover [class*="span"] {
-  background: #ddd;
+  background: #D5EFF9;
 }
 .show-grid .show-grid {
   margin-top: 0;
   margin-bottom: 0;
 }
 .show-grid .show-grid [class*="span"] {
-  background-color: #ccc;
+  background-color: #E5ECF9;
 }

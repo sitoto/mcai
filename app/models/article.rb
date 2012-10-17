@@ -20,10 +20,19 @@ class Article
   # tong ji
   field :pages_count, :type => Integer, default: 1
   field :posts_count, :type => Integer, default: 1
-  field :words_count, :type => Integer, default: 100
+  field :words_count, :type => Integer, default: 1
 	field :like_count, :type => Integer, default: 0
+  field :hits, :type => Integer, default:  0
+
+  has_many :topics, :dependent => :destroy
+
+  index :mytitle => 1
+  index :like_count => 1
+  index :created_at => 1
+  index :updated_at => 1
+
 
 	scope :recent, where(:published => true).desc(:created_at).limit(12)
+  scope :popular, where(:like_count.gt => 5, :published => true )
 
-  has_many :topics
 end

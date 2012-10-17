@@ -2,7 +2,11 @@
 <% @meta_keywords =  @topic.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
 
 <h1><%= @topic.mytitle %></h1>
-<span>当前页：<%= @topic.page_num %></span>
+<span>当前页：<%= @topic.page_num %>,
+总页数： <%= @count%> 
+点击数<%= @article.hits %> 
+顶贴数<%= @article.like_count %> 
+总字数<%= @article.words_count %></span>
 
 <% if @topic.posts && @topic.posts.length > 0 %>
   <%= render :partial => "post", :locals => {:posts => @topic.posts} %>

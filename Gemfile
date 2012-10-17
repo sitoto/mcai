@@ -57,7 +57,8 @@ gem "omniauth-twitter"
 #gem "bootstrap-sass", ">= 2.0.3"
 #gem 'anjlab-bootstrap-rails', '2.0.4.1', :require => 'bootstrap-rails'
 # 分页
-gem 'will_paginate', '3.0.2'
+gem 'kaminari', '0.14.0'
+#gem 'will_paginate', '3.0.2'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
 #gem 'bootstrap-will_paginate', '0.0.3'

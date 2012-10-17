@@ -7,7 +7,11 @@ class PController < ApplicationController
     unless arr[1].blank?
       page_num = arr[1]
     end
+	  @article = Article.find(id)
+    @article.inc(:hits, 1)
+    @count = Topic.where(:article_id => id).count
 	  @topic = Topic.where(:article_id => id).first
+
   end
 
   def renew
