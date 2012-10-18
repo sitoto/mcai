@@ -4,7 +4,8 @@ require "open-uri"
 require "common"
 #采集豆瓣小组的-爬虫
 class DoubanGroup
-include Common
+  include Common
+
 	#打印出入口地址页的分类页面 url
 	def	initialize(first_url)
 		@first_url = first_url
@@ -113,6 +114,15 @@ include Common
     @article.save
     @topic.save
 
+		page = DoubanGroupPage.new(url + "?start=100" , @article.author)
+		posts2 = page.get_author_content
+		puts posts2.length
+
+		@topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+             url: url,   page_num: 2, posts: posts2)
+		@topic2.save
+		@article.topics.push(@topic2)
+		
   end
 
 end

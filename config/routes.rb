@@ -2,6 +2,10 @@ Mcai::Application.routes.draw do
 
   get "p/top"
 
+  resources :p  do
+		get ':page', :action => :show, :on => :member
+	end
+
   get "p/:id" => "p#show", :as => "p"
   # match ':controller(/:action(/:id))(.:format)'
   

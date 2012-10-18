@@ -15,8 +15,8 @@ class Admin::TasksController < AdminController
 	
   def douban_group
     url = "http://www.douban.com/group/youzhaopin/discussion"
-    topic_url = "http://www.douban.com/group/topic/8631024/"
-    #topic_url ="http://www.douban.com/group/topic/20935107/"
+    #topic_url = "http://www.douban.com/group/topic/30331604/"# "http://www.douban.com/group/topic/27122071/"# "http://www.douban.com/group/topic/8631024/"
+    topic_url ="http://www.douban.com/group/topic/20935107/"
      #"http://www.douban.com/group/topic/27239346/"
 	#url =	"http://www.douban.com/group/Junko/discussion"	
 	from_c = "utf-8"

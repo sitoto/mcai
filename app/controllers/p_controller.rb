@@ -1,17 +1,12 @@
 class PController < ApplicationController
   def show
-    str = params[:id]
-    arr = str.split(/_/)
-		id = arr[0]
-    page_num = 1
-    unless arr[1].blank?
-      page_num = arr[1]
-    end
+    id  = params[:id]
+		page_num = params[:page]
 	  @article = Article.find(id)
     @article.inc(:hits, 1)
     @count = Topic.where(:article_id => id).count
-	  @topic = Topic.where(:article_id => id).first
-
+	  @topic = Topic.where(:article_id => id, :page_num => page_num).first
+		@topics =Topic.where(:article_id => id).page(page_num).per(1) 
   end
 
   def renew

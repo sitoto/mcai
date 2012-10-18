@@ -62,7 +62,7 @@ gem 'kaminari', '0.14.0'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
 #gem 'bootstrap-will_paginate', '0.0.3'
-gem 'bootstrap_helper', "1.4.1"
+#gem 'bootstrap_helper', "1.4.1"
 #gem "simple_form"
 gem "meta-tags"#, :require => "meta-tags", :git => "git://github.com/kpumuk/meta-tags.git"
 
