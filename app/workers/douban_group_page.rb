@@ -19,19 +19,21 @@ class DoubanGroupPage
   end
   def get_author_content
 		doc = Nokogiri::HTML(@html_stream)
-    rows = doc.xpath('//ul[@id="comments"]/li/div[@class="reply-doc"]')
-		posts = rows.collect do |row, i|
-			author 		= row.at_xpath('h4[1]/a[1]/text()').strip
-			next if !@author.to_s.equ?(author)
+    rows = doc.xpath('//ul[@id="comments"]/li')#/div[@class="reply-doc content"]')
+#		return rows
+		posts = []
+		rows.each_with_index do |row, i|
+			author 		= row.at_css('h4 a').text()
+			next if !(@author.to_s == author) #.equ?(author)
 			post = Post.new()
 
 			post.author = author
-			post.created_at = row.at_xpath('h4[1]/text()').strip.to(18)
-			post.content		= row.at_xpath("p[1]").inner_html.to_s.strip_href_tag
+			post.created_at = row.at_css('h4').text().strip.to(18)
+			post.content		= row.at_css("p").inner_html.to_s.strip_href_tag
     	post.level			= i + 1
     	post.words_count = post.content.length
 
-			post
+			posts << post
 		end
 		posts
 	end

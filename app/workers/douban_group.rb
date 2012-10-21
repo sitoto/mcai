@@ -116,7 +116,7 @@ class DoubanGroup
 
 		page = DoubanGroupPage.new(url + "?start=100" , @article.author)
 		posts2 = page.get_author_content
-		puts posts2.length
+		#@puts posts2.length
 
 		@topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
              url: url,   page_num: 2, posts: posts2)
@@ -124,5 +124,9 @@ class DoubanGroup
 		@article.topics.push(@topic2)
 		
   end
+  def page2(url, author)
+		page = DoubanGroupPage.new(url , author)
+		@posts2 = page.get_author_content
 
+	end
 end

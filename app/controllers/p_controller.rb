@@ -1,7 +1,12 @@
 class PController < ApplicationController
   def show
     id  = params[:id]
-		page_num = params[:page]
+		
+		if params[:page].nil?
+			page_num = 1
+		else
+			page_num = params[:page]
+		end
 	  @article = Article.find(id)
     @article.inc(:hits, 1)
     @count = Topic.where(:article_id => id).count

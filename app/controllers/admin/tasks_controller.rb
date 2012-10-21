@@ -27,7 +27,7 @@ class Admin::TasksController < AdminController
 	@do_lists = @douban_group.do_or_not
 	@douban_group.save_topics_html
 	@douban_group.dehydrate_topic(topic_url)
-
+#  @page2 = @douban_group.page2("http://www.douban.com/group/topic/20935107/?start=100", "枪枪")
 	
 	end
   # GET /admin/tasks/1
