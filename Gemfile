@@ -1,7 +1,7 @@
 #source 'https://rubygems.org'
 source 'http://ruby.taobao.org'
 
-gem 'rails', '3.2.3'
+gem 'rails', '3.2.8'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -55,17 +55,16 @@ gem "omniauth-twitter"
 #gem "omniauth_china"
 #gem "omniauth-google"
 #gem "bootstrap-sass", ">= 2.0.3"
-#gem 'anjlab-bootstrap-rails', '2.0.4.1', :require => 'bootstrap-rails'
 # 分页
 gem 'kaminari', '0.14.0'
 #gem 'will_paginate', '3.0.2'
 gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
                               :git => 'git://github.com/anjlab/bootstrap-rails.git'
 #gem 'bootstrap-will_paginate', '0.0.3'
-#gem 'bootstrap_helper', "1.4.1"
 #gem "simple_form"
 gem "meta-tags"#, :require => "meta-tags", :git => "git://github.com/kpumuk/meta-tags.git"
 
 gem "rails-footnotes", ">= 3.7", :group => :development
 gem "therubyracer", :group => :assets, :platform => :ruby
 gem "passenger"
+

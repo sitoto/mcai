@@ -7,6 +7,7 @@ class PController < ApplicationController
 		else
 			page_num = params[:page]
 		end
+
 	  @article = Article.find(id)
     @article.inc(:hits, 1)
     @count = Topic.where(:article_id => id).count

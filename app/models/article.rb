@@ -11,9 +11,10 @@ class Article
   # from web
   field :title, :type => String
   field :author, :type => String
+  field :class_name, :type => String
   field :first_time, :type => String
   field :last_time, :type => String
-  field :from_name, :type => String
+#  field :from_name, :type => String
   field :from_url, :type => String
   field :last_url, :type => String
   field :from_ip, :type => String

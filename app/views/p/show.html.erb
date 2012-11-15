@@ -2,20 +2,16 @@
 <% @meta_keywords =  @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
 
 <h1><%= @article.mytitle %></h1>
-<span>当前页：<%= @topic.page_num %>,
-总页数： <%= @count%> 
-点击数<%= @article.hits %> 
-顶贴数<%= @article.like_count %> 
-总字数<%= @article.words_count %></span>
+<span>当前页：<%= "#{@topic.page_num}/#{@article.pages_count}" %>,
+  来自:<%= @article.class_name %>, 作者:<%= @article.author %></span> 
 
 <% if @topic.posts && @topic.posts.length > 0 %>
   <%= render :partial => "post", :locals => {:posts => @topic.posts} %>
 <% end %>
 
 <div class="row-fluid show-grid">
-		<div class="span12">
-			<%= @topic.id %><br/>
-			<%= @article.author %><br>
+  <div class="span12">
+    点击数<%= @article.hits %>,顶贴数<%= @article.like_count %>,总字数<%= @article.words_count %>
 			<%= @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
 		</div>
 </div>

@@ -2,7 +2,7 @@
 require "nokogiri"
 require "open-uri"
 require "common"
-#采集豆瓣小组的-爬虫
+#
 class DoubanGroupPage
   include Common
 
