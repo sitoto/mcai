@@ -1,6 +1,6 @@
 defaults: &defaults
   options:
-      identity_map_enabled: true
+    identity_map_enabled: true
 
 
 development:
@@ -13,13 +13,13 @@ test:
   database: mcai_test
 
 # set these environment variables on your prod server
- production:
-   <<: *defaults
-     sessions:
-       default:
-         hosts:
-           - 127.0.0.1:27017
-        database: tuoshuiba
+production:
+  <<: *defaults
+  sessions:
+    default:
+      hosts:
+        - 127.0.0.1:27017
+      database: tuoshuiba
 
 # set these environment variables on your prod server
 # production:
