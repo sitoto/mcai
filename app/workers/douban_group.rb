@@ -56,12 +56,12 @@ class DoubanGroup
   def dehydrate_topic(url)
     doc =  Nokogiri::HTML(safe_open(url , retries = 3, sleep_time = 0.42, headers = {}))
 
-	  title = doc.at_css("title").text
+	  title = doc.at_css("title").text.strip
     if doc.at_css("div.topic-doc > table.infobox .tablecc")
       title =  doc.at_css("div.topic-doc > table.infobox .tablecc").text.from(3)
     end
 
-    category = doc.at_css("div.aside > p > a").text.from(1)
+    category = doc.at_css("div.aside > p > a").text.strip.from(1)
     lz = doc.at_css("div.topic-doc > h3 > span.pl20 > a").text
     created_at = doc.at_css("div.topic-doc > h3 > span.color-green").text
     #from_url = url    #存入首页地址
@@ -82,6 +82,7 @@ class DoubanGroup
     post.words_count = post.content.length
 
 		@article = Article.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+                           class_name: category,
              first_time: created_at, from_url: url, last_url: url, pages_count: all_page_num) 
 
     @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
@@ -111,18 +112,25 @@ class DoubanGroup
     end #end for each_with_index
 
     @article.topics.push(@topic)
+    @article.inc(:words_count, @topic.words_count)
+    @article.inc(:posts_count, @topic.posts.count)
     @article.save
     @topic.save
 
-		page = DoubanGroupPage.new(url + "?start=100" , @article.author)
-		posts2 = page.get_author_content
-		#@puts posts2.length
+    1.upto(@article.pages_count - 1) do |i|
+      page = DoubanGroupPage.new(url + "?start=#{100 * i}" , @article.author)
+      posts2 = page.get_author_content
+      #@puts posts2.length
 
-		@topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
-             url: url,   page_num: 2, posts: posts2)
-		@topic2.save
-		@article.topics.push(@topic2)
-		
+      @topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+               url: url,   page_num: i, posts: posts2)
+      @topic2.save
+      @article.inc(:posts_count, posts2.length)
+
+      @article.topics.push(@topic2)
+      @article.save
+    end
+
   end
   def page2(url, author)
 		page = DoubanGroupPage.new(url , author)
