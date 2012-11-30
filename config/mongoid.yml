@@ -1,26 +1,17 @@
-defaults: &defaults
-  options:
-    identity_map_enabled: true
-
+production:
+  database: tuoshuiba
+  host: localhost
 
 development:
   host: localhost
   database: mcai_development
-#  identity_map_enabled: true
 
 test:
   host: localhost
   database: mcai_test
 
-# set these environment variables on your prod server
-production:
-  <<: *defaults
-  sessions:
-    default:
-      hosts:
-        - 127.0.0.1:27017
-      database: tuoshuiba
 
+#tuoshuiba
 # set these environment variables on your prod server
 # production:
 #  host: <%= ENV['MONGOID_HOST'] %>
