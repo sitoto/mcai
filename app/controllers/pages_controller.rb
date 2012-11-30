@@ -20,7 +20,7 @@ class PagesController < ApplicationController
   end
 
 	def about
-		@page = page.about.last
+		@page = Page.about.last
 	  respond_to do |format|
       format.html # about.html.erb
       format.json { render json: @page }

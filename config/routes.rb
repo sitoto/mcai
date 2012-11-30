@@ -1,5 +1,7 @@
 Mcai::Application.routes.draw do
 
+  match "about" => "pages#about"
+
   get "p/top"
 
   resources :p  do
