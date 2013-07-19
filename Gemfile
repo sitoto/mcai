@@ -68,3 +68,6 @@ gem "rails-footnotes", ">= 3.7", :group => :development
 gem "therubyracer", :group => :assets, :platform => :ruby
 gem "passenger"
 gem 'nokogiri'
+
+gem 'delayed_job_mongoid'
+

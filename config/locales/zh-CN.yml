@@ -54,6 +54,13 @@
         body: 内容
         locked: 锁定开关
         change_desc: 变更描述
+      task:
+        rule: 规则
+        name: 任务
+        web_url: 任务网址
+        verification: 验证网址
+        status: 任务状态
+        exec_num: 执行次数
       site:
         name: 网站名称
         url: 地址

@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h2><%= @result %></h2>
+
+<p>
+  <b>Name:</b>
+  <%= @task.name %>
+</p>
+
+<p>
+  <%= @task.web_url %> <br />
+  <%= @task.rule.url_regular %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @task.status %>
+</p>
+
+<p>
+  <b>Exec num:</b>
+  <%= @task.exec_num %>
+</p>
+
+
+<%= link_to 'Back', tasks_path %>

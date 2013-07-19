@@ -1,5 +1,14 @@
 Mcai::Application.routes.draw do
 
+  resources :tasks do
+    member do 
+      get "preview"
+    end
+  end
+
+
+  resources :rules
+
   match "about" => "pages#about"
 
   get "p/top"
