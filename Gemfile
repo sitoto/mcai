@@ -69,5 +69,5 @@ gem "therubyracer", :group => :assets, :platform => :ruby
 gem "passenger"
 gem 'nokogiri'
 
-gem 'delayed_job_mongoid'
+#gem 'delayed_job_mongoid'
 
