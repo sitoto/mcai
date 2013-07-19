@@ -2,6 +2,7 @@
 
 <table>
   <tr>
+    <th>Preview</th>
     <th>Name</th>
     <th>Web url</th>
     <th>Verification</th>
@@ -14,7 +15,7 @@
 
 <% @tasks.each do |task| %>
   <tr>
-    <td><%= link_to 'Preview', preview_task_path(task) %></td>
+    <td><%= link_to 'Test', preview_task_path(task) %></td>
     <td><%= task.name %></td>
     <td><%= task.web_url %></td>
     <td><%= task.verification %></td>
