@@ -118,6 +118,7 @@ class DoubanGroup
       @article.inc(words_count: @topic.words_count, posts_count: @topic.posts.count)
       @article.save
       @topic.save
+      max_page_num = 2
     end
 
     max_page_num.upto(@article.pages_count) do |i|
