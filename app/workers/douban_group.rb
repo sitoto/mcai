@@ -94,6 +94,8 @@ class DoubanGroup
     @article.topics.where(page_num: max_page_num).delete
 
     if max_page_num.eql?(1)
+     max_page_num += 1
+     
       @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
                          url: url,   page_num: 1 , posts: [post]) 
 
@@ -118,7 +120,6 @@ class DoubanGroup
       @article.inc(words_count: @topic.words_count, posts_count: @topic.posts.count)
       @article.save
       @topic.save
-      max_page_num = 2
     end
 
     max_page_num.upto(@article.pages_count) do |i|
