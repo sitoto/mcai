@@ -24,10 +24,7 @@
 <table>
   <tr>
     <th>Name</th>
-    <th>Type</th>
     <th>Status</th>
-    <th>Assign</th>
-    <th>Content</th>
     <th></th>
     <th></th>
     <th></th>
@@ -36,13 +33,7 @@
 <% @cpanel_tasks.each do |cpanel_task| %>
   <tr>
     <td><%= cpanel_task.name %></td>
-    <td><%= cpanel_task.type %></td>
     <td><%= cpanel_task.status %></td>
-    <td><%= cpanel_task.assign %></td>
-    <td><%= cpanel_task.content %></td>
-    <td><%= link_to 'Show', cpanel_task %></td>
-    <td><%= link_to 'Edit', edit_cpanel_task_path(cpanel_task) %></td>
-    <td><%= link_to 'Destroy', cpanel_task, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
