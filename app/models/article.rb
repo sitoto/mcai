@@ -35,6 +35,6 @@ class Article
 
 
 	scope :recent, where(:published => true).desc(:created_at).limit(12)
-  scope :popular, where(:like_count.gt => 5, :published => true )
+  scope :popular, where(:like_count.gt => 5, :published => true).desc(:updated_at).limit(12)
 
 end
