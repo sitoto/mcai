@@ -9,10 +9,10 @@ class PController < ApplicationController
 		end
 
 	  @article = Article.find(id)
-    @article.inc(:hits, 1)
-    @count = Topic.where(:article_id => id).count
-	  @topic = Topic.where(:article_id => id, :page_num => page_num).first
-		@topics =Topic.where(:article_id => id).page(page_num).per(1) 
+    @article.inc(hits: 1)
+    @count = Topic.where(article_id: id).count
+	  @topic = Topic.where(article_id: id, page_num: page_num).first
+		@topics =Topic.where(article_id: id).page(page_num).per(1) 
   end
 
   def renew

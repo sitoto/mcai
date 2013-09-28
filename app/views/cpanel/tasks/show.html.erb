@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @cpanel_task.name %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @cpanel_task.type %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @cpanel_task.status %>
+</p>
+
+<p>
+  <b>Assign:</b>
+  <%= @cpanel_task.assign %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%= @cpanel_task.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_cpanel_task_path(@cpanel_task) %> |
+<%= link_to 'Back', cpanel_tasks_path %>

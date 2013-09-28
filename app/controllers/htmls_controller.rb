@@ -1,5 +1,5 @@
 class HtmlsController < ApplicationController
-	layout "admin"
+	layout "cpanel"
   # GET /htmls
   # GET /htmls.json
   def index

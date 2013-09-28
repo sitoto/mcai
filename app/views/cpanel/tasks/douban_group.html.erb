@@ -1,0 +1,31 @@
+<%- title "采_" -%>
+
+<h1>采集</h1>
+<ol>
+		<li>OK</li>
+
+</ol>
+<table class="table">
+  <tbody >
+    <tr>
+      <th>序号</th>
+      <th>标题</th>
+      <th>作者</th>
+      <th>回复</th>
+      <th>时间</th>
+			<th>原帖</th>
+    </tr>
+
+<%- if @article  -%>
+    <tr>
+      <td><%= @article.from_ip %></td>
+      <td class="alt"><%= @article.title %></td>
+      <td><%= @article.author %></td>
+      <td><%= @article.posts_count %></td>
+      <td class="alt"><%= @article.pages_count %></td>
+      <td ><%=  @article.from_url %></td>
+    </tr>
+<% end %>
+  </tbody>
+
+</table>

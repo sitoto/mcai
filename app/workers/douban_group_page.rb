@@ -24,11 +24,11 @@ class DoubanGroupPage
 		posts = []
 		rows.each_with_index do |row, i|
 			author 		= row.at_css('h4 a').text()
-			next if !(@author.to_s == author) #.equ?(author)
+			next if !(@author.to_s == author) #.eql?(author)
 			post = Post.new()
 
 			post.author = author
-			post.created_at = row.at_css('h4').text().strip.to(18)
+			post.created_at = row.at_css('h4 > span.pubtime').text().strip.to(18)
 			post.content		= row.at_css("p").inner_html.to_s.strip_href_tag
     	post.level			= i + 1
     	post.words_count = post.content.length

@@ -1,0 +1,52 @@
+<h1>任务管理</h1>
+<div class="well">
+	<div class="btn-group">
+	  <%= link_to "自动采集豆瓣", douban_group_cpanel_tasks_path, class: "btn btn-primary btn-large" %> 
+	  <%= link_to "自动采集天涯", tianyabbs_cpanel_tasks_path, class: "btn btn-primary btn-large" %> 
+	</div>
+</div>
+<form action="<%=  douban_group_cpanel_tasks_path %>"  method = "get"   target = "_blank">
+  <%= submit_tag("搜索", :class => "su") %>
+  <%= text_field_tag(:q , '', :class => "q")  %>
+</form>
+<div>
+    #topic_url = "http://www.douban.com/group/topic/21971852/"
+    #topic_url = "http://www.douban.com/group/topic/18406285/"
+    #topic_url = "http://www.douban.com/group/topic/30090749/"
+    url = "http://www.douban.com/group/youzhaopin/discussion"
+    #topic_url = "http://www.douban.com/group/topic/30331604/"# "http://www.douban.com/group/topic/27122071/"# "http://www.douban.com/group/topic/8631024/"
+    #topic_url ="http://www.douban.com/group/topic/20935107/"
+    #"http://www.douban.com/group/topic/27239346/"
+    #url =	"http://www.douban.com/group/Junko/discussion"	
+</div>
+<div class="alert alert-info">
+<h3>所有任务列表</h3>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Status</th>
+    <th>Assign</th>
+    <th>Content</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cpanel_tasks.each do |cpanel_task| %>
+  <tr>
+    <td><%= cpanel_task.name %></td>
+    <td><%= cpanel_task.type %></td>
+    <td><%= cpanel_task.status %></td>
+    <td><%= cpanel_task.assign %></td>
+    <td><%= cpanel_task.content %></td>
+    <td><%= link_to 'Show', cpanel_task %></td>
+    <td><%= link_to 'Edit', edit_cpanel_task_path(cpanel_task) %></td>
+    <td><%= link_to 'Destroy', cpanel_task, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<br />
+
+<%= link_to 'New Task', new_cpanel_task_path %>

@@ -7,14 +7,14 @@ class DoubanGroup
   include Common
 
 	#打印出入口地址页的分类页面 url
-	def	initialize(first_url)
-		@first_url = first_url
-    #get_page_content
+	def	initialize(frist_url)
+		#@first_url = first_url
+    #@html_stream = safe_open(@first_url , retries = 3, sleep_time = 0.42, headers = {})
 	end
 
 	def get_page_content
-	  @html_stream = safe_open(@first_url , retries = 3, sleep_time = 0.42, headers = {})
-		#@html_stream.encode!("utf-8","gbk")
+	  @html_stream 
+    #@html_stream.encode!("utf-8","gbk")
   end
 
 	def get_all_topics
@@ -54,87 +54,85 @@ class DoubanGroup
 	end
 
   def dehydrate_topic(url)
-    doc =  Nokogiri::HTML(safe_open(url , retries = 3, sleep_time = 0.42, headers = {}))
+    doc =  Nokogiri::HTML(safe_open(url , retries = 2, sleep_time = 0.42, headers = {}))
+    # article summary
+    xpath_category = "//div[@class='title']/a/text()"
+    xpath_lz = "//h3/span[@class='from']/a/text()"
+    xpath_created_at = "//h3/span[@class='color-green']/text()"
+    # page info
+    xpath_paginator = "//div[@class='paginator']/a/text()"
 
 	  title = doc.at_css("title").text.strip
     if doc.at_css("div.topic-doc > table.infobox .tablecc")
       title =  doc.at_css("div.topic-doc > table.infobox .tablecc").text.from(3)
     end
 
-    category = doc.at_css("div.aside > p > a").text.strip.from(1)
-    lz = doc.at_css("div.topic-doc > h3 > span.pl20 > a").text
-    created_at = doc.at_css("div.topic-doc > h3 > span.color-green").text
-    #from_url = url    #存入首页地址
+    category   = doc.at_xpath(xpath_category).to_s
+    lz         = doc.at_xpath(xpath_lz).to_s
+    created_at = doc.at_xpath(xpath_created_at).to_s
+
     all_page_num =  1
-    if doc.css("div.paginator > a")
-      #获取总页数
-      doc.css("div.paginator > a").each do |link|
-        all_page_num = link.text
-      end
+    doc.xpath(xpath_paginator).each do |link|
+      all_page_num = link.to_s
     end
+
     firstcontent = doc.at_xpath('//div[@class="topic-doc"]//div[@class="topic-content"]/p').inner_html
     post = Post.new
     post.author = lz
     post.created_at = created_at
-    post.level = 1
-    post.my_level = 1
+    post.level = 0
+    post.my_level = 0
     post.content = firstcontent.to_s.strip_href_tag
     post.words_count = post.content.length
 
-		@article = Article.new(title: title, mytitle: title, tags: [category, lz], author: lz,
-                           class_name: category,
-             first_time: created_at, from_url: url, last_url: url, pages_count: all_page_num) 
+    @article = Article.find_or_create_by(from_url: url)
+    @article.update_attributes!(title: title, mytitle: title, tags: [category, lz], author: lz,
+             class_name: category, first_time: created_at, last_url: url, pages_count: all_page_num) 
+#update or add topic(page)
+    max_page_num = @article.topics.max(:page_num)
+    max_page_num ||= 1
+    @article.topics.where(page_num: max_page_num).delete
 
-    @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
-             url: url,   page_num: 1 , posts: [post]) 
+    if max_page_num.eql?(1)
+      @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+                         url: url,   page_num: 1 , posts: [post]) 
 
+      my_level = @article.posts_count
 
-#		dehydrate_posts(@topic, doc)
-#	end
-#  def dehydrate_posts(@topic, doc)
+      doc.css(".reply-doc").each_with_index do |item, i|
+        post = Post.new
+        post.author = item.at_css("a").text
+        post.created_at  = item.at_css("h4 > span.pubtime").text.strip.to(18)
+        post.content= item.at_css("p").inner_html.to_s.strip_href_tag
+        post.level = i+1
+        post.words_count = post.content.length
+        if post.author == @topic.author
+          my_level += 1
+          post.my_level = my_level
+          @topic.inc(words_count: post.words_count, post_count: 1)	
+          @topic.posts <<  post 
+        end	
+      end #end for each_with_index
 
-		my_level = @topic.posts_count
- 
-		doc.css(".reply-doc").each_with_index do |item, i|
-			post = Post.new
-      post.author = item.at_css("a").text
-      post.created_at  = item.at_css("h4").text.strip.to(18)
-			post.content= item.at_css("p").inner_html.to_s.strip_href_tag
-			post.level = i+1
-			post.words_count = post.content.length
-	    if post.author == @topic.author
-					my_level += 1
-					post.my_level = my_level
-					@topic.inc(:words_count, post.words_count)
-				  @topic.inc(:post_count, 1)	
-					@topic.posts <<  post 
-		  end	
-    end #end for each_with_index
+      @article.topics.push(@topic)
+      @article.inc(words_count: @topic.words_count, posts_count: @topic.posts.count)
+      @article.save
+      @topic.save
+    end
 
-    @article.topics.push(@topic)
-    @article.inc(:words_count, @topic.words_count)
-    @article.inc(:posts_count, @topic.posts.count)
-    @article.save
-    @topic.save
-
-    1.upto(@article.pages_count - 1) do |i|
-      page = DoubanGroupPage.new(url + "?start=#{100 * i}" , @article.author)
+    max_page_num.upto(@article.pages_count) do |i|
+      page = DoubanGroupPage.new(url + "?start=#{100 * (i-1)}" , @article.author)
       posts2 = page.get_author_content
-      #@puts posts2.length
 
-      @topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
-               url: url,   page_num: i, posts: posts2)
-      @topic2.save
-      @article.inc(:posts_count, posts2.length)
+      topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+               url: url,   page_num: i , posts: posts2)
+      topic2.save
+      @article.inc(posts_count: posts2.length)
 
-      @article.topics.push(@topic2)
+      @article.topics.push(topic2)
       @article.save
     end
 
+    @article
   end
-  def page2(url, author)
-		page = DoubanGroupPage.new(url , author)
-		@posts2 = page.get_author_content
-
-	end
 end

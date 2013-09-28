@@ -1,0 +1,22 @@
+<h1>Listing cpanel_events</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Status</th>
+    <th>IP</th>
+   <th>Created at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @cpanel_events.each do |cpanel_event| %>
+  <tr>
+    <td><%= cpanel_event.name %></td>
+     <td><%= cpanel_event.status %></td>
+   <td><%= cpanel_event.from_ip %></td>
+    <td><%= cpanel_event.created_at %></td>
+  </tr>
+<% end %>
+</table>

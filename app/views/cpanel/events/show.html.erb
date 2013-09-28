@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @cpanel_event.name %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @cpanel_event.status %>
+</p>
+
+<p>
+  <b>Created at:</b>
+  <%= @cpanel_event.created_at %>
+</p>
+
+
+<%= link_to 'Edit', edit_cpanel_event_path(@cpanel_event) %> |
+<%= link_to 'Back', cpanel_events_path %>

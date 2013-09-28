@@ -26,6 +26,7 @@ class Article
   field :hits, :type => Integer, default:  0
 
   has_many :topics, :dependent => :destroy
+  has_many :events
 
   index :mytitle => 1
   index :like_count => 1
