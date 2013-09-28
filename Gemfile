@@ -38,7 +38,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 2.13.2'
   gem 'factory_girl_rails'
 end
-
-group :production do 
-  gem "passenger"
+group :production do
+  gem 'unicorn'
 end
