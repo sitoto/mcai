@@ -69,6 +69,8 @@ module Mcai
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    config.assets.precompile += %w(application.css cpanel.css mobile.css)
   end
 end
 I18n.locale = 'zh-CN'
