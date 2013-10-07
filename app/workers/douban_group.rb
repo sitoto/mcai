@@ -86,7 +86,7 @@ class DoubanGroup
     post.words_count = post.content.length
 
     @article = Article.find_or_create_by(from_url: url)
-    @article.update_attributes!(title: title, mytitle: title, tags: [category, lz], author: lz,
+    @article.update_attributes!(title: title, mytitle: title, tags: [category, lz], author: lz, from_name: 'douban_group',
              class_name: category, first_time: created_at, last_url: url, pages_count: all_page_num) 
 #update or add topic(page)
     max_page_num = @article.topics.max(:page_num)

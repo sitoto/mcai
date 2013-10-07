@@ -6,17 +6,30 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @pages }
     end
   end
   def home 
     @page = Page.notice.last
-		@articles = Article.recent
-		@hot_articles = Article.popular   
+		@articles = Article.fields_for_list.recent.limit(20)
+		@hot_articles = Article.fields_for_list.popular.limit(20)
 
     respond_to do |format|
       format.html # home.html.erb
-      format.json { render json: @page }
+    end
+  end
+
+  def douban_group 
+	  id  = params[:id]
+		
+		if params[:page].nil?
+			page_num = 1
+		else
+			page_num = params[:page]
+		end
+	  @articles = Article.douban_group.recent.page(page_num).per(50)
+
+    respond_to do |format|
+      format.html 
     end
   end
 
@@ -24,7 +37,6 @@ class PagesController < ApplicationController
 		@page = Page.about.last
 	  respond_to do |format|
       format.html # about.html.erb
-      format.json { render json: @page }
     end
  	
 	end

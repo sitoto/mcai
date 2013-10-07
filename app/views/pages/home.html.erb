@@ -13,13 +13,13 @@
   <div class="span6">
     <h4>最新脱水</h4>
     <ul>
-      <%= render :partial => "item", :collection => @articles %>
+      <%= render :partial => "homeitem", :collection => @articles %>
     </ul>
   </div>
   <div class="span6">
     <h4>热门推荐</h4>
     <ol>
-      <%= render :partial => "item", :collection => @articles %>
+      <%= render :partial => "homeitem", :collection => @hot_articles %>
     </ol>
   </div>
 </div>

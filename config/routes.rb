@@ -15,6 +15,7 @@ Mcai::Application.routes.draw do
 		collection do 
 			get "home"
 			get "about"
+      get "douban_group", :as => :doubangroup
 		end
 	end
 

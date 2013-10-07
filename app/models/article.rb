@@ -14,7 +14,8 @@ class Article
   field :class_name, :type => String
   field :first_time, :type => String
   field :last_time, :type => String
-#  field :from_name, :type => String
+
+  field :from_name, :type => String # 'douban_group','baidu_tieba', 'tianya_bbs'
   field :from_url, :type => String
   field :last_url, :type => String
   field :from_ip, :type => String
@@ -22,7 +23,7 @@ class Article
   field :pages_count, :type => Integer, default: 1
   field :posts_count, :type => Integer, default: 1
   field :words_count, :type => Integer, default: 1
-	field :like_count, :type => Integer, default: 0
+  field :like_count, :type => Integer, default: 0
   field :hits, :type => Integer, default:  0
 
   has_many :topics, :dependent => :destroy
@@ -32,9 +33,20 @@ class Article
   index :like_count => 1
   index :created_at => 1
   index :updated_at => 1
+  index :from_name => 1
+  index :from_url => 1
 
+  scope :recent, desc(:_id)
 
-	scope :recent, where(:published => true).desc(:created_at).limit(12)
-  scope :popular, where(:like_count.gt => 5, :published => true).desc(:updated_at).limit(12)
+  # 推荐的话题
+  scope :suggest, -> { where(:suggested_at.ne => nil).desc(:suggested_at) }
+  scope :fields_for_list, -> { without(:body, :mydescription) }
+  scope :high_likes, -> { desc(:like_count, :_id) }
+  scope :high_posts, -> { desc(:posts_count, :_id) }
+  scope :high_pages, -> { desc(:pages_count, :_id) }
+  
+  scope :no_reply, -> { where(:replies_count => 0) }
+  scope :popular, -> { where(:like_count.gt => 5) }
+  scope :douban_group, -> { where(:from_name => 'douban_group') }
 
 end
