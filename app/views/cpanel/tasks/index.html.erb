@@ -6,8 +6,8 @@
 	</div>
 </div>
 <form action="<%=  douban_group_cpanel_tasks_path %>"  method = "get"   target = "_blank">
-  <%= submit_tag("搜索", :class => "su") %>
-  <%= text_field_tag(:q , '', :class => "q")  %>
+  <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
+  <%= submit_tag("搜索", :class => "su btn btn-primary") %>
 </form>
 <div>
     #topic_url = "http://www.douban.com/group/topic/21971852/"
