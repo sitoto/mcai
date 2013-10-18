@@ -23,9 +23,12 @@ class Cpanel::TasksController < Cpanel::ApplicationController
 
     @douban_group = DoubanGroup.new(topic_url)
     @article = @douban_group.dehydrate_topic(topic_url)
-    @article.update_attribute(:from_ip, remote_ip)
-    @article.events.create(from_ip: remote_ip, name: @article.title)
-
+    if @article
+      @article.update_attribute(:from_ip, remote_ip)
+      @article.events.create(from_ip: remote_ip, name: @article.title)
+    else
+     @error = Event.last 
+    end
 
   end
   def douban_list

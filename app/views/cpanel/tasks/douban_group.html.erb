@@ -1,10 +1,6 @@
 <%- title "采_" -%>
 
 <h1>采集</h1>
-<ol>
-		<li>OK</li>
-
-</ol>
 <table class="table">
   <tbody >
     <tr>
@@ -24,6 +20,13 @@
       <td><%= @article.posts_count %></td>
       <td class="alt"><%= @article.pages_count %></td>
       <td ><%=  @article.from_url %></td>
+    </tr>
+  <% else %>
+    <tr>
+      <td colspan='6'>采集错误如下，详情查看事件记录</td>
+    </tr>
+    <tr>
+      <td colspan='3'><%= @error.name  %></td><td colspan='3'><%= @error.note  %></td>
     </tr>
 <% end %>
   </tbody>

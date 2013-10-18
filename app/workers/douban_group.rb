@@ -6,55 +6,57 @@ require "common"
 class DoubanGroup
   include Common
 
-	#打印出入口地址页的分类页面 url
-	def	initialize(frist_url)
-		#@first_url = first_url
+  #打印出入口地址页的分类页面 url
+  def	initialize(frist_url)
+    #@first_url = first_url
     #@html_stream = safe_open(@first_url , retries = 3, sleep_time = 0.42, headers = {})
-	end
+  end
 
-	def get_page_content
-	  @html_stream 
+  def get_page_content
+    @html_stream 
     #@html_stream.encode!("utf-8","gbk")
   end
 
-	def get_all_topics
-		doc = Nokogiri::HTML(@html_stream)
+  def get_all_topics
+    doc = Nokogiri::HTML(@html_stream)
     @title = doc.css("title").text
-  	@lists = []
+    @lists = []
     doc.css("div#content  div.article > table  > tr").each_with_index do |item, i|
       if i > 0
-         @lists <<  [ item.css("td")[0].text,
-                        item.css("td")[1].text,
-                        item.css("td")[2].text,
-                        item.css("td")[3].text,
-                        item.at_css("td > a").attr("href")]
+        @lists <<  [ item.css("td")[0].text,
+          item.css("td")[1].text,
+          item.css("td")[2].text,
+          item.css("td")[3].text,
+          item.at_css("td > a").attr("href")]
       end
     end
-		@lists
-	end
-	def do_or_not
-		@do_lists = []
-	  @lists.each do |t|
-			if t[2].length > 2 
-				@do_lists << [t[4], t[2], t[0], t[1], t[3], "auto" ]
-			end
-		end
-		@do_lists
-	end
+    @lists
+  end
+  def do_or_not
+    @do_lists = []
+    @lists.each do |t|
+      if t[2].length > 2 
+        @do_lists << [t[4], t[2], t[0], t[1], t[3], "auto" ]
+      end
+    end
+    @do_lists
+  end
 
-	def save_topics_html
-		@do_lists.each do |d|
-			if Html.where(url: d[0]).count == 0
-				html_content = safe_open(d[0])
-				Html.create(url: d[0], body: html_content, status: "a", top: 0)
-			end
-			break
-		end
+  def save_topics_html
+    @do_lists.each do |d|
+      if Html.where(url: d[0]).count == 0
+        html_content = safe_open(d[0])
+        Html.create(url: d[0], body: html_content, status: "a", top: 0)
+      end
+      break
+    end
 
-	end
+  end
 
   def dehydrate_topic(url)
-    doc =  Nokogiri::HTML(safe_open(url , retries = 2, sleep_time = 0.42, headers = {}))
+    html_stream = safe_open(url , retries = 2, sleep_time = 0.42, headers = {})   
+    return if html_stream.empty?
+    doc = Nokogiri::HTML(html_stream)
     # article summary
     xpath_category = "//div[@class='title']/a/text()"
     xpath_lz = "//h3/span[@class='from']/a/text()"
@@ -62,7 +64,7 @@ class DoubanGroup
     # page info
     xpath_paginator = "//div[@class='paginator']/a/text()"
 
-	  title = doc.at_css("title").text.strip
+    title = doc.at_css("title").text.strip
     if doc.at_css("div.topic-doc > table.infobox .tablecc")
       title =  doc.at_css("div.topic-doc > table.infobox .tablecc").text.from(3)
     end
@@ -87,15 +89,15 @@ class DoubanGroup
 
     @article = Article.find_or_create_by(from_url: url)
     @article.update_attributes!(title: title, mytitle: title, tags: [category, lz], author: lz, from_name: 'douban_group',
-             class_name: category, first_time: created_at, last_url: url, pages_count: all_page_num) 
-#update or add topic(page)
+                                class_name: category, first_time: created_at, last_url: url, pages_count: all_page_num) 
+    #update or add topic(page)
     max_page_num = @article.topics.max(:page_num)
     max_page_num ||= 1
     @article.topics.where(page_num: max_page_num).delete
 
     if max_page_num.eql?(1)
-     max_page_num += 1
-     
+      max_page_num += 1
+
       @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
                          url: url,   page_num: 1 , posts: [post]) 
 
@@ -127,7 +129,7 @@ class DoubanGroup
       posts2 = page.get_author_content
 
       topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
-               url: url,   page_num: i , posts: posts2)
+                         url: url,   page_num: i , posts: posts2)
       topic2.save
       @article.inc(posts_count: posts2.length)
 
