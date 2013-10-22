@@ -211,7 +211,7 @@ form {
   li { display:none; }
   li.active,
   li.prev,
-  li.next { display:inline; }
+  li.next_page { display:inline; }
   li.active { border:none;
     a {
       background:#F0F0F0;
@@ -220,7 +220,7 @@ form {
   }
 }
 
-.go_top { display:none; }
+.backToTop { display:none; }
 
 .home_suggest_topics {
   .box { width:auto; position: static;}
