@@ -1,5 +1,10 @@
 Mcai::Application.routes.draw do
 
+  get "search/index", :as => :search
+  resources :search do
+    get 'page/:page', :action => :index, :on => :collection
+  end
+
   get "home/index"
   resources :tasks do
     member do 
@@ -12,39 +17,39 @@ Mcai::Application.routes.draw do
 
   get "about" => "pages#about"
   resources :pages do
-		collection do 
-			get "home"
-			get "about"
+    collection do 
+      get "home"
+      get "about"
       get "douban_group", :as => :doubangroup
-		end
-	end
+    end
+  end
 
   root :to => 'pages#home'
 
-  
+
   resources :p  do
-	  get :top
-	  get :page, :action => :show, :on => :member
+    get :top
+    get :page, :action => :show, :on => :member
     get :renew
 
-	end
-  
+  end
+
 
   resources :htmls
 
   namespace :cpanel do 
-		root :to => "home#index"
-		resources :tasks  do 
-			collection do 
-				get "douban_group"
-				get "tieba"
-				get "tianyabbs"
-				get "sohubbbs"
-			end
-		end
+    root :to => "home#index"
+    resources :tasks  do 
+      collection do 
+        get "douban_group"
+        get "tieba"
+        get "tianyabbs"
+        get "sohubbbs"
+      end
+    end
 
-		resources :events 
-	end
+    resources :events 
+  end
 
 
 end

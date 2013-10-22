@@ -4,8 +4,8 @@
 </div>
 
 <div class="well">
-  <form class="form-search">
-    <input type="text" class="input-xlarge search-query" placeholder="输入网址...">
+  <form class="form-search" action="<%= search_path %>"  method = "get" >
+    <input type="text" class="input-xlarge search-query" name="q" placeholder="输入内容或网址...">
     <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>只看楼主</button>
   </form>
 </div>

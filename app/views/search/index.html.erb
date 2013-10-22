@@ -1,0 +1,14 @@
+<%- title "查找:#{@search_txt}" -%>
+<div class="row-fluid">
+  <div class="span12">
+    <h1>查找:<%= @search_txt %></h1>
+    <%- if @articles && @articles.length > 0 -%>
+      <ol>
+        <%= render :partial => "share/list", :collection => @articles %>
+      </ol>
+      <%= paginate @articles, :outer_window => 4, :inner_window => 4 -%>
+    <%- else -%>
+      <p>没有内容。.</p>
+    <%- end -%>
+  </div>
+</div>

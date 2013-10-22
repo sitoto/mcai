@@ -15,14 +15,21 @@ class Cpanel::TasksController < Cpanel::ApplicationController
     if params[:q].blank?
       return
     else
-      @search_url = params[:q]
+      search_url = params[:q]
     end
-    topic_url = @search_url
+    topic_url = search_url
     from_c = "utf-8"
     to_c = "utf-8"
+    regEx_douban_1 = /douban\.com\/group\/topic\/[0-9]*/
+    if regEx_douban_1 =~ topic_url
+      @topic_url = ("http://www." << regEx_douban_1.match(topic_url).to_s << "/")
+    else
+      @topic_url = topic_url
+      return
+    end
 
-    @douban_group = DoubanGroup.new(topic_url)
-    @article = @douban_group.dehydrate_topic(topic_url)
+    @douban_group = DoubanGroup.new(@topic_url)
+    @article = @douban_group.dehydrate_topic(@topic_url)
     if @article
       @article.update_attribute(:from_ip, remote_ip)
       @article.events.create(from_ip: remote_ip, name: @article.title)
