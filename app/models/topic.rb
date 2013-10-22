@@ -16,7 +16,7 @@ class Topic
   field :url, :type => String
   # tong ji
   field :page_num, :type => Integer
-  field :posts_count, :type => Integer, default: 1
+  field :posts_count, :type => Integer, default: 0 
   field :words_count, :type => Integer, default: 100
 	field :like_count, :type => Integer, default: 0
 

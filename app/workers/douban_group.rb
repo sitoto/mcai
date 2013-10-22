@@ -99,7 +99,7 @@ class DoubanGroup
       max_page_num += 1
 
       @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
-                         url: url,   page_num: 1 , posts: [post]) 
+                         url: url,   page_num: 1 , posts_count: 1, posts: [post]) 
 
       my_level = @article.posts_count
 
@@ -114,6 +114,7 @@ class DoubanGroup
           my_level += 1
           post.my_level = my_level
           @topic.inc(words_count: post.words_count, post_count: 1)	
+          @topic.inc(posts_count: 1)
           @topic.posts <<  post 
         end	
       end #end for each_with_index
@@ -129,7 +130,7 @@ class DoubanGroup
       posts2 = page.get_author_content
 
       topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
-                         url: url,   page_num: i , posts: posts2)
+                         url: url,   page_num: i , posts_count: posts2.length, posts: posts2)
       topic2.save
       @article.inc(posts_count: posts2.length)
 
