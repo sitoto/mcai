@@ -31,7 +31,9 @@ gem 'simple_form', "3.0.0.rc"
 
 gem 'nokogiri'
 
-gem 'delayed_job_mongoid', :path => "/home/administrator/sites/delayed_job_mongoid"
+gem 'delayed_job_mongoid',   :git => 'git://github.com/sitoto/delayed_job_mongoid.git'
+
+#  :path => "/home/administrator/sites/delayed_job_mongoid"
 group :development, :test do 
   gem "capistrano", '2.9.0', require: false
   gem 'rvm-capistrano', require: false

@@ -17,8 +17,9 @@ GIT
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
 
-PATH
-  remote: /home/administrator/sites/delayed_job_mongoid
+GIT
+  remote: git://github.com/sitoto/delayed_job_mongoid.git
+  revision: 2c6d2da60996a255356a5fffdfd719ee91ee813e
   specs:
     delayed_job_mongoid (4.0.0)
       delayed_job (~> 4.0)
