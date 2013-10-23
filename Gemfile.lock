@@ -17,6 +17,13 @@ GIT
       origin (~> 1.0)
       tzinfo (~> 0.3.22)
 
+PATH
+  remote: /home/administrator/sites/delayed_job_mongoid
+  specs:
+    delayed_job_mongoid (4.0.0)
+      delayed_job (~> 4.0)
+      mongoid (~> 4.0)
+
 GEM
   remote: http://ruby.taobao.org/
   specs:
@@ -60,6 +67,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
     diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.2)
@@ -176,6 +185,7 @@ DEPENDENCIES
   anjlab-bootstrap-rails!
   capistrano (= 2.9.0)
   coffee-rails (~> 4.0.0)
+  delayed_job_mongoid!
   factory_girl_rails
   jquery-rails (= 3.0.4)
   kaminari (= 0.14.0)
