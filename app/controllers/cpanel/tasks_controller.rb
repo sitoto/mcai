@@ -32,7 +32,7 @@ class Cpanel::TasksController < Cpanel::ApplicationController
     @article = @douban_group.dehydrate_topic(@topic_url)
     if @article
       @article.update_attribute(:from_ip, remote_ip)
-      @article.events.create(from_ip: remote_ip, name: @article.title)
+      @article.events.create(from_ip: remote_ip, name: @article.title, note: @article.from_url, status: "new")
     else
      @error = Event.last 
     end
