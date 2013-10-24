@@ -3,7 +3,11 @@
 
 <h1><%= @article.mytitle %></h1>
 <span>当前页：<%= "#{@topic.page_num}/#{@article.pages_count}" %>,
-  来自:<%= @article.class_name %>, 作者:<%= @article.author %></span> 
+  来自:<%= @article.class_name %>, 作者:<%= @article.author %>,
+  <%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, "data-type" => :json, rel: "nofollow",  :id => "ajax_top"  %>
+  <a id='num'><a>
+
+</span> 
 
 <% if @topic.posts && @topic.posts.length > 0 %>
   <%= render :partial => "post", :locals => {:posts => @topic.posts} %>
@@ -12,7 +16,20 @@
 <div class="row-fluid show-grid">
   <div class="span12">
     点击数<%= @article.hits %>,顶贴数<%= @article.like_count %>,总字数<%= @article.words_count %>
-			<%= @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
-		</div>
+    <%= @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
+  </div>
 </div>
 <%= paginate @topics %>
+<script type="text/javascript" charset="utf-8">
+  $(document).ready(function() {
+      $('#ajax_top').bind("ajax:success", function(event, data) {
+        var top = $('#ajax_top');
+        var num = $('#num');
+        //alert(data.top);
+        top.html(data.like_count);
+        num.text(data.like_count);
+        top.hide();
+        num.show();
+        });
+      });
+</script>

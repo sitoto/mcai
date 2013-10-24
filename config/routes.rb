@@ -28,7 +28,7 @@ Mcai::Application.routes.draw do
 
 
   resources :p  do
-    get :top
+    get :top, :on => :member
     get :page, :action => :show, :on => :member
     get :renew
 
