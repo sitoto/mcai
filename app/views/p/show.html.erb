@@ -5,7 +5,7 @@
 <span>当前页：<%= "#{@topic.page_num}/#{@article.pages_count}" %>,
   来自:<%= @article.class_name %>, 作者:<%= @article.author %>,
   <%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, "data-type" => :json, rel: "nofollow",  :id => "ajax_top"  %>
-  <a id='num'><a>
+  <a id='num'></a>
 
 </span> 
 
