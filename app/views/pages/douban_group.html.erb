@@ -1,10 +1,4 @@
 <% @page_title = "首页" %>
-<div class="well">
-  <form class="form-search">
-    <input type="text" class="input-xlarge search-query" placeholder="输入网址...">
-    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>只看楼主</button>
-  </form>
-</div>
 <div class="row-fluid">
   <div class="span12">
     <h4>最新脱水</h4>
@@ -13,7 +7,12 @@
     </ol>
   </div>
 </div>
+<%= paginate @articles %>
+
 <div class="well">
-  <p></p>
+  <form class="form-search">
+    <input type="text" class="input-xlarge search-query" placeholder="输入网址...">
+    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>只看楼主</button>
+  </form>
 </div>
 

@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
-  before_action :set_page_num, only: [:hot, :last, :douban_group]
+  before_action :set_page_num , only: [:hot, :last, :douban_group]
+
+  before_action :authenticate, only: [:new, :update, :destroy, :edit]
 
   # GET /pages
   # GET /pages.json
@@ -11,11 +13,7 @@ class PagesController < ApplicationController
     end
   end
   def hot 
-    if params[:page].nil?
-      page_num = 1
-    else
-      page_num = params[:page]
-    end
+    page_num = set_page_num
     @articles = Article.fields_for_list.popular.page(page_num).per(28)
 
     respond_to do |format|
@@ -96,7 +94,7 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new(page_params)
 
     respond_to do |format|
       if @page.save
@@ -115,7 +113,7 @@ class PagesController < ApplicationController
     @page = Page.find(params[:id])
 
     respond_to do |format|
-      if @page.update_attributes(params[:page])
+      if @page.update_attributes(page_params)
         format.html { redirect_to @page, notice: 'Page was successfully updated.' }
         format.json { head :no_content }
       else
@@ -137,7 +135,6 @@ class PagesController < ApplicationController
     end
   end
 
-
   private
   def set_page_num
     page_num = 1
@@ -146,6 +143,17 @@ class PagesController < ApplicationController
     else
       page_num = params[:page]
     end
-
+    page_num
   end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def page_params
+    params.require(:page).permit(:title, :permalink, :keywords, :description, :body)
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ADMIN_USERNAME && password == ADMIN_PASSWORD
+    end
+  end
+
 end
