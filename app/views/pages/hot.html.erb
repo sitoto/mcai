@@ -1,0 +1,21 @@
+<% @page_title = "最热" %>
+<div class="row-fluid">
+  <div class="span12">
+    <h4>热门文章</h4>
+    <ol>
+      <%= render :partial => "item", :collection => @articles %>
+    </ol>
+  </div>
+</div>
+<div class="well">
+  <p></p>
+</div>
+
+<%= paginate @articles %>
+<div class="well">
+  <form class="form-search">
+    <input type="text" class="input-xlarge search-query" placeholder="输入网址...">
+    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>只看楼主</button>
+  </form>
+</div>
+

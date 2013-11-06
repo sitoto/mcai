@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  before_action :set_page_num, only: [:hot, :last, :douban_group]
+
   # GET /pages
   # GET /pages.json
   def index
@@ -8,10 +10,35 @@ class PagesController < ApplicationController
       format.html # index.html.erb
     end
   end
+  def hot 
+    if params[:page].nil?
+      page_num = 1
+    else
+      page_num = params[:page]
+    end
+    @articles = Article.fields_for_list.popular.page(page_num).per(28)
+
+    respond_to do |format|
+      format.html # home.html.erb
+    end
+  end
+  def last 
+    if params[:page].nil?
+      page_num = 1
+    else
+      page_num = params[:page]
+    end
+    @articles = Article.fields_for_list.recent.page(page_num).per(28)
+
+    respond_to do |format|
+      format.html # home.html.erb
+    end
+  end
+
   def home 
     @page = Page.notice.last
-		@articles = Article.fields_for_list.recent.limit(20)
-		@hot_articles = Article.fields_for_list.popular.limit(20)
+    @articles = Article.fields_for_list.recent.limit(20)
+    @hot_articles = Article.fields_for_list.popular.limit(20)
 
     respond_to do |format|
       format.html # home.html.erb
@@ -19,27 +46,25 @@ class PagesController < ApplicationController
   end
 
   def douban_group 
-	  id  = params[:id]
-		
-		if params[:page].nil?
-			page_num = 1
-		else
-			page_num = params[:page]
-		end
-	  @articles = Article.douban_group.recent.page(page_num).per(50)
+    if params[:page].nil?
+      page_num = 1
+    else
+      page_num = params[:page]
+    end
+    @articles = Article.douban_group.recent.page(page_num).per(50)
 
     respond_to do |format|
       format.html 
     end
   end
 
-	def about
-		@page = Page.about.last
-	  respond_to do |format|
+  def about
+    @page = Page.about.last
+    respond_to do |format|
       format.html # about.html.erb
     end
- 	
-	end
+
+  end
 
   # GET /pages/1
   # GET /pages/1.json
@@ -110,5 +135,17 @@ class PagesController < ApplicationController
       format.html { redirect_to pages_url }
       format.json { head :no_content }
     end
+  end
+
+
+  private
+  def set_page_num
+    page_num = 1
+    if params[:page].nil?
+      page_num = 1
+    else
+      page_num = params[:page]
+    end
+
   end
 end
