@@ -1,0 +1,41 @@
+<%- title "采_#{@topic_url}" -%>
+
+<h1>采集</h1>
+<table class="table">
+  <tbody >
+    <tr>
+      <th>IP</th>
+      <th>标题</th>
+      <th>作者</th>
+      <th>条数</th>
+      <th>页数</th>
+			<th>来自</th>
+    </tr>
+
+<%- if @article  -%>
+    <tr>
+      <td><%= @article.from_ip %></td>
+      <td class="alt"><%= @article.title %></td>
+      <td><%= @article.author %></td>
+      <td><%= @article.posts_count %></td>
+      <td class="alt"><%= @article.pages_count %></td>
+      <td ><%=  @article.from_url %></td>
+    </tr>
+  <% elsif @error %>
+    <tr>
+      <td colspan='6'>采集错误如下，详情查看事件记录</td>
+    </tr>
+    <tr>
+      <td colspan='3'><%= @error.name  %></td><td colspan='3'><%= @error.note  %></td>
+    </tr>
+  <% else %>
+    <tr>
+      <td colspan='6'><%= @topic_url %> (地址不匹配,请检查该url是否为豆瓣小组帖子地址！)</td>
+    </tr>
+    <tr>
+      <td colspan='6'>地址格式如下：http://www.douban.com/group/topic/20935107/</td>
+    </tr>
+<% end %>
+  </tbody>
+
+</table>

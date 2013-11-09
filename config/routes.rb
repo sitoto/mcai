@@ -9,6 +9,9 @@ Mcai::Application.routes.draw do
 
   get "home/index"
   resources :tasks do
+    collection do
+      get "douban_group"
+    end
     member do 
       get :preview
     end

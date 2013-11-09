@@ -1,8 +1,8 @@
 <% @page_title = "首页" %>
 <%- unless @page.nil? -%>
-<div class="alert alert-info">
-  <i class="icon-bullhorn"></i> : <%= raw @page.body %>
-</div>
+  <div class="alert alert-info">
+    <i class="icon-bullhorn"></i> : <%= raw @page.body %>
+  </div>
 <%- end -%>
 
 <div class="row-fluid">
@@ -20,10 +20,11 @@
   </div>
 </div>
 <div class="well">
-  <form class="form-search" action="<%= search_path %>"  method = "get" >
-    <input type="text" class="input-xlarge search-query" name="q" placeholder="输入内容或网址...">
-    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>只看楼主</button>
+  <form class="form-search" action="<%=  douban_group_tasks_path %>"  method = "get"   target = "_blank">
+    <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
+    <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
   </form>
+
 </div>
 <div class="well">
   <p>简单布局，突出内容，明确主题，智能的后台.增加用户阅读管理功能，使用腾讯和其他网站帐户登录
