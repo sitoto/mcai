@@ -4,8 +4,8 @@
 <h1><%= @article.mytitle %></h1>
 <span>当前页：<%= "#{@topic.page_num}/#{@article.pages_count}" %>,
   来自:<%= @article.class_name %>, 作者:<%= @article.author %>,
-  <%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, "data-type" => :json, rel: "nofollow",  :id => "ajax_top"  %>
-  <a id='num'></a>
+  <%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, rel: "nofollow",  :id => "ajax_top"  %>
+  <span id='num'></span>
 
 </span> 
 
@@ -20,16 +20,3 @@
   </div>
 </div>
 <%= paginate @topics %>
-<script type="text/javascript" charset="utf-8">
-  $(document).ready(function() {
-      $('#ajax_top').bind("ajax:success", function(event, data) {
-        var top = $('#ajax_top');
-        var num = $('#num');
-        //alert(data.top);
-        top.html(data.like_count);
-        num.text(data.like_count);
-        top.hide();
-        num.show();
-        });
-      });
-</script>
