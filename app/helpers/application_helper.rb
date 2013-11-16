@@ -68,6 +68,14 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
+  def baidu_analytics(always = false)
+    %Q{<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F48d7fc41f505853420d1a656661892cc' type='text/javascript'%3E%3C/script%3E"));
+    </script>}.html_safe if (always || Rails.env.to_sym == :production)
+
+  end
+
   def google_analytics account = GOOGLE_ANALYTICS_KEY, always = false
     # This helper should be called at end of the <head> tag
     "<script>var _gaq=_gaq || [];_gaq.push(['_setAccount','#{account}']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);})();</script>".html_safe if (always || Rails.env.to_sym == :production)

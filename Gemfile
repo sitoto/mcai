@@ -29,10 +29,14 @@ gem "meta-tags"#, :require => "meta-tags", :git => "git://github.com/kpumuk/meta
 gem "social-share-button", '0.1.4'
 # 表单
 gem 'simple_form', "3.0.0.rc"
+gem 'omniauth-identity'
+gem 'omniauth-weibo-oauth2'
 
 gem 'nokogiri'
 
 gem 'delayed_job_mongoid',   :git => 'git://github.com/sitoto/delayed_job_mongoid.git'
+gem "daemons"
+
 
 #  :path => "/home/administrator/sites/delayed_job_mongoid"
 group :development, :test do 
