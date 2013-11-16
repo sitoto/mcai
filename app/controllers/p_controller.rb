@@ -23,9 +23,10 @@ class PController < ApplicationController
     @topic = Topic.find(id)
     @topic.inc(like_count: 1)
     @topic.article.inc(like_count: 1)
-    #    render text: "1"
+    #render text:  @topic.article.like_count
+   
     respond_to do |format|
-      format.json { render :json => @topic.article.to_json}
+      format.js {render layout: false }
     end
   end
 end
