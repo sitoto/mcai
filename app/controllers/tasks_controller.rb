@@ -10,6 +10,8 @@ class TasksController < ApplicationController
     end
   end
 
+    #
+  # test douban
   def douban_group
     if params[:q].blank?
       return
@@ -97,8 +99,6 @@ class TasksController < ApplicationController
     end
   end
 
-  # DELETE /tasks/1
-  # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
     @task.destroy
@@ -113,4 +113,5 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @result = SignelPage.new(@task).result
   end
+
 end
