@@ -93,10 +93,16 @@ class DoubanGroup
     #update or add topic(page)
     max_page_num = @article.topics.max(:page_num)
     max_page_num ||= 1
-    @article.topics.where(page_num: max_page_num).delete
+    max_topic =  @article.topics.where(page_num: max_page_num).first
+    unless max_topic.blank?
+      @article.inc(words_count: -(max_topic.words_count), posts_count: -(max_topic.posts_count))
+      max_topic.destroy
+    end
 
     if max_page_num.eql?(1)
       max_page_num += 1
+      @article.words_count = 0
+      @article.posts_count = 0
 
       @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
                          url: url,   page_num: 1 , posts_count: 1, posts: [post]) 
@@ -127,12 +133,12 @@ class DoubanGroup
 
     max_page_num.upto(@article.pages_count) do |i|
       page = DoubanGroupPage.new(url + "?start=#{100 * (i-1)}" , @article.author)
-      posts2 = page.get_author_content
+      posts2,  all_words_count = page.get_author_content
 
-      topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
+      topic2 = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz, words_count: all_words_count,
                          url: url,   page_num: i , posts_count: posts2.length, posts: posts2)
       topic2.save
-      @article.inc(posts_count: posts2.length)
+      @article.inc(posts_count: posts2.length, words_count: all_words_count)
 
       @article.topics.push(topic2)
       @article.save

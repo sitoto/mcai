@@ -10,23 +10,16 @@ class SearchController < ApplicationController
 
   #
   def launch
-    if params[:q].blank?
-      return
-    else
-      search_url = params[:q]
-    end
-    topic_url = search_url
+    return if params[:q].blank?
+    topic_url  = params[:q]
     from_c = "utf-8"
     to_c = "utf-8"
-    regEx_douban_1 = /douban\.com\/group\/topic\/[0-9]*/
+    #   case
+    #   when 1
+    #   end
 
-#   case
-#   when 1
-#   end
-      
-
-    if regEx_douban_1 =~ topic_url
-      @topic_url = ("http://www." << regEx_douban_1.match(topic_url).to_s << "/")
+    if  Rule::VALID_DOUBAN_REGEX_1 =~ topic_url
+      @topic_url = ("http://www." << Rule::VALID_DOUBAN_REGEX_1.match(topic_url).to_s << "/")
       douban_group_job
     else
       @topic_url = topic_url

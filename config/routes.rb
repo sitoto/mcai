@@ -3,6 +3,7 @@ Mcai::Application.routes.draw do
   get "pages/hot", :as => :hot
   get "pages/last", :as => :last
   get "search/index", :as => :search
+  get "search/launch", :as => :launch
   resources :search do
     get 'page/:page', :action => :index, :on => :collection
   end

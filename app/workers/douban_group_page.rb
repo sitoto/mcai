@@ -22,6 +22,7 @@ class DoubanGroupPage
     rows = doc.xpath('//ul[@id="comments"]/li')#/div[@class="reply-doc content"]')
 #		return rows
 		posts = []
+    all_words_count = 0
 		rows.each_with_index do |row, i|
 			author 		= row.at_css('h4 a').text()
 			next if !(@author.to_s == author) #.eql?(author)
@@ -32,9 +33,10 @@ class DoubanGroupPage
 			post.content		= row.at_css("p").inner_html.to_s.strip_href_tag
     	post.level			= i + 1
     	post.words_count = post.content.length
+      all_words_count += post.words_count 
 
 			posts << post
 		end
-		posts
+		[posts, all_words_count]
 	end
 end
