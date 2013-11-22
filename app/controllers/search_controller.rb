@@ -19,26 +19,14 @@ class SearchController < ApplicationController
     #   end
 
     if  Rule::VALID_DOUBAN_REGEX_1 =~ topic_url
-      @topic_url = ("http://www." << Rule::VALID_DOUBAN_REGEX_1.match(topic_url).to_s << "/")
-      douban_group_job
+      article_url = ("http://www." << Rule::VALID_DOUBAN_REGEX_1.match(topic_url).to_s << "/")
+      Delayed::Job.enqueue(DoubanGroupJob.new(article_url, remote_ip))
     else
       @topic_url = topic_url
       return
     end
+    flash[:notice] = "正在读取和过滤页面内容......"
   end
 
-  private
-  # douban group
-  def douban_group_job
-    @douban_group = DoubanGroup.new(@topic_url)
-    @article = @douban_group.dehydrate_topic(@topic_url)
-    if @article
-      @article.update_attribute(:from_ip, remote_ip)
-      @article.events.create(from_ip: remote_ip, name: @article.title, note: @article.from_url, status: "new")
-    else
-     @error = Event.last 
-    end
-  end
- 
 
 end
