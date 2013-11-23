@@ -9,4 +9,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def update_article(url)
+    if  Rule::VALID_DOUBAN_REGEX_1 =~ url
+      article_url = ("http://www." << Rule::VALID_DOUBAN_REGEX_1.match(url).to_s << "/")
+      Delayed::Job.enqueue(DoubanGroupJob.new(article_url, remote_ip))
+    else
+      @topic_url = url
+      return
+    end
+
+  end
+
 end

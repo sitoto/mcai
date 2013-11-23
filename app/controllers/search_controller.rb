@@ -11,22 +11,15 @@ class SearchController < ApplicationController
   #
   def launch
     return if params[:q].blank?
-    topic_url  = params[:q]
+    url  = params[:q]
     from_c = "utf-8"
     to_c = "utf-8"
     #   case
     #   when 1
     #   end
 
-    if  Rule::VALID_DOUBAN_REGEX_1 =~ topic_url
-      article_url = ("http://www." << Rule::VALID_DOUBAN_REGEX_1.match(topic_url).to_s << "/")
-      Delayed::Job.enqueue(DoubanGroupJob.new(article_url, remote_ip))
-    else
-      @topic_url = topic_url
-      return
-    end
+    update_article(url)
     flash[:notice] = "正在读取和过滤页面内容......"
   end
-
 
 end

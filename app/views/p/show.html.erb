@@ -2,11 +2,7 @@
 <% @meta_keywords =  @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
 
 <h1><%= @article.mytitle %></h1>
-<span>当前页：<%= "#{@topic.page_num}/#{@article.pages_count}" %>,
-  来自:<%= @article.class_name %>, 作者:<%= @article.author %>,
-  <%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, rel: "nofollow",  :id => "ajax_top"  %>
-  <span id='num'></span>
-
+<span>当前页：<%= "#{@topic.page_num}/#{@article.pages_count}" %>,  来自:<%= @article.class_name %>, 作者:<%= @article.author %>,  <%= link_to '原帖链接', @article.from_url, rel: "nofollow", :target => '_blank' %>, <%= link_to '现在更新', renew_p_path, rel: "nofollow", method: :post, :target => '_blank', :class => 'red' %>,  <%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, rel: "nofollow",  :id => "ajax_top"  %> <span id='num'></span>
 </span> 
 
 <% if @topic.posts && @topic.posts.length > 0 %>

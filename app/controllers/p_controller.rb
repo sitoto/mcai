@@ -16,6 +16,13 @@ class PController < ApplicationController
   end
 
   def renew
+    id = params[:id]
+    article = Article.find(id)
+    update_article(article.from_url)
+
+    flash[:notice] = "正在更新页面内容......"
+    redirect_to p_path(article)
+    
   end
 
   def top
