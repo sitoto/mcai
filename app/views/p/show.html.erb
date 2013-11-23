@@ -1,4 +1,4 @@
-<% @page_title = "#{@article.mytitle.strip}_第#{@topic.page_num}页" %>
+<% @page_title = "#{@article.mytitle.strip}_第#{@topic.page_num}页_by_#{@article.author}_#{@article.class_name}" %>
 <% @meta_keywords =  @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
 
 <h1><%= @article.mytitle %></h1>

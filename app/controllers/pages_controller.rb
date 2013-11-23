@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   before_action :set_page_num , only: [:hot, :last, :douban_group]
-
   before_action :authenticate, only: [:new, :update, :destroy, :edit]
 
   # GET /pages
@@ -15,6 +14,7 @@ class PagesController < ApplicationController
   def hot 
     page_num = set_page_num
     @articles = Article.fields_for_list.popular.page(page_num).per(28)
+    @page_title = "最热文章"
 
     respond_to do |format|
       format.html # home.html.erb
@@ -27,11 +27,22 @@ class PagesController < ApplicationController
       page_num = params[:page]
     end
     @articles = Article.fields_for_list.recent.page(page_num).per(28)
+    @page_title = "最新文章"
 
-    respond_to do |format|
-      format.html # home.html.erb
-    end
+    render :hot
   end
+  def douban_group 
+    if params[:page].nil?
+      page_num = 1
+    else
+      page_num = params[:page]
+    end
+    @articles = Article.douban_group.recent.page(page_num).per(50)
+    @page_title = "豆瓣小组"
+
+    render :hot
+  end
+
 
   def home 
     @page = Page.notice.last
@@ -40,19 +51,6 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html # home.html.erb
-    end
-  end
-
-  def douban_group 
-    if params[:page].nil?
-      page_num = 1
-    else
-      page_num = params[:page]
-    end
-    @articles = Article.douban_group.recent.page(page_num).per(50)
-
-    respond_to do |format|
-      format.html 
     end
   end
 

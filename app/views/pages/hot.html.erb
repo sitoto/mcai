@@ -1,18 +1,15 @@
-<% @page_title = "最热" %>
 <div class="row-fluid">
   <div class="span12">
-    <h4>热门文章</h4>
+    <h4><%= @page_title %></h4>
     <ol>
       <%= render :partial => "item", :collection => @articles %>
     </ol>
   </div>
 </div>
-
-<%= paginate @articles %>
 <div class="well">
-  <form class="form-search">
-    <input type="text" class="input-xlarge search-query" placeholder="输入网址...">
-    <button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i>只看楼主</button>
+  <form class="form-search" action="<%=  launch_path %>"  method = "get"   target = "_blank">
+    <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
+    <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
   </form>
 </div>
 

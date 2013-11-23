@@ -1,7 +1,6 @@
-<%- title "查找:#{@search_txt}" -%>
 <div class="row-fluid">
   <div class="span12">
-    <h1>查找:<%= @search_txt %></h1>
+    <h1><%= @page_title %></h1>
     <%- if @articles && @articles.length > 0 -%>
       <ol>
         <%= render :partial => "share/list", :collection => @articles %>

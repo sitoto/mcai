@@ -2,7 +2,7 @@
 module ApplicationHelper 
   def default_meta_tags 
 		{
-			:title       => '脱水吧',
+			:title       => '只看楼主,直播小说,脱水吧',
 			:description => '论坛脱水工具, 阅读热贴好工具。',
 			:keywords    => '论坛脱水工具, 贴吧脱水 , 脱水版, 脱水工具, 脱水小说, 只看楼主, 天涯易读, 豆瓣小组, 猫扑脱水, 天涯脱水,搜狐社区脱水,凯迪社区',
 			:separator   => "&mdash;".html_safe,
@@ -20,7 +20,7 @@ module ApplicationHelper
     agent_str =~ Regexp.new(MOBILE_USER_AGENTS)
   end
   def render_page_title
-    title = @page_title ? "#{@page_title} | 脱水吧" : "脱水吧" rescue "脱水吧"
+    title = @page_title ? "#{@page_title} | 只看楼主,社区直播小说" : "只看楼主,社区直播小说" rescue "脱水吧"
     content_tag("title", title, nil, false)
   end
 
