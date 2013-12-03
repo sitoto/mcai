@@ -48,5 +48,6 @@ class Article
   scope :no_reply, -> { where(:replies_count => 0) }
   scope :popular, -> { where(:like_count.gt => 5) }
   scope :douban_group, -> { where(:from_name => 'douban_group') }
+  scope :tianya_bbs, -> { where(:from_name => 'tianya_bbs') }
 
 end

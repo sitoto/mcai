@@ -42,6 +42,18 @@ class PagesController < ApplicationController
 
     render :hot
   end
+  def tianya_bbs 
+    if params[:page].nil?
+      page_num = 1
+    else
+      page_num = params[:page]
+    end
+    @articles = Article.tianya_bbs.recent.page(page_num).per(50)
+    @page_title = "天涯易读"
+
+    render :hot
+  end
+
 
 
   def home 

@@ -27,6 +27,8 @@ Mcai::Application.routes.draw do
       get "home"
       get "about"
       get "douban_group", :as => :doubangroup
+      get "tianya_bbs", :as => :tianyabbs
+
     end
   end
 

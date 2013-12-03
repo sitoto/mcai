@@ -20,6 +20,16 @@ module Common
       end  
     end
   end
+  def get_tianya_bbs_page_url(url, p)
+    regEx_tianya_1 = /bbs\.tianya\.cn\/\w*\-\w*\-\w*\-/
+    filename = ".shtml"
+
+    if regEx_tianya_1  =~ url
+      myurl = ("http://" << regEx_tianya_1.match(url).to_s) << "#{p}" << filename
+    end
+    myurl
+  end
+
 end
 class String 
 		#替换<br> 为 文本的 换行 

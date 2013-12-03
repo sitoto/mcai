@@ -10,12 +10,19 @@ class ApplicationController < ActionController::Base
   end
 
   def update_article(url)
-    if  Rule::VALID_DOUBAN_REGEX_1 =~ url
+    Event.create!(name: "new", status: "doing",  note: url, from_ip: remote_ip)
+    case
+    when  Rule::VALID_DOUBAN_REGEX_1 =~ url
       article_url = ("http://www." << Rule::VALID_DOUBAN_REGEX_1.match(url).to_s << "/")
       Delayed::Job.enqueue(DoubanGroupJob.new(article_url, remote_ip))
+
+    when  Rule::VALID_TIANYA_REGEX_1 =~ url
+      article_url = "http://" << Rule::VALID_TIANYA_REGEX_1.match(url).to_s
+      Delayed::Job.enqueue(TianyaBbsJob.new(article_url, remote_ip))
+      #TianyaBbs.new().dehydrate_topic(article_url)
+      
     else
       @topic_url = url
-      return
     end
 
   end
