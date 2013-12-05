@@ -4,6 +4,7 @@
     <ol>
       <%= render :partial => "item", :collection => @articles %>
     </ol>
+    <%= paginate @articles %>
   </div>
 </div>
 <div class="well">
