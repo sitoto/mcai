@@ -45,7 +45,7 @@ class DoubanGroup
       all_page_num = link.to_s
     end
 
-    firstcontent = doc.at_xpath('//div[@class="topic-doc"]//div[@class="topic-content"]/p').inner_html
+    firstcontent = doc.at_xpath('//div[@class="topic-doc"]//div[@class="topic-content"]').inner_html
     post = Post.new
     post.author = lz
     post.created_at = created_at
