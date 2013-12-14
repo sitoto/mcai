@@ -4,6 +4,7 @@ Mcai::Application.routes.draw do
   get "pages/last", :as => :last
   get "search/index", :as => :search
   get "search/launch", :as => :launch
+
   resources :search do
     get 'page/:page', :action => :index, :on => :collection
   end
@@ -44,6 +45,9 @@ Mcai::Application.routes.draw do
 
 
   resources :htmls
+  post "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/:provider/failure", to: "sessions#failure"
+  get "/logout", to: "sessions#destroy", :as => "logout"
 
   namespace :cpanel do 
     root :to => "home#index"

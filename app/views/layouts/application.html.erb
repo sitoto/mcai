@@ -36,8 +36,13 @@
             <input type="text" class="search-query" name="q"  placeholder="搜索">
           </form>
           <ul class="nav pull-right">
-            <li> <%= link_to '新浪微博登录', "/auth/weibo" %> </li>
-        </ul>
+            <% if current_user %>
+              <li> 欢迎<%= current_user.name %>!</li>
+              <%= link_to "注销", signout_path %>
+            <% else %>
+             <li> <%= link_to '新浪微博登录', "/auth/weibo" %> </li>
+            <% end %>
+          </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>

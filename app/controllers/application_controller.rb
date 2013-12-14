@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  helper_method :current_user
+
   def remote_ip
     if request.remote_ip == '127.0.0.1'
       '123.3.6.9'
@@ -20,11 +22,16 @@ class ApplicationController < ActionController::Base
       article_url = "http://" << Rule::VALID_TIANYA_REGEX_1.match(url).to_s
       Delayed::Job.enqueue(TianyaBbsJob.new(article_url, remote_ip))
       #TianyaBbs.new().dehydrate_topic(article_url)
-      
+
     else
       @topic_url = url
     end
 
+  end
+
+  private 
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
 end
