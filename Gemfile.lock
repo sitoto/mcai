@@ -216,6 +216,7 @@ DEPENDENCIES
   meta-tags
   mongoid!
   nokogiri
+  omniauth
   omniauth-identity
   omniauth-weibo-oauth2
   rails (= 4.0.0.rc2)

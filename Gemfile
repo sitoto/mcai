@@ -25,6 +25,8 @@ gem 'anjlab-bootstrap-rails', '~> 3.0.1.0', require: 'bootstrap-rails'
 #  :git => 'git://github.com/anjlab/bootstrap-rails.git'
 gem "meta-tags"#, :require => "meta-tags", :git => "git://github.com/kpumuk/meta-tags.git"
 
+gem 'omniauth'
+
 # 分享功能
 gem "social-share-button", '0.1.4'
 # 表单

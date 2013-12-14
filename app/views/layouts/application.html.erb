@@ -35,6 +35,9 @@
           <form class="navbar-search pull-left" action="<%= search_path %>"  method = "get" >
             <input type="text" class="search-query" name="q"  placeholder="搜索">
           </form>
+          <ul class="nav pull-right">
+            <li> <%= link_to '新浪微博登录', "/auth/weibo" %> </li>
+        </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
