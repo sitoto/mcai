@@ -45,8 +45,10 @@ Mcai::Application.routes.draw do
 
 
   resources :htmls
-  post "/auth/:provider/callback", to: "sessions#create"
+  get "/auth/:provider/callback", to: "sessions#create"
   get "/auth/:provider/failure", to: "sessions#failure"
+  get "/auth/failure", to: "sessions#failure"
+
   get "/logout", to: "sessions#destroy", :as => "logout"
 
   namespace :cpanel do 

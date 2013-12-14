@@ -13,11 +13,11 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
-    redirect_to root_path, notice: t("users.signedout")
+    redirect_to root_path, notice: "signedout"
   end
 
   def failure
-    flash[:danger] =  t("users.authfailed")
+    flash[:danger] =  "authfailed"
     redirect_to root_path 
   end
 end
