@@ -31,6 +31,21 @@ class PagesController < ApplicationController
 
     render :hot
   end
+  def author
+    author = params[:name]
+    @articles = Article.where(author: author).page params[:page]
+    @page_title = "#{author} 的文章"
+
+    render :hot
+  end
+  def category
+    category = params[:name]
+    @articles = Article.where(class_name: category).page params[:page]
+    @page_title = "#{category} 的文章"
+
+    render :hot
+
+  end
   def douban_group 
     if params[:page].nil?
       page_num = 1

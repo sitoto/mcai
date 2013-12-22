@@ -1,2 +1,2 @@
-<li><%= link_to item.mytitle, p_path(item.id), target: '_blank' %> | <%= item.class_name%> | <%= item.words_count %>字 | 点击<%= item.hits %>次 | 作者:<%= item.author %> </li>
+<li><%= link_to item.mytitle, p_path(item.id), target: '_blank' %> | <%= item.words_count %>字 | 点击<%= item.hits %>次 | <%= link_to item.class_name, category_pages_path(item.class_name) %> | 作者:<%= link_to item.author, author_pages_path(item.author) %> </li>
 

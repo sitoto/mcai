@@ -2,6 +2,7 @@ Mcai::Application.routes.draw do
 
   get "pages/hot", :as => :hot
   get "pages/last", :as => :last
+
   get "search/index", :as => :search
   get "search/launch", :as => :launch
 
@@ -29,6 +30,8 @@ Mcai::Application.routes.draw do
       get "about"
       get "douban_group", :as => :doubangroup
       get "tianya_bbs", :as => :tianyabbs
+      get 'author/:name' => 'pages#author', :as => :author
+      get 'category/:name' => 'pages#category' , :as => :category
 
     end
   end

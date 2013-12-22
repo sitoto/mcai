@@ -1,16 +1,18 @@
 <div class="row-fluid">
   <div class="span12">
+
+    <div>
+      <form class="form-search" action="<%=  launch_path %>"  method = "get"   target = "_blank">
+        <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
+        <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
+      </form>
+    </div>
+
     <h4><%= @page_title %></h4>
     <ol>
       <%= render :partial => "item", :collection => @articles %>
     </ol>
     <%= paginate @articles %>
   </div>
-</div>
-<div class="well">
-  <form class="form-search" action="<%=  launch_path %>"  method = "get"   target = "_blank">
-    <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
-    <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
-  </form>
 </div>
 
