@@ -33,14 +33,14 @@ class PagesController < ApplicationController
   end
   def author
     author = params[:name]
-    @articles = Article.where(author: author).page params[:page]
+    @articles = Article.where(author: author).fields_for_list.recent.page params[:page]
     @page_title = "#{author} 的文章"
 
     render :hot
   end
   def category
     category = params[:name]
-    @articles = Article.where(class_name: category).page params[:page]
+    @articles = Article.where(class_name: category).fields_for_list.recent.page params[:page]
     @page_title = "#{category} 的文章"
 
     render :hot

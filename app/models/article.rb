@@ -35,6 +35,8 @@ class Article
   index :updated_at => 1
   index :from_name => 1
   index :from_url => 1
+  index :author => 1
+  index :class_name => 1
 
   scope :recent, desc(:_id)
 
