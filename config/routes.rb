@@ -1,5 +1,7 @@
 Mcai::Application.routes.draw do
 
+  resources :flinks
+
   get "pages/hot", :as => :hot
   get "pages/last", :as => :last
 
@@ -48,11 +50,15 @@ Mcai::Application.routes.draw do
 
 
   resources :htmls
+  get "/auth/new", to: "sessions#new"
   get "/auth/:provider/callback", to: "sessions#create"
+  post "/auth/:provider/callback", to: "sessions#create"
   get "/auth/:provider/failure", to: "sessions#failure"
   get "/auth/failure", to: "sessions#failure"
 
   get "/logout", to: "sessions#destroy", :as => "logout"
+
+  resources :identities
 
   namespace :cpanel do 
     root :to => "home#index"

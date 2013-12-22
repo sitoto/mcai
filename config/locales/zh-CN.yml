@@ -1,4 +1,20 @@
 "zh-CN":
+  site_name: "数据生产"
+  all: "全部"
+  home: "首页"
+  logout: "注销"
+  cpanel: "进入管理"
+  show: "详情"
+  new: "新建"
+  edit: "编辑"
+  register: "注册"
+  create_account: "注册用户"
+  created: "创建成功"
+  destroyed: "删除成功"
+  destroyed_failed: "删除失败"
+  updated: "修改成功"
+  destroy: "删除"
+  back: "返回"
   carrierwave:
     errors:
       integrity: '不是图片'
@@ -17,6 +33,11 @@
       post: "文章"
       page: "Wiki"
     attributes:
+      flink:
+        name: "网站名称"
+        url: "网站链接"
+        image: "图片地址"
+        description: "网站描述"
       user:
         name: "名字"
         login: "用户名"

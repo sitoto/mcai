@@ -40,6 +40,8 @@
               <li><a> 欢迎 <%= current_user.name %>!</a></li><li> <%= link_to "注销", logout_path %></li>
             <% else %>
              <li> <%= link_to '新浪微博登录', "/auth/weibo" %> </li>
+             <li> <%= link_to '注册/登录', auth_new_path %> </li>
+
             <% end %>
           </ul>
         </div><!--/.nav-collapse -->
@@ -65,7 +67,7 @@
     <footer class="footer">
     <div class="container">
       <hr>
-      <p class="pull-right"><a href="#">友情链接</a></p>
+      <p class="pull-right"><a href="/flinks/new">自助添加友情链接</a></p>
       <p class="links">
       <a href="http://www.tuoshuiba.com/about">关于本站</a> 
       </p>

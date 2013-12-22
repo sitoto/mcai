@@ -1,0 +1,34 @@
+<%= form_for(@flink) do |f| %>
+  <% if @flink.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@flink.errors.count, "error") %> prohibited this flink from being saved:</h2>
+
+      <ul>
+      <% @flink.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :url %><br>
+    <%= f.text_field :url %>
+  </div>
+
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.text_field :image %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br>
+    <%= f.text_field :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

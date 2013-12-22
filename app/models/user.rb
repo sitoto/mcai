@@ -7,6 +7,9 @@ class User
   field :name, type: String
   field :location, type: String
   field :image, type: String
+  field :last_login_ip, type: String 
+
+  has_many :flinks
 
 
   def self.from_omniauth(auth)

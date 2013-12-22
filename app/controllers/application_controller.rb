@@ -29,6 +29,11 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def require_user
+    if current_user.blank?
+      redirect_to   auth_new_path
+    end
+  end
   private 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
