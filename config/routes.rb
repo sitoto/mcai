@@ -71,6 +71,7 @@ Mcai::Application.routes.draw do
       end
     end
 
+    resources :flinks
     resources :events 
   end
 

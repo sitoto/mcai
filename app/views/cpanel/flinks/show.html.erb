@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<p>
+  <strong>User:</strong>
+  <%= @flink.user.blank? ? "" : @flink.user.name %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @flink.name %>
+</p>
+<p>
+  <strong>Url:</strong>
+  <%= @flink.url %>
+</p>
+<p>
+  <strong>image:</strong>
+  <%= @flink.image %>
+</p>
+<p>
+  <strong>position:</strong>
+  <%= @flink.position %>
+</p>
+<p>
+  <strong>published:</strong>
+  <%= @flink.published %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @flink.description %>
+</p>
+
+<%= link_to 'edit', edit_cpanel_flink_path(@flink)  %>  | <%= link_to 'back', cpanel_flinks_path %> 

@@ -1,6 +1,6 @@
 class Cpanel::EventsController < Cpanel::ApplicationController
   def index
-    @cpanel_events = Event.all
+    @cpanel_events = Event.all.desc(:id).page(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb

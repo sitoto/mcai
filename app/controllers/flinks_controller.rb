@@ -18,6 +18,7 @@ class FlinksController < ApplicationController
   # POST /flinks
   def create
     @flink = Flink.new(flink_params)
+    @flink.user = current_user
 
     if @flink.save
       redirect_to @flink, notice: 'Flink was successfully created.'

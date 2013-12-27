@@ -1,0 +1,32 @@
+<h1>友情链接</h1>
+<%= link_to '添加友情链接' ,new_cpanel_flink_path %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Url</th>
+      <th>Published</th>
+      <th>Image</th>
+      <th>Position</th>
+      <th>Description</th>
+      <th>Options</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <%- @flinks.each do |link| -%>
+    <tr>
+      <td><%= link_to  link.name, cpanel_flink_path(link) %> </td>
+      <td><%= link.url %> </td>
+      <td><%= link.published %> </td>
+      <td><%= link.image %> </td>
+      <td><%= link.position %> </td>
+
+      <td><%= link.description %> </td>
+      <td><%= link_to 'edit', edit_cpanel_flink_path(link) %></td>
+
+    </tr>
+  <%- end -%>
+  </tbody>
+</table>
