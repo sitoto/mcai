@@ -1,0 +1,31 @@
+<h1>Listing novels</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Author</th>
+      <th>Published</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @novels.each do |novel| %>
+      <tr>
+        <td><%= novel.name %></td>
+        <td><%= novel.author %></td>
+        <td><%= novel.published %></td>
+        <td><%= link_to 'Show', novel %></td>
+        <td><%= link_to 'Edit', edit_novel_path(novel) %></td>
+        <td><%= link_to 'Destroy', novel, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Novel', new_novel_path %>

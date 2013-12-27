@@ -1,5 +1,7 @@
 Mcai::Application.routes.draw do
 
+  resources :novels
+
   resources :flinks
 
   get "pages/hot", :as => :hot

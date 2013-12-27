@@ -30,7 +30,7 @@
   <p>简单布局，突出内容，明确主题，智能的后台.增加用户阅读管理功能，使用腾讯和其他网站帐户登录
   ，一键分享功能。多家网站帖子统一入口管理，实时跟踪保存多个社区的连载、直播贴.</p>
   <p>
-  <%- Flink.all.each do |item| -%>
+  <%- @flinks.each do |item| -%>
     <%= link_to item.name , item.url ,target: '_blank' %>
   <%- end -%>
   </p>

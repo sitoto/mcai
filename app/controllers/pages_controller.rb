@@ -75,6 +75,7 @@ class PagesController < ApplicationController
     @page = Page.notice.last
     @articles = Article.fields_for_list.recent.limit(20)
     @hot_articles = Article.fields_for_list.popular.limit(20)
+    @flinks = Flink.published.asc(:position)
 
     respond_to do |format|
       format.html # home.html.erb

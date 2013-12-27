@@ -7,10 +7,12 @@ class Flink
   field :image, type: String
   field :description, type: String
   field :position, type: Integer, default: 10
-  field :published, type: Boolean, default: 0 
+  field :published,  type: Mongoid::Boolean , default: false
 
   validates_presence_of :name, :url
 
   belongs_to :user
+
+  scope :published, -> { where(:published  => true) }
 
 end
