@@ -1,3 +1,31 @@
-<h1>采集</h1>
-<p><%= @url %> </p>
-<p><%= link_to "查看最新", last_path %></p>
+<div class="well">
+  <form class="form-search" action="<%=  launch_path %>"  method = "get"   target = "_blank">
+    <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
+    <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
+  </form>
+</div>
+
+
+<% if  @articles.blank? %>
+  <h1>采集<%= @url %></h1>
+  <p> </p>
+  <p><%= link_to "查看最新", last_path %></p>
+<% else %>
+
+  <div class="row-fluid">
+    <div class="span12">
+      <h1>查找：<%= @page_title %></h1>
+      <%- if @articles && @articles.length > 0 -%>
+        <ol>
+          <%= render :partial => "share/list", :collection => @articles %>
+        </ol>
+        <%= paginate @articles, :outer_window => 4, :inner_window => 4 -%>
+      <%- else -%>
+        <p>没有内容。.</p>
+      <%- end -%>
+    </div>
+  </div>
+
+
+<% end %>
+

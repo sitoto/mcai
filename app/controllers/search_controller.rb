@@ -15,9 +15,6 @@ class SearchController < ApplicationController
     @url  = params[:q]
     from_c = "utf-8"
     to_c = "utf-8"
-    #   case
-    #   when 1
-    #   end
 
 
     update_article(@url)
