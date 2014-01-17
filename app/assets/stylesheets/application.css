@@ -64,7 +64,7 @@ line-height: 1.62;
 .show-grid .show-grid [class*="span"] {
   background-color: #E5ECF9;
 }
-p {
+.show-grid p {
   font-size: 16px;
   min-height: 30px;
   line-height: 30px;
