@@ -29,6 +29,7 @@ class Article
   has_many :topics, :dependent => :destroy
   has_many :events
 
+  index :title => 1
   index :mytitle => 1
   index :like_count => 1
   index :created_at => 1

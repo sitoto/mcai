@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
     else
       @topic_url = url
-      @articles = Article.where(title: Regexp.new(".*"+ url +".*")).page(1).per(50)
+      @articles = Article.where(title: Regexp.new(".*"+ url +".*")).desc(:_id).page(1).per(50)
 
     end
 
