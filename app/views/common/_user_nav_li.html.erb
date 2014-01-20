@@ -1,0 +1,29 @@
+<ul class="nav navbar-nav">
+  <li><%= link_to "首页", root_path %></li>
+  <li><%= link_to "最新", last_path %></li>
+  <li><%= link_to "最热", hot_path %></li>
+  <li><%= link_to "*天涯社区", tianyabbs_pages_path , title: "全球华人网上家园" %></li>	
+  <li><%= link_to "*豆瓣小组", doubangroup_pages_path %></li>	
+  <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">分类<b class="caret"></b></a>
+  <ul class="dropdown-menu">
+    <li><%= link_to "百度贴吧", '/', title: "全球最大中文社区" %></li>	
+    <li><%= link_to "猫扑社区", '/', title: "中国最具影响力的网络社区" %></li>	
+    <li><%= link_to "凯迪社区", '/', title: "全球华人最具影响力的言论及媒体平台" %></li>	
+    <li><%= link_to "搜狐社区", '/', title: "中文第一社区" %></li>	
+    <li><%= link_to "铁血论坛", '/', title: "中国第一军事论坛" %></li>	
+    <li><%= link_to "网易论坛", '/', title: "最贴近网友的综合性中文论坛" %></li>	
+    <li><%= link_to "TOM社区", '/' , title: "最具活力的中文社区" %></li>	
+
+  </ul>
+  </li>
+</ul>
+<ul class="nav navbar-nav pull-right">
+  <% if current_user %>
+    <li><a> 欢迎 <%= current_user.name %>!</a></li><li> <%= link_to "注销", logout_path %></li>
+  <% else %>
+    <li> <%= link_to '新浪微博登录', "/auth/weibo" %> </li>
+    <li> <%= link_to '注册/登录', auth_new_path %> </li>
+
+  <% end %>
+</ul>
+

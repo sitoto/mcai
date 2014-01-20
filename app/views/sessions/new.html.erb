@@ -1,6 +1,6 @@
 
 <% if current_user %>
-  <h4><%= t("users.profile") %></h4>
+  <h3><%= t("users.profile") %></h3>
   <p>
   <strong><%= t('users.email') %></strong>
   <%= current_user.email %>
@@ -25,7 +25,7 @@
 
   <p><%= link_to t("logout"), logout_path %></p>
 <% else %>
-  <h4><%= t("users.sign")  %><small>  <%= link_to t("create_account"), new_identity_path %></small></h4>
+  <h3><%= t("users.sign")  %><small>  <%= link_to t("create_account"), new_identity_path %></small></h3>
   <hr>
 
   <%= form_tag "/auth/identity/callback" , :class => 'form-horizontal' do %>

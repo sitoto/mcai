@@ -20,9 +20,13 @@ gem "mongoid", github: 'mongoid/mongoid', ref: '11e45e5a30a45458b83db99ab6c9d9cc
 #gem 'mongoid_rails_migrations', '1.0.0'
 
 gem 'kaminari', '0.14.0'
-gem 'anjlab-bootstrap-rails', '~> 3.0.1.0', require: 'bootstrap-rails'
+gem 'anjlab-bootstrap-rails', '~> 3.0.3.0', require: 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
+
 #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-#  :git => 'git://github.com/anjlab/bootstrap-rails.git'
+#                              :github => 'anjlab/bootstrap-rails',
+#                              :branch => '3.0.0'
+
+
 gem "meta-tags"#, :require => "meta-tags", :git => "git://github.com/kpumuk/meta-tags.git"
 
 gem 'omniauth'
