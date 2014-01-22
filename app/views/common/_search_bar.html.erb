@@ -1,0 +1,12 @@
+<form class="form-inline" action="<%=  launch_path %>"  method = "get"   target = "_blank">
+  <div class="col-xs-12">
+    <div class="input-group">
+      <%= text_field_tag(:q , '', :class => "form-control" , :placeholder => "输入帖子地址")  %>
+      <span class="input-group-btn">
+        <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
+      </span>
+    </div>
+  </div>
+</form>
+
+

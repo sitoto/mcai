@@ -6,13 +6,13 @@
 <%- end -%>
 
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-12 col-md-6">
     <h4>最新脱水</h4>
     <ul>
       <%= render :partial => "homeitem", :collection => @articles %>
     </ul>
   </div>
-  <div class="col-xs-6">
+  <div class="col-xs-12 col-md-6">
     <h4>热门推荐</h4>
     <ol>
       <%= render :partial => "homeitem", :collection => @hot_articles %>
@@ -20,11 +20,7 @@
   </div>
 </div>
 <div class="well">
-  <form class="form-search" action="<%=  launch_path %>"  method = "get"   target = "_blank">
-    <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
-    <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
-  </form>
-
+  <%= render 'common/search_bar' %>
 </div>
 <div class="well">
   <p>简单布局，突出内容，明确主题，智能的后台.增加用户阅读管理功能，使用腾讯和其他网站帐户登录
@@ -35,5 +31,3 @@
   <%- end -%>
   </p>
 </div>
-
-

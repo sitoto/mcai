@@ -1,14 +1,9 @@
 <div class="well">
-  <form class="form-search" action="<%=  launch_path %>"  method = "get"   target = "_blank">
-    <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
-    <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
-  </form>
+  <%= render 'common/search_bar' %>
 </div>
-
-
 <% if  @articles.blank? %>
-  <h1>采集<%= @url %></h1>
-  <p> </p>
+  <h1>采集</h1>
+  <p><%= @url %></p>
   <p><%= link_to "查看最新", last_path %></p>
 <% else %>
 
