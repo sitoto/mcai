@@ -1,13 +1,6 @@
-<div class="row-fluid">
-  <div class="span12">
-
-    <div>
-      <form class="form-search" action="<%=  launch_path %>"  method = "get"   target = "_blank">
-        <%= text_field_tag(:q , '', :class => "input-xlarge search-query")  %>
-        <%= submit_tag("只看楼主", :class => "su btn btn-primary") %>
-      </form>
-    </div>
-
+<div class="row">
+  <div class="col-xs-12">
+    <%= render 'common/search_bar' %>
     <h4><%= @page_title %></h4>
     <ol>
       <%= render :partial => "item", :collection => @articles %>
