@@ -1,8 +1,8 @@
 <% @page_title = "首页" %>
 <%- unless @page.nil? -%>
-  <div class="alert alert-info">
-    <i class="icon-bullhorn"></i> : <%= raw @page.body %>
-  </div>
+  <p class="text-info">
+    <span class='glyphicon glyphicon-bullhorn'><%= sanitize @page.body %></span>
+  </p>
 <%- end -%>
 
 <div class="row">
