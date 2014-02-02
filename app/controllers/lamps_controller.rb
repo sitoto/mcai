@@ -48,7 +48,7 @@ class LampsController < ApplicationController
 
   # PATCH/PUT /lamps/1
   def update
-    if @lamp.update(lamp_params)
+    if @lamp.update_attributes(lamp_params)
       #      debug
       redirect_to @lamp, notice: 'Lamp was successfully updated.'
     else
