@@ -6,25 +6,15 @@ class WeixinsController < ApplicationController
 
   
   # GET /weixins
-  def index
-    @weixins = Weixin.all
-  end
+#  def index
+#    @weixins = Weixin.all
+#  end
 
   def show
     render :text => params[:echostr]
   end
 
-
-  # GET /weixins/new
-  def new
-    @weixin = Weixin.new
-  end
-
-  # GET /weixins/1/edit
-  def edit
-  end
-
-  # POST /weixins
+#  POST /weixin
 #  def create
 #   @weixin = Weixin.new(weixin_params)
 
@@ -34,7 +24,6 @@ class WeixinsController < ApplicationController
 #     render action: 'new'
 #    end
 #  end
-
   def create
     if params[:xml][:MsgType] == "text"
       render "echo", :formats => :xml
@@ -55,17 +44,18 @@ class WeixinsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_weixin
-    @weixin = Weixin.find(params[:id])
+#    @weixin = Weixin.find(params[:id])
   end
 
   # Only allow a trusted parameter "white list" through.
   def weixin_params
-    params.require(:weixin).permit(:name, :ask, :answer, :words_count)
+#    params.require(:weixin).permit(:name, :ask, :answer, :words_count)
   end
 
   # 根据参数校验请求是否合法，如果非法返回错误页面
   def check_weixin_legality
     array = [Rails.configuration.weixin_token, params[:timestamp], params[:nonce]].sort
+
     render :text => "Forbidden", :status => 403 if params[:signature] != Digest::SHA1.hexdigest(array.join)
   end
 

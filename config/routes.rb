@@ -1,6 +1,6 @@
 Mcai::Application.routes.draw do
 
-  resources :weixins
+  resource :weixin
 
   resources :novels
 
