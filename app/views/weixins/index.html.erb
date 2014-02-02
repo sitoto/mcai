@@ -1,0 +1,33 @@
+<h1>Listing weixins</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ask</th>
+      <th>Answer</th>
+      <th>Words count</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @weixins.each do |weixin| %>
+      <tr>
+        <td><%= weixin.name %></td>
+        <td><%= weixin.ask %></td>
+        <td><%= weixin.answer %></td>
+        <td><%= weixin.words_count %></td>
+        <td><%= link_to 'Show', weixin %></td>
+        <td><%= link_to 'Edit', edit_weixin_path(weixin) %></td>
+        <td><%= link_to 'Destroy', weixin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Weixin', new_weixin_path %>

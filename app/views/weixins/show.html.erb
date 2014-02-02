@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @weixin.name %>
+</p>
+
+<p>
+  <strong>Ask:</strong>
+  <%= @weixin.ask %>
+</p>
+
+<p>
+  <strong>Answer:</strong>
+  <%= @weixin.answer %>
+</p>
+
+<p>
+  <strong>Words count:</strong>
+  <%= @weixin.words_count %>
+</p>
+
+<%= link_to 'Edit', edit_weixin_path(@weixin) %> |
+<%= link_to 'Back', weixins_path %>

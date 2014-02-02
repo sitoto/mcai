@@ -1,5 +1,7 @@
 Mcai::Application.routes.draw do
 
+  resources :weixins
+
   resources :novels
 
   resources :flinks

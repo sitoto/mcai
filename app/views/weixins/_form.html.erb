@@ -1,0 +1,33 @@
+<%= form_for(@weixin) do |f| %>
+  <% if @weixin.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@weixin.errors.count, "error") %> prohibited this weixin from being saved:</h2>
+
+      <ul>
+      <% @weixin.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :ask %><br>
+    <%= f.text_field :ask %>
+  </div>
+  <div class="field">
+    <%= f.label :answer %><br>
+    <%= f.text_field :answer %>
+  </div>
+  <div class="field">
+    <%= f.label :words_count %><br>
+    <%= f.text_field :words_count %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

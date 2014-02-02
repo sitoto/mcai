@@ -71,6 +71,9 @@ module Mcai
     config.assets.version = '1.0'
     
     config.assets.precompile += %w(application.css cpanel.css mobile.css)
+
+    # 微信 API token
+    config.weixin_token = "80peisitoto"
   end
 end
 I18n.locale = 'zh-CN'
