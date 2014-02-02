@@ -10,6 +10,7 @@ class User
   field :last_login_ip, type: String 
 
   has_many :flinks
+  has_many :lamps
 
 
   def self.from_omniauth(auth)

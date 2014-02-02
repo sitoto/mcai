@@ -1,0 +1,73 @@
+<%= form_for(@lamp) do |f| %>
+  <% if @lamp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@lamp.errors.count, "error") %> prohibited this lamp from being saved:</h2>
+
+      <ul>
+      <% @lamp.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :emaker %><br>
+    <%= f.text_field :emaker %>
+  </div>
+  <div class="field">
+    <%= f.label :maker %><br>
+    <%= f.text_field :maker %>
+  </div>
+  <div class="field">
+    <%= f.label :model %><br>
+    <%= f.text_field :model %>
+  </div>
+  <div class="field">
+    <%= f.label :begin_year %><br>
+    <%= f.text_field :begin_year %>
+  </div>
+  <div class="field">
+    <%= f.label :end_year %><br>
+    <%= f.text_field :end_year %>
+  </div>
+  <div class="field">
+    <%= f.label :high_beam %><br>
+    <%= f.text_field :high_beam %>
+  </div>
+  <div class="field">
+    <%= f.label :low_beam %><br>
+    <%= f.text_field :low_beam %>
+  </div>
+  <div class="field">
+    <%= f.label :fog_light %><br>
+    <%= f.text_field :fog_light %>
+  </div>
+  <div class="field">
+    <%= f.label :front_signal %><br>
+    <%= f.text_field :front_signal %>
+  </div>
+  <div class="field">
+    <%= f.label :front_turn_signal %><br>
+    <%= f.text_field :front_turn_signal %>
+  </div>
+  <div class="field">
+    <%= f.label :rear_turn_signal %><br>
+    <%= f.text_field :rear_turn_signal %>
+  </div>
+  <div class="field">
+    <%= f.label :brake_light %><br>
+    <%= f.text_field :brake_light %>
+  </div>
+  <div class="field">
+    <%= f.label :side_turn_signal %><br>
+    <%= f.text_field :side_turn_signal %>
+  </div>
+  <div class="field">
+    <%= f.label :note %><br>
+    <%= f.text_field :note %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

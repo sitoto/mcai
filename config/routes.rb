@@ -1,5 +1,11 @@
 Mcai::Application.routes.draw do
 
+  resources :lamps do
+    member do 
+      post "clone"
+    end
+  end
+
   resource :weixin
 
   resources :novels

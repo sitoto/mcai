@@ -1,0 +1,56 @@
+<h1>Listing lamps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Emaker</th>
+      <th>Maker</th>
+      <th>Model</th>
+      <th>Begin year</th>
+      <th>End year</th>
+      <th>High beam</th>
+      <th>Low beam</th>
+      <th>Fog light</th>
+      <th>Front signal</th>
+      <th>Front turn signal</th>
+      <th>Rear turn signal</th>
+      <th>Brake light</th>
+      <th>Side turn signal</th>
+      <th>Note</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lamps.each do |lamp| %>
+      <tr>
+        <td><%= lamp.emaker %></td>
+        <td><%= lamp.maker %></td>
+        <td><%= lamp.model %></td>
+        <td><%= lamp.begin_year %></td>
+        <td><%= lamp.end_year %></td>
+        <td><%= lamp.high_beam %></td>
+        <td><%= lamp.low_beam %></td>
+        <td><%= lamp.fog_light %></td>
+        <td><%= lamp.front_signal %></td>
+        <td><%= lamp.front_turn_signal %></td>
+        <td><%= lamp.rear_turn_signal %></td>
+        <td><%= lamp.rear_turn_signal %></td>
+        <td><%= lamp.brake_light %></td>
+        <td><%= lamp.side_turn_signal %></td>
+        <td><%= lamp.note %></td>
+        <td><%= link_to 'Show', lamp %></td>
+        <td><%= link_to 'Duplicate', clone_lamp_path(lamp), rel: "nofollow", method: :post, :class => 'red' %></td>
+        <td><%= link_to 'Edit', edit_lamp_path(lamp) %></td>
+        <td><%= link_to 'Destroy', lamp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lamp', new_lamp_path %>
