@@ -22,7 +22,7 @@ class Article
   # tong ji
   field :pages_count, :type => Integer, default: 1
   field :posts_count, :type => Integer, default: 1
-  field :words_count, :type => Integer, default: 1
+  field :words_count, :type => Integer, default: 0
   field :like_count, :type => Integer, default: 0
   field :hits, :type => Integer, default:  0
 

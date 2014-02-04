@@ -17,7 +17,7 @@ class Topic
   # tong ji
   field :page_num, :type => Integer
   field :posts_count, :type => Integer, default: 0 
-  field :words_count, :type => Integer, default: 100
+  field :words_count, :type => Integer, default: 0
 	field :like_count, :type => Integer, default: 0
 
   belongs_to :article

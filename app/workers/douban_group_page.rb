@@ -30,7 +30,17 @@ class DoubanGroupPage
 
 			post.author = author
 			post.created_at = row.at_css('h4 > span.pubtime').text().strip.to(18)
-			post.content		= row.at_css("p").inner_html.to_s.strip_href_tag
+        if row.at_css("div.reply-quote").blank?
+          post.content =  row.at_css("p").inner_html.to_s.strip_href_tag
+
+        else
+          replay_content = row.at_css("div.reply-quote > span.all").inner_html.to_s.strip_href_tag
+          replay_author = row.at_css("div.reply-quote > span.pubdate").inner_html.to_s.strip_href_tag
+          post.content = "<pre>#{replay_content} (#{replay_author})</pre> #{ row.at_css("p").inner_html.to_s.strip_href_tag}"
+
+        end
+
+
     	post.level			= i + 1
     	post.words_count = post.content.length
       all_words_count += post.words_count 
