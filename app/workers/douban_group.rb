@@ -52,7 +52,8 @@ class DoubanGroup
     post.level = 0
     post.my_level = 0
     post.content = firstcontent.to_s.strip_href_tag
-    post.words_count = post.content.length
+    first_post_length = post.content.length
+    post.words_count = first_post_length
 
     @article = Article.find_or_create_by(from_url: url)
     @article.update_attributes!(title: title, mytitle: title, tags: [category, lz], author: lz, from_name: 'douban_group',
@@ -68,8 +69,8 @@ class DoubanGroup
 
     if max_page_num.eql?(1)
       max_page_num += 1
-      @article.words_count = 0
-      @article.posts_count = 0
+      @article.words_count = first_post_length
+      @article.posts_count = 1
 
       @topic = Topic.new(title: title, mytitle: title, tags: [category, lz], author: lz,
                          url: url,   page_num: 1 , posts_count: 1, posts: [post]) 
@@ -80,7 +81,17 @@ class DoubanGroup
         post = Post.new
         post.author = item.at_css("a").text
         post.created_at  = item.at_css("h4 > span.pubtime").text.strip.to(18)
-        post.content= item.at_css("p").inner_html.to_s.strip_href_tag
+        if item.at_css("div.reply-quote")
+
+          replay_content = item.at_css("div.reply-quote > span.all").inner_html.to_s.strip_href_tag
+          replay_author = item.at_css("div.reply-quote > span.pubdate").inner_html.to_s.strip_href_tag
+          post.content = "<pre>#{replay_content} (#{replay_author})</pre> #{ item.at_css("p").inner_html.to_s.strip_href_tag}"
+
+        else
+          post.content =  item.at_css("p").inner_html.to_s.strip_href_tag
+        end
+
+        post.content= "<pre>#{replay_content} (#{replay_author})</pre> #{ item.at_css("p").inner_html.to_s.strip_href_tag}"
         post.level = i+1
         post.words_count = post.content.length
         if post.author == @topic.author
