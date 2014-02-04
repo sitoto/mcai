@@ -19,4 +19,9 @@ class Lamp
 
   belongs_to :user
 
+  index({:maker => 1, :model => 1})
+
+  scope :car, -> { asc(:maker, :model) }
+
+
 end

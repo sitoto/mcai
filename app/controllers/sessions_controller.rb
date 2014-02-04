@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
 
   def failure
     flash[:danger] =  "验证失败，用户名或密码错误！"
-    redirect_to new_auth_path 
+    redirect_to auth_new_path 
   end
 end

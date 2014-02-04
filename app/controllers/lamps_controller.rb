@@ -4,7 +4,10 @@ class LampsController < ApplicationController
 
   # GET /lamps
   def index
-    @lamps = Lamp.all
+    page_num = params[:page]
+
+    @lamps = Lamp.all.car.page(page_num).per(28)
+
   end
 
   # GET /lamps/1
