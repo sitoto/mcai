@@ -27,6 +27,8 @@ class WeixinsController < ApplicationController
   def create
     if params[:xml][:MsgType] == "text"
       render "echo", :formats => :xml
+    else
+      render "echo", :formats => :xml , :status => 200
     end
   end
 
