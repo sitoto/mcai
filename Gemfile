@@ -14,6 +14,9 @@ gem "jquery-rails", "3.0.4"
 gem "wmd-rails"
 gem "redcarpet"
 
+#for wechat's xml 
+gem 'actionpack-xml_parser'
+
 # Mongoid 辅助插件
 gem "mongoid", github: 'mongoid/mongoid', ref: '11e45e5a30a45458b83db99ab6c9d9ccc337e66f'
 #gem 'mongoid_auto_increment_id', "0.6.2"

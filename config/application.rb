@@ -74,6 +74,8 @@ module Mcai
 
     # 微信 API token
     config.weixin_token = "80peisitoto"
+
+    config.middleware.insert_after ActionDispatch::ParamsParser, ActionDispatch::XmlParamsParser
   end
 end
 I18n.locale = 'zh-CN'
