@@ -33,6 +33,7 @@ class Lamp
     self.model_alias <<  self.emaker
     self.model_alias <<  self.maker
     self.model_alias <<  self.model
+    self.model_alias <<  "#{self.maker}#{self.model}" 
     self.model_alias <<  "#{self.maker} #{self.model}" 
     self.model_alias <<  "#{self.maker}　#{self.model}" 
 
