@@ -2,39 +2,33 @@ class WeixinsController < ApplicationController
   before_action :set_weixin, only: [:show, :edit, :update, :destroy]
 
   skip_before_filter :verify_authenticity_token
-  before_filter :check_weixin_legality
+  before_filter :check_weixin_legality , only: [:create]
 
 
   # GET /weixins
-  #  def index
-  #    @weixins = Weixin.all
-  #  end
-
-  def show
-    render :text => get_lamp_info("奥迪a")
+  def all
+    page_num = params[:page]
+    @weixins = Weixin.all.page(page_num).per(50)
   end
 
-  #  POST /weixin
-  #  def create
-  #   @weixin = Weixin.new(weixin_params)
+  def show
+    render :text => get_lamp_info("奥迪 100")
+  end
 
-  #   if @weixin.save
-  #    redirect_to @weixin, notice: 'Weixin was successfully created.'
-  #   else
-  #     render action: 'new'
-  #    end
-  #  end
   def create
     query_type = params[:xml][:MsgType]
     query_content = params[:xml][:Content]
+    query_user = params[:xml][:FromUserName]
 
     if query_type == "text"
       if  query_content == "Hello2BusUser"
-        render "welcome", :formats => :xml
+        @echostr = "谢谢关注 '车灯型号查询'，告诉我车型，我会及时反馈车灯的型号." 
       else
+
         @echostr = get_lamp_info(query_content)
-        render "echo", :formats => :xml
       end
+      render "echo", :formats => :xml
+      Weixin.create!(name: query_user, ask: query_content, answer: @echostr)
     elsif query_type == "image"
       render "echotest", :formats => :xml , :status => 200
     end
@@ -49,11 +43,13 @@ class WeixinsController < ApplicationController
   def get_lamp_info(car_info)
     #变大写
     #去掉空格，成为数组| 成为一条语句
-
-    lamp = Lamp.any_of({maker: Regexp.new(".*"+car_info+".*")}, {model: Regexp.new(".*"+car_info+".*")}).first
+    car_info.upcase!
+    #    lamp = Lamp.where({maker: Regexp.new(".*"+car_info+".*")}, {model: Regexp.new(".*"+car_info+".*")}).first
+    lamp = Lamp.where(:model_alias => car_info).first
 
     if lamp
-      "#{t('lamps.high_beam')}:#{lamp.high_beam}"
+      "#{lamp.maker}#{lamp.model} #{lamp.begin_year}-#{lamp.end_year}| #{t('lamps.high_beam')}:#{lamp.high_beam},#{t('lamps.low_beam')}:#{lamp.low_beam},#{t('lamps.fog_light')}:#{lamp.fog_light}"
+
     else
       "对不起，暂未查询到数据，我正在完善数据库，欢迎过会再来查。"
     end

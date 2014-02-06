@@ -1,6 +1,6 @@
-<h1>Listing weixins</h1>
+<h1>weixin</h1>
 
-<table>
+ <table class="table">
   <thead>
     <tr>
       <th>Name</th>
@@ -27,7 +27,7 @@
     <% end %>
   </tbody>
 </table>
-
+<%= paginate @weixins %>
 <br>
 
 <%= link_to 'New Weixin', new_weixin_path %>

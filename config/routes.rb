@@ -5,8 +5,10 @@ Mcai::Application.routes.draw do
       post "clone"
     end
   end
-
-  resource :weixin
+  
+  resource :weixin do
+    get "all"
+  end
 
   resources :novels
 
