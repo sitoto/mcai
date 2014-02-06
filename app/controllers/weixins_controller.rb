@@ -11,7 +11,7 @@ class WeixinsController < ApplicationController
   #  end
 
   def show
-    render :text => params[:echostr]
+    render :text => get_lamp_info("奥迪a")
   end
 
   #  POST /weixin
@@ -32,7 +32,7 @@ class WeixinsController < ApplicationController
       if  query_content == "Hello2BusUser"
         render "welcome", :formats => :xml
       else
-        @echostr = get_lamp_info(car_info)
+        @echostr = get_lamp_info(query_content)
         render "echo", :formats => :xml
       end
     elsif query_type == "image"
@@ -50,7 +50,7 @@ class WeixinsController < ApplicationController
     #变大写
     #去掉空格，成为数组| 成为一条语句
 
-    lamp = Lamp.any_of({maker: Regexp.new(".*"+car_info+".*")}, {model: Regexp.new(".*"+car_info+".*")} ).first
+    lamp = Lamp.any_of({maker: Regexp.new(".*"+car_info+".*")}, {model: Regexp.new(".*"+car_info+".*")}).first
 
     if lamp
       "#{t('lamps.high_beam')}:#{lamp.high_beam}"
