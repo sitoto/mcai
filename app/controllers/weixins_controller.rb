@@ -25,9 +25,17 @@ class WeixinsController < ApplicationController
 #    end
 #  end
   def create
-    if params[:xml][:MsgType] == "text"
-      render "echo", :formats => :xml
-    else
+    query_type = params[:xml][:MsgType]
+    query_content = params[:xml][:Content]
+   
+    if query_type == "text"
+      if  query_content == "Hello2BusUser"
+        render "welcome", :formats => :xml
+      else
+        @echostr = "对不起，暂未查询到数据，我正在完善数据库，欢迎过会再来查。"
+        render "echo", :formats => :xml
+      end
+    elsif query_type == "image"
       render "echotest", :formats => :xml , :status => 200
     end
   end
