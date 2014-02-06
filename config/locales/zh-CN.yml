@@ -38,6 +38,22 @@
         url: "网站链接"
         image: "图片地址"
         description: "网站描述"
+      lamp:
+        emaker: "英文厂家"
+        maker: "厂家"
+        model: "车型"
+        begin_year: "开始年份"
+        end_year: "结束年份"
+        high_beam: "远光灯"
+        low_beam: "近光灯"
+        fog_light: "雾灯"
+        front_signal: "前信号灯"
+        front_turn_signal: "前转向灯"
+        rear_turn_signal: "后转向灯"
+        brake_light: "刹车灯"
+        side_turn_signal: "侧转向灯"
+        note: "说明" 
+
       user:
         name: "名字"
         login: "用户名"
