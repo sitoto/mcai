@@ -1,0 +1,31 @@
+<h1>Listing lamp_sets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Style</th>
+      <th>Note</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lamp_sets.each do |lamp_set| %>
+      <tr>
+        <td><%= lamp_set.name %></td>
+        <td><%= lamp_set.style %></td>
+        <td><%= lamp_set.note %></td>
+        <td><%= link_to 'Show', lamp_set %></td>
+        <td><%= link_to 'Edit', edit_lamp_set_path(lamp_set) %></td>
+        <td><%= link_to 'Destroy', lamp_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lamp set', new_lamp_set_path %>

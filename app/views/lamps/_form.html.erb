@@ -10,10 +10,13 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :emaker %><br>
     <%= f.text_field :emaker %>
+  </div>
+  <div class="field">
+    <%= f.label :brand %><br>
+    <%= f.text_field :brand %>
   </div>
   <div class="field">
     <%= f.label :maker %><br>
@@ -33,15 +36,18 @@
   </div>
   <div class="field">
     <%= f.label :high_beam %><br>
-    <%= f.text_field :high_beam %>
+    <%= f.collection_select :high_beam, LampSet.all, :name, :name ,{:prompt => "选择车灯型号"}, multiple: "true" %> 
+ 
   </div>
   <div class="field">
     <%= f.label :low_beam %><br>
-    <%= f.text_field :low_beam %>
+    <%= f.collection_select :low_beam, LampSet.all, :name, :name ,{:prompt => "选择车灯型号"}, multiple: "true" %> 
+
   </div>
   <div class="field">
     <%= f.label :fog_light %><br>
-    <%= f.text_field :fog_light %>
+    <%= f.collection_select :fog_light, LampSet.all, :name, :name ,{:prompt => "选择车灯型号"}, multiple: 'true' %> 
+
   </div>
   <div class="field">
     <%= f.label :front_signal %><br>

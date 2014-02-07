@@ -1,5 +1,9 @@
 Mcai::Application.routes.draw do
 
+  resources :lamp_sets do 
+    resources :lamp_paras
+  end
+
   resources :lamps do
     member do 
       post "clone"

@@ -73,6 +73,7 @@ class LampsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def lamp_params
-    params.require(:lamp).permit(:emaker, :maker, :model, :begin_year, :end_year, :high_beam, :low_beam, :fog_light, :front_signal, :front_turn_signal, :rear_turn_signal, :brake_light, :side_turn_signal, :note)
+    params.require(:lamp).permit(:emaker, :brand, :ebrand, :maker, :model, :begin_year, :end_year, :reversing_lamp, :high_brake_light, :front_signal, :front_turn_signal, :rear_turn_signal, :brake_light, :side_turn_signal, :note ,:high_beam => [], :low_beam => [] ,:fog_light => [] )
+
   end
 end
