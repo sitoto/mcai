@@ -26,6 +26,7 @@ class LampsController < ApplicationController
   # POST /lamps
   def clone
     @lamp = Lamp.find(params[:id]).clone
+    @lamp.model_alias = []
     @lamp.user = current_user
 
     if @lamp.save # <-- here you save the record
