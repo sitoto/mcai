@@ -48,7 +48,7 @@ class WeixinsController < ApplicationController
     lamp = Lamp.where(:model_alias => car_info).first
 
     if lamp
-      "#{lamp.maker}#{lamp.model} #{lamp.begin_year}-#{lamp.end_year}| #{t('lamps.high_beam')}:#{lamp.high_beam},#{t('lamps.low_beam')}:#{lamp.low_beam},#{t('lamps.fog_light')}:#{lamp.fog_light}"
+      "#{lamp.brand}#{lamp.model} #{lamp.begin_year}-#{lamp.end_year}| #{t('lamps.high_beam')}:#{lamp.high_beam.join('/')},#{t('lamps.low_beam')}:#{lamp.low_beam.join('/')},#{t('lamps.fog_light')}:#{lamp.fog_light.join('/')}"
 
     else
       "对不起，暂未查询到数据，我正在完善数据库，欢迎过会再来查。"
