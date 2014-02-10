@@ -1,79 +1,59 @@
-<%= form_for(@lamp) do |f| %>
+<%= form_for(@lamp, :html => {class: 'form-inline'}) do |f| %>
   <% if @lamp.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lamp.errors.count, "error") %> prohibited this lamp from being saved:</h2>
 
       <ul>
-      <% @lamp.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @lamp.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :emaker %><br>
     <%= f.text_field :emaker %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :brand %><br>
     <%= f.text_field :brand %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :maker %><br>
     <%= f.text_field :maker %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :model %><br>
     <%= f.text_field :model %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :begin_year %><br>
     <%= f.text_field :begin_year %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :end_year %><br>
     <%= f.text_field :end_year %>
   </div>
-  <div class="field">
-    <%= f.label :high_beam %><br>
-    <%= f.collection_select :high_beam, LampSet.all, :name, :name ,{:prompt => "选择车灯型号"}, multiple: "true" %> 
- 
+  <div class="form-group">
+    <%= f.label :lamp_head %><br>
+    <%= f.text_field :lamp_head %>
   </div>
-  <div class="field">
-    <%= f.label :low_beam %><br>
-    <%= f.collection_select :low_beam, LampSet.all, :name, :name ,{:prompt => "选择车灯型号"}, multiple: "true" %> 
-
-  </div>
-  <div class="field">
-    <%= f.label :fog_light %><br>
-    <%= f.collection_select :fog_light, LampSet.all, :name, :name ,{:prompt => "选择车灯型号"}, multiple: 'true' %> 
-
-  </div>
-  <div class="field">
-    <%= f.label :front_signal %><br>
-    <%= f.text_field :front_signal %>
-  </div>
-  <div class="field">
-    <%= f.label :front_turn_signal %><br>
-    <%= f.text_field :front_turn_signal %>
-  </div>
-  <div class="field">
-    <%= f.label :rear_turn_signal %><br>
-    <%= f.text_field :rear_turn_signal %>
-  </div>
-  <div class="field">
-    <%= f.label :brake_light %><br>
-    <%= f.text_field :brake_light %>
-  </div>
-  <div class="field">
-    <%= f.label :side_turn_signal %><br>
-    <%= f.text_field :side_turn_signal %>
-  </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :note %><br>
     <%= f.text_field :note %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+
+
+  <hr />
+  <% %w[high_beam low_beam fog_light rear_fog_light front_signal front_turn_signal rear_turn_signal side_turn_signal brake_light high_brake_light reversing_lamp].each do |item|  %>
+    <div class="form-group">
+      <%= f.label item.to_sym %><br>
+      <%= f.collection_select item.to_sym, LampSet.all, :name, :name ,{:prompt => "选择车灯型号"}, multiple: "true", class: 'form-control', size: '20' %> 
+
+    </div>
+  <% end %>
+  <hr />
+  <div class="from-group">
+    <%= f.submit  class: 'btn btn-primary'%>
   </div>
 <% end %>

@@ -1,4 +1,4 @@
-class LampsController < ApplicationController
+class LampsController < Cpanel::ApplicationController
   before_action :set_lamp, only: [:show, :edit, :update, :destroy]
   before_filter :require_user
 
@@ -6,7 +6,7 @@ class LampsController < ApplicationController
   def index
     page_num = params[:page]
 
-    @lamps = Lamp.all.car.page(page_num).per(28)
+    @lamps = Lamp.all.car.page(page_num).per(50)
 
   end
 
@@ -74,7 +74,7 @@ class LampsController < ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def lamp_params
-    params.require(:lamp).permit(:emaker, :brand, :ebrand, :maker, :model, :begin_year, :end_year, :reversing_lamp, :high_brake_light, :front_signal, :front_turn_signal, :rear_turn_signal, :brake_light, :side_turn_signal, :note ,:high_beam => [], :low_beam => [] ,:fog_light => [] )
+    params.require(:lamp).permit(:emaker, :brand, :ebrand, :maker, :model, :begin_year, :end_year, :lamp_head, :note, :reversing_lamp => [], :high_brake_light => [], :front_signal => [], :front_turn_signal => [], :rear_turn_signal => [], :brake_light => [], :side_turn_signal => [], :high_beam => [], :low_beam => [] ,:fog_light => [] )
 
   end
 end

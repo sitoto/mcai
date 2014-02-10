@@ -4,6 +4,9 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>volts</th>
+      <th>watts</th>
+      <th>base</th>
       <th>Style</th>
       <th>Note</th>
       <th></th>
@@ -16,6 +19,10 @@
     <% @lamp_sets.each do |lamp_set| %>
       <tr>
         <td><%= lamp_set.name %></td>
+        <td><%= lamp_set.volts %></td>
+        <td><%= lamp_set.watts %></td>
+        <td><%= lamp_set.base %></td>
+
         <td><%= lamp_set.style %></td>
         <td><%= lamp_set.note %></td>
         <td><%= link_to 'Show', lamp_set %></td>

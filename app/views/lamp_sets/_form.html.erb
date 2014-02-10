@@ -2,7 +2,6 @@
   <% if @lamp_set.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lamp_set.errors.count, "error") %> prohibited this lamp_set from being saved:</h2>
-
       <ul>
       <% @lamp_set.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,10 +9,21 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
+  </div>
+   <div class="field">
+    <%= f.label :volts %><br>
+    <%= f.text_field :volts %>
+  </div>
+  <div class="field">
+    <%= f.label :watts %><br>
+    <%= f.text_field :watts %>
+  </div>
+  <div class="field">
+    <%= f.label :base %><br>
+    <%= f.text_field :base %>
   </div>
   <div class="field">
     <%= f.label :style %><br>

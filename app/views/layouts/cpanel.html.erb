@@ -19,7 +19,7 @@
   </head>
   <body>
     <div class="navbar navbar-static-top navbar-inverse bs-upgrader-nav">
-      <div class="container">
+      <div class="container-fluid">
         <nav class="navbar-collapse bs-navbar-collapse">
         <a class="navbar-brand" href="/">后台管理</a>
         <div class="collapse navbar-collapse bs-js-navbar-collapse">
@@ -27,9 +27,9 @@
             <li><%= link_to "首页", cpanel_root_path %></li>
             <li><%= link_to "友情链接", cpanel_flinks_path  %></li>
             <li><%= link_to "车灯型号管理", lamps_path  %></li>
+            <li><%= link_to "灯管理", lamp_sets_path  %></li>
 
             <li><%= link_to "任务", cpanel_tasks_path  %></li>
-
             <li><%= link_to "事件", cpanel_events_path  %></li>
             <li><%= link_to "文档", htmls_path  %></li>
             <li><%= link_to "测试", '#'  %></li>
@@ -50,14 +50,16 @@
         </nav>
       </div>
     </div>
-    <div class="container">
-        <div class="row">
-          <div class="col-xs-12">
-            <p class="notice"><%= notice %></p>
-            <p class="alert"><%= alert %></p>
-            <%= yield %>
-          </div>
-        </div><!--/row-->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 main">
+          <% if notice || alert %>
+            <div class="alert alert-info"><%= notice %></div>
+            <div class="alert alert-danger"><%= alert %></div>
+          <% end %>
+          <%= yield %>
+        </div>
+      </div><!--/row-->
 
       <footer>
       <p>&copy; Company 2012</p>

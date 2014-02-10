@@ -1,4 +1,4 @@
-class LampParasController < ApplicationController
+class LampParasController < Cpanel::ApplicationController
   def create
     id = params[:lamp_set_id]
     @lamp_set = LampSet.find(id) 

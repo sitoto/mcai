@@ -1,6 +1,6 @@
 <h1>Listing lamps</h1>
 
-<table class="table">
+<table class="table table-bordered table-hover table-condensed">
   <thead>
     <tr>
       <th><%= t('lamps.emaker') %></th>
@@ -8,19 +8,23 @@
       <th><%= t('lamps.model') %></th>
       <th><%= t('lamps.begin_year') %></th>
       <th><%= t('lamps.end_year') %></th>
+
       <th><%= t('lamps.high_beam') %></th>
       <th><%= t('lamps.low_beam') %></th>
       <th><%= t('lamps.fog_light') %></th>
+      <th><%= t('lamps.rear_fog_light') %></th>
+     
       <th><%= t('lamps.front_signal') %></th>
       <th><%= t('lamps.front_turn_signal') %></th>
       <th><%= t('lamps.rear_turn_signal') %></th>
-      <th><%= t('lamps.brake_light') %></th>
       <th><%= t('lamps.side_turn_signal') %></th>
+      <th><%= t('lamps.brake_light') %></th>
+      <th><%= t('lamps.high_brake_light') %></th>
+      <th><%= t('lamps.reversing_lamp') %></th>
+      <th><%= t('lamps.lamp_head') %></th>
+
       <th><%= t('lamps.note') %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= t('options') %></th>
     </tr>
   </thead>
 
@@ -35,17 +39,22 @@
         <td><%= lamp.high_beam %></td>
         <td><%= lamp.low_beam %></td>
         <td><%= lamp.fog_light %></td>
+        <td><%= lamp.rear_fog_light %></td>
+
         <td><%= lamp.front_signal %></td>
         <td><%= lamp.front_turn_signal %></td>
         <td><%= lamp.rear_turn_signal %></td>
-        <td><%= lamp.rear_turn_signal %></td>
-        <td><%= lamp.brake_light %></td>
         <td><%= lamp.side_turn_signal %></td>
+        <td><%= lamp.brake_light %></td>
+        <td><%= lamp.high_brake_light %></td>
+        <td><%= lamp.reversing_lamp %></td>
+
+        <td><%= lamp.lamp_head %></td>
         <td><%= lamp.note %></td>
-        <td><%= link_to 'Show', lamp %></td>
-        <td><%= link_to 'Duplicate', clone_lamp_path(lamp), rel: "nofollow", method: :post, :class => 'red' %></td>
-        <td><%= link_to 'Edit', edit_lamp_path(lamp) %></td>
-        <td><%= link_to 'Destroy', lamp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('show'), lamp %>
+        <%= link_to t('duplicate'), clone_lamp_path(lamp), rel: "nofollow", method: :post, :class => 'red' %>
+        <%= link_to t('edit'), edit_lamp_path(lamp) %>
+        <%= link_to t('destroy'), lamp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -53,4 +62,4 @@
 <%= paginate @lamps %>
 <br>
 
-<%= link_to 'New Lamp', new_lamp_path %>
+<%= link_to t('lamps.new'), new_lamp_path %>

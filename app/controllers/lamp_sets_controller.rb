@@ -1,4 +1,4 @@
-class LampSetsController < ApplicationController
+class LampSetsController < Cpanel::ApplicationController
   before_action :set_lamp_set, only: [:show, :edit, :update, :destroy]
 
   # GET /lamp_sets
