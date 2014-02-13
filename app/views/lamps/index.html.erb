@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th><%= t('lamps.emaker') %></th>
+      <th><%= t('lamps.brand') %></th>
       <th><%= t('lamps.maker') %></th>
       <th><%= t('lamps.model') %></th>
       <th><%= t('lamps.begin_year') %></th>
@@ -32,6 +33,7 @@
     <% @lamps.each do |lamp| %>
       <tr>
         <td><%= lamp.emaker %></td>
+        <td><%= lamp.brand %></td>
         <td><%= lamp.maker %></td>
         <td><%= lamp.model %></td>
         <td><%= lamp.begin_year %></td>
