@@ -6,6 +6,11 @@ class LampSetsController < Cpanel::ApplicationController
     @lamp_sets = LampSet.all
   end
 
+  def search
+    @lamp_set = LampSet.where(:name => params[:name]).first
+    render :show, layout: nil
+  end
+
   # GET /lamp_sets/1
   def show
   end

@@ -20,6 +20,7 @@ zh-CN:
     side_turn_signal: "侧转向灯"
     reversing_lamp: "倒车灯"
     lamp_head: "灯座"
+    reference: "更多"
     note: "说明" 
 
   lamp_set:

@@ -1,15 +1,16 @@
 class LampsController < Cpanel::ApplicationController
-  before_action :set_lamp, only: [:show, :edit, :update, :destroy]
-  before_filter :require_user
+  before_action :set_lamp, only: [:show, :edit, :update, :destroy, :weixin]
+  before_filter :require_user, expect: [:weixin]
 
   # GET /lamps
   def index
     page_num = params[:page]
-
     @lamps = Lamp.all.car.page(page_num).per(50)
-
   end
 
+  def weixin
+    render layout: nil 
+  end
   # GET /lamps/1
   def show
   end

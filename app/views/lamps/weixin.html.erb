@@ -1,0 +1,29 @@
+<h3> </h3>
+<strong><%= t('lamps.brand') %></strong>
+<%= @lamp.brand %>
+
+<strong><%= t('lamps.maker') %></strong>
+<%= @lamp.maker %>
+
+<strong><%= t('lamps.model') %></strong>
+<%= @lamp.model %>
+<br>
+<strong><%= t('lamps.begin_year') %></strong>
+<strong><%= t('lamps.end_year') %></strong>
+<ul>
+<% %w[high_beam low_beam fog_light rear_fog_light front_signal front_turn_signal rear_turn_signal side_turn_signal brake_light high_brake_light reversing_lamp].each do |object|  %>
+  <li>  <strong><%= t("lamps.#{object}") %></strong>
+  <% @lamp[object.to_sym].each do |item| %>
+    <%= link_to item, search_lamp_sets_path(item), target: '_blank' %>
+  <% end %>
+  </li>
+<% end  %>
+<li><strong><%= t('lamps.lamp_head') %></strong></li>
+<li><strong><%= t('lamps.note') %></strong></li>
+
+</ul>
+
+<p>
+<strong><%= t('lamps.note') %></strong>
+<%= @lamp.note %>
+</p>

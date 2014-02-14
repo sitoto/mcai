@@ -44,7 +44,7 @@ class Lamp
   field :reversing_lamp, type: Array, default: []
   #倒车灯
   field :lamp_head, type: String #灯座
-
+  field :reference, type: String, default: 'http://www.80pei.com/' 
 
   field :note, type: String
   validates_presence_of :brand, :model

@@ -1,9 +1,12 @@
 Mcai::Application.routes.draw do
 
   resources :lamp_sets do 
+    get "search/:name", :action => :search,  :on => :collection, :as => :search
+
     resources :lamp_paras
   end
 
+  get "wlamp/:id"  =>  "lamps#weixin", as: 'wlamp'
   resources :lamps do
     member do 
       post "clone"
