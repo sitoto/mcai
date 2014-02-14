@@ -2,8 +2,6 @@ class PagesController < ApplicationController
   before_action :set_page_num , only: [:hot, :last, :douban_group]
   before_action :authenticate, only: [:new, :update, :destroy, :edit]
 
-  # GET /pages
-  # GET /pages.json
   def index
     @pages = Page.all
 
@@ -22,11 +20,11 @@ class PagesController < ApplicationController
   end
   def weixin
     @lamp = Lamp.find(params[:id])
-    render layout: false
+    render layout: "mobile"
   end
   def wsearch 
     @lamp_set = LampSet.where(:name => params[:name]).first
-    render layout: false 
+    render layout: "mobile"
   end
 
   def last 

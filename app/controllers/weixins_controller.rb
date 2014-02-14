@@ -58,8 +58,8 @@ class WeixinsController < ApplicationController
       str << "#{t('lamps.side_turn_signal')}:#{lamp.side_turn_signal.join(',')}\n"
       str << "#{t('lamps.brake_light')}:#{lamp.brake_light.join(',')}\n"
       str << "#{t('lamps.high_brake_light')}:#{lamp.high_brake_light.join(',')}\n"
-      str << "#{t('lamps.reversing_lamp')}:#{lamp.reversing_lamp.join(',')}"
-      str << "#{t('lamps.reference')}:#{wlamp_url(lamp.id)}"
+      str << "#{t('lamps.reversing_lamp')}:#{lamp.reversing_lamp.join(',')}\n"
+      str << "<a href=\"#{wlamp_url(lamp.id)}\">#{t('lamps.reference')}</a>"
 
       str
 
