@@ -8,9 +8,6 @@ class LampsController < Cpanel::ApplicationController
     @lamps = Lamp.all.car.page(page_num).per(50)
   end
 
-  def weixin
-    render layout: nil 
-  end
   # GET /lamps/1
   def show
   end

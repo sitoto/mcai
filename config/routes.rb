@@ -1,12 +1,11 @@
 Mcai::Application.routes.draw do
 
   resources :lamp_sets do 
-    get "search/:name", :action => :search,  :on => :collection, :as => :search
-
+  
     resources :lamp_paras
   end
 
-  get "wlamp/:id"  =>  "lamps#weixin", as: 'wlamp'
+  get "wlamp/:id"  =>  "pages#weixin", as: 'wlamp'
   resources :lamps do
     member do 
       post "clone"
@@ -47,6 +46,7 @@ Mcai::Application.routes.draw do
   get "about" => "pages#about"
   resources :pages do
     collection do 
+      get "search/:name" => 'pages#wsearch',  :as => :search
       get "home"
       get "about"
       get "douban_group", :as => :doubangroup

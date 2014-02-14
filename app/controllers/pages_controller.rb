@@ -20,6 +20,15 @@ class PagesController < ApplicationController
       format.html # home.html.erb
     end
   end
+  def weixin
+    @lamp = Lamp.find(params[:id])
+    render layout: false
+  end
+  def wsearch 
+    @lamp_set = LampSet.where(:name => params[:name]).first
+    render layout: false 
+  end
+
   def last 
     if params[:page].nil?
       page_num = 1

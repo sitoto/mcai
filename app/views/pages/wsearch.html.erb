@@ -1,0 +1,20 @@
+<% unless @lamp_set.blank? %>
+<p>
+<strong>型号</strong>
+<%= @lamp_set.name %>
+</p>
+
+<p>
+<strong>说明</strong>
+<%= @lamp_set.note %>
+</p>
+<hr />
+
+<p>
+<h5>商品信息</h5>
+<% @lamp_set.lamp_paras.each do |item| %>
+  <strong> <%= item.name %> </strong> <%= item.value %>  <%= item.note %> 
+  <br />
+<% end %>
+</p>
+<% end %>
