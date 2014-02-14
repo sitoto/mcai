@@ -23,7 +23,7 @@ zh-CN:
     reference: "详细信息"
     note: "说明" 
 
-  lamp_set:
+  lamp_sets:
     name: '型号'
     volts: '额定电压'
     watts: '功率'

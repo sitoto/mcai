@@ -1,17 +1,15 @@
-<h1>Listing lamp_sets</h1>
+<h3>灯的种类</h3>
 
 <table class="table">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>volts</th>
-      <th>watts</th>
-      <th>base</th>
-      <th>Style</th>
-      <th>Note</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th><%= t('lamp_sets.name')%></th>
+      <th><%= t('lamp_sets.volts')%></th>
+      <th><%= t('lamp_sets.watts')%></th>
+      <th><%= t('lamp_sets.base')%></th>
+      <th><%= t('lamp_sets.style')%></th>
+      <th><%= t('lamp_sets.note')%></th>
+      <th><%= t('options')%></th>
     </tr>
   </thead>
 
@@ -25,9 +23,7 @@
 
         <td><%= lamp_set.style %></td>
         <td><%= lamp_set.note %></td>
-        <td><%= link_to 'Show', lamp_set %></td>
-        <td><%= link_to 'Edit', edit_lamp_set_path(lamp_set) %></td>
-        <td><%= link_to 'Destroy', lamp_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('show'), lamp_set %><%= link_to t('edit'), edit_lamp_set_path(lamp_set) %><%= link_to t('destroy'), lamp_set, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -35,4 +31,4 @@
 
 <br>
 
-<%= link_to 'New Lamp set', new_lamp_set_path %>
+<%= link_to t('new'), new_lamp_set_path %>
