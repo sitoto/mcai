@@ -49,15 +49,15 @@ class WeixinsController < ApplicationController
 
     if lamp
       str =  "#{lamp.brand}#{lamp.model} #{lamp.begin_year}-#{lamp.end_year}\n"
-      str << "#{t('lamps.high_beam')}:#{lamp.high_beam.join(',')}\n"
+      str += "#{t('lamps.high_beam')}:#{lamp.high_beam.join(',')}\n"
       str << "#{t('lamps.low_beam')}:#{lamp.low_beam.join(',')},\n"
       str << "#{t('lamps.fog_light')}:#{lamp.fog_light.join(',')}\n"
       str << "#{t('lamps.front_signal')}:#{lamp.front_signal.join(',')}\n"
       str << "#{t('lamps.front_turn_signal')}:#{lamp.front_turn_signal.join(',')}\n"
       str << "#{t('lamps.rear_turn_signal')}:#{lamp.rear_turn_signal.join(',')}\n"
       str << "#{t('lamps.side_turn_signal')}:#{lamp.side_turn_signal.join(',')}\n"
-      str << "#{t('lamps.brake_signal')}:#{lamp.brake_signal.join(',')}\n"
-      str << "#{t('lamps.high_brake_signal')}:#{lamp.high_brake_signal.join(',')}\n"
+      str << "#{t('lamps.brake_light')}:#{lamp.brake_light.join(',')}\n"
+      str << "#{t('lamps.high_brake_light')}:#{lamp.high_brake_light.join(',')}\n"
       str << "#{t('lamps.reversing_lamp')}:#{lamp.reversing_lamp.join(',')}"
       str
 
