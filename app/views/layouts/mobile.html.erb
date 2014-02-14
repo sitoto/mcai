@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= stylesheet_link_tag "mobile" %>
+    <meta name="apple-mobile-web-app-capable" content="no" />
+    <meta content='True' name='HandheldFriendly' />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta charset='utf-8' />
+    <link rel="shortcut icon" href="<%= asset_path("big_logo.ico") %>" /> 
+  </head>
+
+  <body data-offset="50">
+    <div class="container">
+      <%= yield :layout%>
+    </div>
+    <%= debug(params) if Rails.env.development? %>
+    <%= baidu_analytics %>
+    <%= google_analytics  %>
+  </body>
+</html>
