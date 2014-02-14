@@ -48,7 +48,18 @@ class WeixinsController < ApplicationController
     lamp = Lamp.where(:model_alias => car_info).first
 
     if lamp
-      "#{lamp.brand}#{lamp.model} #{lamp.begin_year}-#{lamp.end_year}\n #{t('lamps.high_beam')}:#{lamp.high_beam.join(',')}\\n#{t('lamps.low_beam')}:#{lamp.low_beam.join(',')},#{t('lamps.fog_light')}:#{lamp.fog_light.join(',')}"
+      str =  "#{lamp.brand}#{lamp.model} #{lamp.begin_year}-#{lamp.end_year}\n"
+      str << "#{t('lamps.high_beam')}:#{lamp.high_beam.join(',')}\n"
+      str << "#{t('lamps.low_beam')}:#{lamp.low_beam.join(',')},\n"
+      str << "#{t('lamps.fog_light')}:#{lamp.fog_light.join(',')}\n"
+      str << "#{t('lamps.front_signal')}:#{lamp.front_signal.join(',')}\n"
+      str << "#{t('lamps.front_turn_signal')}:#{lamp.front_turn_signal.join(',')}\n"
+      str << "#{t('lamps.rear_turn_signal')}:#{lamp.rear_turn_signal.join(',')}\n"
+      str << "#{t('lamps.side_turn_signal')}:#{lamp.side_turn_signal.join(',')}\n"
+      str << "#{t('lamps.brake_signal')}:#{lamp.brake_signal.join(',')}\n"
+      str << "#{t('lamps.high_brake_signal')}:#{lamp.high_brake_signal.join(',')}\n"
+      str << "#{t('lamps.reversing_lamp')}:#{lamp.reversing_lamp.join(',')}"
+      str
 
     else
       "对不起，暂未查询到数据，我正在完善数据库，欢迎过会再来查。"
