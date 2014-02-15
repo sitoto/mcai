@@ -32,7 +32,7 @@ class LampSetsController < Cpanel::ApplicationController
 
   # PATCH/PUT /lamp_sets/1
   def update
-    if @lamp_set.update(lamp_set_params)
+    if @lamp_set.update_attributes(lamp_set_params)
       redirect_to @lamp_set, notice: 'Lamp set was successfully updated.'
     else
       render action: 'edit'
@@ -53,6 +53,6 @@ class LampSetsController < Cpanel::ApplicationController
 
   # Only allow a trusted parameter "white list" through.
   def lamp_set_params
-    params.require(:lamp_set).permit(:name, :style, :note)
+    params.require(:lamp_set).permit(:name, :volts, :watts, :base, :style, :note)
   end
 end
