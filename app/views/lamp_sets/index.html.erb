@@ -1,8 +1,9 @@
 <h3>灯的种类</h3>
 
-<table class="table">
+<table class="table table-hover table-condensed">
   <thead>
     <tr>
+      <th>#</th>
       <th><%= t('lamp_sets.name')%></th>
       <th><%= t('lamp_sets.volts')%></th>
       <th><%= t('lamp_sets.watts')%></th>
@@ -14,8 +15,9 @@
   </thead>
 
   <tbody>
-    <% @lamp_sets.each do |lamp_set| %>
+    <% @lamp_sets.each_with_index do |lamp_set, i| %>
       <tr>
+        <td><%= i + 1  %></td>
         <td><%= lamp_set.name %></td>
         <td><%= lamp_set.volts %></td>
         <td><%= lamp_set.watts %></td>

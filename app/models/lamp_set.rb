@@ -1,5 +1,7 @@
 class LampSet
   include Mongoid::Document
+  before_save :uppercase_field
+
   field :name, type: String
 
   field :volts, type: String, default: '12V' #伏
@@ -14,4 +16,11 @@ class LampSet
 
 
   embeds_many :lamp_paras
+
+  index({:name => 1})
+
+  def uppercase_field
+    self.name.upcase! if self.name
+  end
+ 
 end

@@ -3,7 +3,7 @@ class LampSetsController < Cpanel::ApplicationController
 
   # GET /lamp_sets
   def index
-    @lamp_sets = LampSet.all
+    @lamp_sets = LampSet.all.asc(:name)
   end
 
   # GET /lamp_sets/1
