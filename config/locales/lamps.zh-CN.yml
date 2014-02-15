@@ -13,6 +13,8 @@ zh-CN:
     rear_fog_light: "后雾灯"
 
     front_signal: "前信号灯"
+    rear_signal: "后信号灯"
+
     front_turn_signal: "前转向灯"
     rear_turn_signal: "后转向灯"
     brake_light: "刹车灯"

@@ -45,7 +45,7 @@
 
 
   <hr />
-  <% %w[high_beam low_beam fog_light rear_fog_light front_signal front_turn_signal rear_turn_signal side_turn_signal brake_light high_brake_light reversing_lamp].each do |item|  %>
+  <% %w[high_beam low_beam fog_light rear_fog_light front_signal rear_signal front_turn_signal rear_turn_signal side_turn_signal brake_light high_brake_light reversing_lamp].each do |item|  %>
     <div class="form-group">
       <%= f.label item.to_sym %><br>
       <%= f.collection_select item.to_sym, LampSet.all.asc(:name), :name, :name ,{:prompt => "选择车灯型号"}, multiple: "true", class: 'form-control', size: '20' %> 

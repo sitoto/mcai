@@ -5,13 +5,17 @@ class Lamp
   before_validation do |model|
     model.high_beam.reject!(&:blank?) if model.high_beam
     model.low_beam.reject!(&:blank?) if model.low_beam
+
     model.fog_light.reject!(&:blank?) if model.fog_light
     model.rear_fog_light.reject!(&:blank?) if  model.rear_fog_light
-    model.front_signal.reject!(&:blank?) if  model.front_signal
-    model.front_turn_signal.reject!(&:blank?) if  model.front_turn_signal
 
+    model.front_signal.reject!(&:blank?) if  model.front_signal
+    model.rear_signal.reject!(&:blank?) if  model.rear_signal
+
+    model.front_turn_signal.reject!(&:blank?) if  model.front_turn_signal
     model.rear_turn_signal.reject!(&:blank?) if  model.rear_turn_signal
     model.side_turn_signal.reject!(&:blank?) if  model.side_turn_signal
+
     model.brake_light.reject!(&:blank?) if  model.brake_light
     model.high_brake_light.reject!(&:blank?) if  model.high_brake_light
     model.reversing_lamp.reject!(&:blank?) if  model.reversing_lamp
@@ -35,6 +39,8 @@ class Lamp
 
   field :rear_fog_light, type: Array, default: []
   field :front_signal, type: Array, default: []
+  field :rear_signal, type: Array, default: []
+
   field :front_turn_signal, type: Array, default: []
   field :rear_turn_signal, type: Array, default: []
   field :side_turn_signal, type: Array, default: []
