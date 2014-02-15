@@ -2,7 +2,7 @@ class LampSet
   include Mongoid::Document
   field :name, type: String
 
-  field :volts, type: String #伏
+  field :volts, type: String, default: '12V' #伏
   field :watts, type: String #瓦
   field :base, type: String #灯头
 
