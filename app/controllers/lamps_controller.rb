@@ -24,6 +24,8 @@ class LampsController < Cpanel::ApplicationController
   def clone
     @lamp = Lamp.find(params[:id]).clone
     @lamp.model_alias = []
+    @lamp.brand = @lamp.brand + "(copy)"
+
     @lamp.user = current_user
 
     if @lamp.save # <-- here you save the record
@@ -49,7 +51,9 @@ class LampsController < Cpanel::ApplicationController
 
   # PATCH/PUT /lamps/1
   def update
+    @lamp.model_alias = []
     if @lamp.update_attributes(lamp_params)
+ 
       #      debug
       redirect_to @lamp, notice: 'Lamp was successfully updated.'
     else
