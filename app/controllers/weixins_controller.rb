@@ -17,16 +17,23 @@ class WeixinsController < ApplicationController
 
   def create
     query_type = params[:xml][:MsgType]
-    query_content = params[:xml][:Content]
     query_user = params[:xml][:FromUserName]
 
-    if query_type == "text"
-      if  query_content == "Hello2BusUser"
+    if query_type == "event"
+      query_event = params[:xml][:Event]
+      if  query_event == "subscribe"
         @echostr = "谢谢关注 '车灯型号查询'，告诉我车型，我会及时反馈车灯的型号." 
-      else
-
-        @echostr = get_lamp_info(query_content)
+      elsif  query_event = params[:xml][:Event] == "unsubscribe"
+        @echostr = "谢谢关注 '车灯型号查询'，欢迎再来，告诉我车型，我会及时反馈车灯的型号哦." 
       end
+      render "echo", :formats => :xml
+      Weixin.create!(name: query_user, ask: query_event, answer: @echostr)
+    end
+
+    if query_type == "text"
+      query_content = params[:xml][:Content]
+
+      @echostr = get_lamp_info(query_content)
       render "echo", :formats => :xml
       Weixin.create!(name: query_user, ask: query_content, answer: @echostr)
     elsif query_type == "image"
