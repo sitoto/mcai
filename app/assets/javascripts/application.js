@@ -20,4 +20,6 @@
 //
 
 $('.dropdown-toggle').dropdown()
-$('.collapse').collapse()
+$('.collapse').collapse({
+    toggle: false
+})
