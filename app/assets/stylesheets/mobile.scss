@@ -3,8 +3,8 @@ body {
   padding-top: 0px;
 }
 .navbar-fixed-top {
-position: static;
-margin-bottom: 8px;
+  position: static;
+  margin-bottom: 8px;
 }
 
 .container,
@@ -13,3 +13,15 @@ margin-bottom: 8px;
   margin:0;
 }
 
+.pagination {
+  li { display:none; }
+  li.active,
+  li.prev,
+  li.next { display:inline; }
+  li.active { border:none;
+    a {
+      background:#F0F0F0;
+      color:#666;
+    }
+  }
+}

@@ -12,5 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
+//= require kaminari
+//= require back-to-top
+//= require editor 
+//= require bootstrap/dropdown
+//= require bootstrap/collapse
+//
+
 $('.dropdown-toggle').dropdown()
+$('.collapse').collapse()

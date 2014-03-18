@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/anjlab/bootstrap-rails.git
-  revision: 3250d5494a8fb2715d3a16e24c7b82f57266ff42
-  specs:
-    anjlab-bootstrap-rails (3.0.3.0)
-      railties (>= 3.0)
-      sass (>= 3.2)
-
-GIT
   remote: git://github.com/mongoid/mongoid.git
   revision: 11e45e5a30a45458b83db99ab6c9d9ccc337e66f
   ref: 11e45e5a30a45458b83db99ab6c9d9ccc337e66f
@@ -57,6 +49,8 @@ GEM
     arel (4.0.0)
     atomic (1.1.14)
     bcrypt-ruby (3.1.2)
+    bootstrap-sass (3.1.1.0)
+      sass (~> 3.2)
     builder (3.1.4)
     capistrano (2.9.0)
       highline
@@ -213,7 +207,7 @@ PLATFORMS
 
 DEPENDENCIES
   actionpack-xml_parser
-  anjlab-bootstrap-rails (~> 3.0.3.0)!
+  bootstrap-sass (~> 3.1.1)
   capistrano (= 2.9.0)
   coffee-rails (~> 4.0.0)
   daemons

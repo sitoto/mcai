@@ -23,7 +23,9 @@ gem "mongoid", github: 'mongoid/mongoid', ref: '11e45e5a30a45458b83db99ab6c9d9cc
 #gem 'mongoid_rails_migrations', '1.0.0'
 
 gem 'kaminari', '0.14.0'
-gem 'anjlab-bootstrap-rails', '~> 3.0.3.0', require: 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
+gem 'bootstrap-sass', '~> 3.1.1'
+
+#gem 'anjlab-bootstrap-rails', '~> 3.0.3.0', require: 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
 
 #gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
 #                              :github => 'anjlab/bootstrap-rails',
