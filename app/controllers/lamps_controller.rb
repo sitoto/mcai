@@ -6,6 +6,15 @@ class LampsController < Cpanel::ApplicationController
     page_num = params[:page]
     @lamps = Lamp.all.car.page(page_num).per(50)
   end
+  def search
+    page_num = params[:page]
+    q = params[:q]
+    q.upcase!
+    @lamp = Lamp.where(:model_alias => q.strip).car.page(page_num).per(50)
+    render 'index'
+
+
+  end
 
   # GET /lamps/1
   def show

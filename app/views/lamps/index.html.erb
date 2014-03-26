@@ -1,4 +1,14 @@
 <h3>车灯列表</h3>
+<form class="form-inline" action="<%=  search_lamps_path %>"  method = "get"   target = "_blank">
+  <div class="col-xs-12">
+    <div class="input-group">
+      <%= text_field_tag(:q , '', :class => "form-control" , :placeholder => "输入车型")  %>
+      <span class="input-group-btn">
+        <%= submit_tag("搜索", :class => "su btn btn-primary") %>
+      </span>
+    </div>
+  </div>
+</form>
 
 <table class="table table-bordered table-hover table-condensed">
   <thead>
@@ -14,7 +24,7 @@
       <th><%= t('lamps.low_beam') %></th>
       <th><%= t('lamps.fog_light') %></th>
       <th><%= t('lamps.rear_fog_light') %></th>
-     
+
       <th><%= t('lamps.front_signal') %></th>
       <th><%= t('lamps.rear_signal') %></th>
 
@@ -58,9 +68,9 @@
         <td><%= lamp.lamp_head %></td>
         <td><%= lamp.note %></td>
         <td><%= link_to t('show'), lamp %>
-        <%= link_to t('duplicate'), clone_lamp_path(lamp), rel: "nofollow", method: :post, :class => 'red' %>
-        <%= link_to t('edit'), edit_lamp_path(lamp) %>
-        <%= link_to t('destroy'), lamp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%= link_to t('duplicate'), clone_lamp_path(lamp), rel: "nofollow", method: :post, :class => 'red' %>
+          <%= link_to t('edit'), edit_lamp_path(lamp) %>
+          <%= link_to t('destroy'), lamp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
