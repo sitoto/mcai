@@ -7,6 +7,7 @@
   show: "详情"
   new: "新建"
   edit: "编辑"
+  weixins: "微信"
   register: "注册"
   create_account: "注册用户"
   created: "创建成功"

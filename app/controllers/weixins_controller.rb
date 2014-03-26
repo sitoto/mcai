@@ -8,7 +8,7 @@ class WeixinsController < Cpanel::ApplicationController
   # GET /weixins
   def all
     page_num = params[:page]
-    @weixins = Weixin.all.page(page_num).per(50)
+    @weixins = Weixin.all.desc(:id).page(page_num).per(50)
   end
 
   def show
@@ -22,9 +22,9 @@ class WeixinsController < Cpanel::ApplicationController
     if query_type == "event"
       query_event = params[:xml][:Event]
       if  query_event == "subscribe"
-        @echostr = "谢谢关注 '车灯型号查询'，告诉我车型，我会及时反馈车灯的型号." 
+        @echostr = "谢谢关注 车灯型号查询，告诉我车型，我会及时反馈车灯的型号." 
       elsif  query_event = params[:xml][:Event] == "unsubscribe"
-        @echostr = "谢谢关注 '车灯型号查询'，欢迎再来，告诉我车型，我会及时反馈车灯的型号哦." 
+        @echostr = "谢谢关注 车灯型号查询，欢迎再来，告诉我车型，我会及时反馈车灯的型号哦." 
       end
       render "echo", :formats => :xml
       Weixin.create!(name: query_user, ask: query_event, answer: @echostr)

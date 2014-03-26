@@ -1,4 +1,4 @@
-<h1>weixin</h1>
+<h1><%= t('weixins') %></h1>
 
  <table class="table">
   <thead>
@@ -7,7 +7,7 @@
       <th>Ask</th>
       <th>Answer</th>
       <th>Words count</th>
-      <th></th>
+      <th>Created at</th>
       <th></th>
       <th></th>
     </tr>
@@ -20,14 +20,11 @@
         <td><%= weixin.ask %></td>
         <td><%= weixin.answer %></td>
         <td><%= weixin.words_count %></td>
-        <td><%= link_to 'Show', weixin %></td>
+        <td><%= weixin.created_at %></td>
         <td><%= link_to 'Edit', edit_weixin_path(weixin) %></td>
-        <td><%= link_to 'Destroy', weixin, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', weixin %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <%= paginate @weixins %>
-<br>
-
-<%= link_to 'New Weixin', new_weixin_path %>
