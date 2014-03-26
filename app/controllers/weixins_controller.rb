@@ -1,6 +1,6 @@
-class WeixinsController < Cpanel::ApplicationController
+class WeixinsController < ApplicationController
+  layout 'cpanel'
   before_action :set_weixin, only: [:show, :edit, :update, :destroy]
-
   skip_before_filter :verify_authenticity_token
   before_filter :check_weixin_legality , only: [:create]
 
