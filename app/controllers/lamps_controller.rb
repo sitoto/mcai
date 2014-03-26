@@ -9,8 +9,9 @@ class LampsController < Cpanel::ApplicationController
   def search
     page_num = params[:page]
     q = params[:q]
+    @search_txt= q
     q.upcase!
-    @lamp = Lamp.where(:model_alias => q.strip).car.page(page_num).per(50)
+    @lamps = Lamp.where(:model_alias => q.strip).car.page(page_num).per(50)
     render 'index'
 
 
