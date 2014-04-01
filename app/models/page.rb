@@ -11,6 +11,7 @@ class Page
 
   scope :notice, where(:title => "公告") 
   scope :about, where(:title => "关于") 
+  scope :ad1, where(:title => "ad1") 
 
 
 end
