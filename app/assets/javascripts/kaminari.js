@@ -25,7 +25,7 @@
     }
 
     function nextPage() {
-        var href = $('.pagination .next_page a').attr('href');
+        var href = $('.pagination .next a').attr('href');
         if (href && href != document.location && href != "#") {
         document.location = href;
         }
