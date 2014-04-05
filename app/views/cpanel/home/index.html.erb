@@ -12,3 +12,26 @@
 	<li>采集代码块</li>
 </ol>
 
+<h2>用户列表</h2>
+<table class="table">
+  <tr>
+    <th>Image</th>
+    <th>provider</th>
+    <th>uid</th>
+    <th>name</th>
+    <th>address</th>
+    <th>Ip</th>
+  </tr>
+  <% @users.each do |user|%>
+    <tr>
+      <td><%= image_tag user.image %> </td>
+      <td><%= user.provider %> </td>
+      <td><%= user.uid %> </td>
+      <td><%= user.name %> </td>
+      <td><%= user.location %> </td>
+      <td><%= user.last_login_ip %> </td>
+    </tr>
+
+  <% end %>
+</table>
+  
