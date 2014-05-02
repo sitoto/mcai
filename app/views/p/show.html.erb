@@ -1,13 +1,36 @@
 <% @page_title = "#{@article.mytitle.strip}_第#{@topic.page_num}页_by_#{@article.author}_#{@article.class_name}" %>
 <% @meta_keywords =  @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= render 'common/search_bar' %>
+  </div>
+</div>
 
 <h1><%= @article.mytitle %></h1>
-<span>当前页：<%= "#{@topic.page_num}/#{@article.pages_count}" %>,  来自:<%= link_to @article.class_name, category_pages_path(@article.class_name) %>, 作者:<%= link_to @article.author, author_pages_path(@article.author) %>,  <%= link_to '原帖链接', @article.from_url, rel: "nofollow", :target => '_blank' %>, <%= link_to '现在更新', renew_p_path, rel: "nofollow", method: :post, :target => '_blank', :class => 'red' %>,  <%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, rel: "nofollow",  :id => "ajax_top"  %> <span id='num'></span>
-</span> 
+<div class="row">
+  <div class="col-xs-12 col-md-9">
+    <script src="/js/bd_p1.js"></script>
+    <%= paginate @topics %>
+    <% if @topic.posts && @topic.posts.length > 0 %>
+      <%= render :partial => "post", :locals => {:posts => @topic.posts} %>
+    <% end %>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">文章信息</li>
+      <li class="list-group-item">页数:<%= "#{@topic.page_num}/#{@article.pages_count}" %></li>
+      <li class="list-group-item">分类:<%= link_to @article.class_name, category_pages_path(@article.class_name) %></li>
+      <li class="list-group-item">作者:<%= link_to @article.author, author_pages_path(@article.author) %></li>
+      <li class="list-group-item">来自:<%= link_to '原帖链接', @article.from_url, rel: "nofollow", :target => '_blank' %></li>
+      <li class="list-group-item">更新:<%= link_to '现在更新', renew_p_path, rel: "nofollow", method: :post, :target => '_blank', :class => 'red' %></li>
+      <li class="list-group-item">
+      <span class="glyphicon glyphicon-thumbs-up"></span>
+      <span class="glyphicon-class"><%= link_to "赞", top_p_path(@topic.id), title: "#{@article.like_count}", remote: true, rel: "nofollow",  :id => "ajax_top"  %></span>     <span id='num'></span></li>
+    </ul>
+    <script src="/js/bd_p2.js"></script>
+  </div>
+</div>
 
-<% if @topic.posts && @topic.posts.length > 0 %>
-  <%= render :partial => "post", :locals => {:posts => @topic.posts} %>
-<% end %>
 
 <div class="row">
   <div class="col-xs-12">
@@ -15,4 +38,6 @@
     <%= @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
   </div>
 </div>
+<script src="/js/bd_p3.js"></script>
 <%= paginate @topics %>
+<script src="/js/bd_p4.js"></script>

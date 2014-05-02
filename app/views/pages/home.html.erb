@@ -19,17 +19,10 @@
     </ol>
   </div>
 </div>
-<div class="well">
-  <%= render 'common/search_bar' %>
-</div>
-<div class="well">
-  <p>简单布局，突出内容，明确主题，智能的后台.增加用户阅读管理功能，使用腾讯和其他网站帐户登录
-  ，一键分享功能。多家网站帖子统一入口管理，实时跟踪保存多个社区的连载、直播贴.</p>
-  <p>
-  <%- @flinks.each do |item| -%>
-    <%= link_to item.name , item.url ,target: '_blank' %>
-  <%- end -%>
-  </p>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <%= render 'common/search_bar' %>
+  </div>
 </div>
 <div class="row"> 
   <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -41,4 +34,13 @@
   <script>
     (adsbygoogle = window.adsbygoogle || []).push({});
   </script>
+
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">友情链接</div>
+    <div class="panel-body">
+      <%- @flinks.each do |item| -%>
+        <%= link_to item.name , item.url ,target: '_blank', :class => "mlink" %>
+      <%- end -%>
+  </div>
 </div>
