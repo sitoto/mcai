@@ -17,6 +17,8 @@ body {
   li { display:none; }
   li.active,
   li.prev,
+  li.first,
+  li.last,
   li.next { display:inline; }
   li.active { border:none;
     a {

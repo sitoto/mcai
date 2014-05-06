@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page_num , only: [:hot, :last, :douban_group]
+  before_action :set_page_num, only: [:hot, :last, :douban_group, :tianya_bbs, :baidu_tieba]
   before_action :authenticate, only: [:new, :update, :destroy, :edit]
 
   def index
@@ -28,12 +28,7 @@ class PagesController < ApplicationController
   end
 
   def last 
-    if params[:page].nil?
-      page_num = 1
-    else
-      page_num = params[:page]
-    end
-    @articles = Article.fields_for_list.recent.page(page_num).per(28)
+    @articles = Article.fields_for_list.recent.page(@page_num).per(28)
     @page_title = "最新文章"
 
     render :hot
@@ -54,27 +49,24 @@ class PagesController < ApplicationController
 
   end
   def douban_group 
-    if params[:page].nil?
-      page_num = 1
-    else
-      page_num = params[:page]
-    end
-    @articles = Article.douban_group.recent.page(page_num).per(50)
+    @articles = Article.douban_group.recent.page(@page_num).per(50)
     @page_title = "豆瓣小组"
 
     render :hot
   end
   def tianya_bbs 
-    if params[:page].nil?
-      page_num = 1
-    else
-      page_num = params[:page]
-    end
-    @articles = Article.tianya_bbs.recent.page(page_num).per(50)
+    @articles = Article.tianya_bbs.recent.page(@page_num).per(50)
     @page_title = "天涯易读"
 
     render :hot
   end
+  def baidu_tieba
+    @articles = Article.baidu_tieba.recent.page(@page_num).per(50)
+    @page_title = "贴吧"
+
+    render :hot
+  end
+
 
 
 
@@ -170,13 +162,12 @@ class PagesController < ApplicationController
 
   private
   def set_page_num
-    page_num = 1
+    @page_num = 1
     if params[:page].nil?
-      page_num = 1
+      @page_num = 1
     else
-      page_num = params[:page]
+      @page_num = params[:page]
     end
-    page_num
   end
   # Never trust parameters from the scary internet, only allow the white list through.
   def page_params

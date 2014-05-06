@@ -52,5 +52,6 @@ class Article
   scope :popular, -> { where(:like_count.gt => 5).desc(:_id) }
   scope :douban_group, -> { where(:from_name => 'douban_group') }
   scope :tianya_bbs, -> { where(:from_name => 'tianya_bbs') }
+  scope :baidu_tieba, -> { where(:from_name => 'baidu_tieba') }
 
 end

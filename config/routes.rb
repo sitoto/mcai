@@ -54,6 +54,8 @@ Mcai::Application.routes.draw do
       get "about"
       get "douban_group", :as => :doubangroup
       get "tianya_bbs", :as => :tianyabbs
+      get "baidu_tieba", :as => :tieba
+
       get 'author/:name' => 'pages#author', :as => :author
       get 'category/:name' => 'pages#category' , :as => :category
 
