@@ -33,8 +33,10 @@ class BaiduTieba
 
     title = doc.at_css("h1").text.strip
 
-    if doc.at_css("a#tab_home")
-      category = doc.at_css("a#tab_home").text
+    if doc.at_css("a.card_title_fname")
+      category = doc.at_css("a.card_title_fname").text.strip
+    elsif doc.at_css("a#tab_home")
+      category = doc.at_css("a#tab_home").text.strip
     elsif doc.at_css("li.first > p  > a")
       category = doc.at_css("li.first > p > a").text
     elsif doc.at_css("a.star_title_h3")
