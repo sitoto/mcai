@@ -53,7 +53,7 @@ class BaiduTieba
     json_post = JSON.parse(post_json_str)
 
     created_at = json_post["content"]["date"]
-    lz = json_post["author"]["name"]
+    lz = json_post["author"]["user_name"]
 
 
     all_page_num = 1

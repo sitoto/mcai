@@ -25,8 +25,8 @@ class BaiduTiebaPage
       post_json_str = item.attr("data-field")
       json_post = JSON.parse(post_json_str)
       created_at = json_post["content"]["date"]
-      author = json_post["author"]["name"]
-      level = json_post["content"]["floor"]
+      author = json_post["author"]["user_name"]
+      level = json_post["content"]["post_no"]
       content =  item.at_css(".d_post_content").inner_html.to_s.strip
 
       if (author ==  @author)
