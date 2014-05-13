@@ -1,5 +1,7 @@
 <% @page_title = "#{@article.mytitle.strip}_第#{@topic.page_num}页_by_#{@article.author}_#{@article.class_name}" %>
 <% @meta_keywords =  @article.tags.to_sentence(:two_words_connector => ",", :last_word_connector => "," ) %>
+<% @meta_description = "#{@article.mytitle.strip}, 作者：#{@article.author}, 第#{@topic.page_num}页" %>
+
 <div class="row">
   <div class="col-xs-12 col-md-6">
     <%= render 'common/search_bar' %>
