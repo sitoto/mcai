@@ -9,6 +9,8 @@ class BaiduTieba
 
   def dehydrate_topic(url)
     html_stream = safe_open(url , retries = 2, sleep_time = 0.42, headers = {})   
+    html_stream = html_stream.gsub("<!-- ", "")
+
     return if html_stream.empty?
     doc = Nokogiri::HTML(html_stream)
 

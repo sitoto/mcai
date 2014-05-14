@@ -1,4 +1,8 @@
 <% @page_title = "首页" %>
+<% @meta_keywords =  "只看楼主,直播,十大社区直播帖,脱水,脱水文章,小说" ) %>
+<% @meta_description = "记录互联网优质、热门文章，管理、阅读和分享好文章。" %>
+
+
 <%- unless @page.nil? -%>
   <p class="text-info">
   <span class='glyphicon glyphicon-bullhorn'><%= sanitize @page.body %></span>
