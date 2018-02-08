@@ -26,11 +26,11 @@ module Mcai
     config.autoload_paths += %W(#{config.root}/lib)
 
     config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.default_locale = "zh-CN" 
+    config.i18n.default_locale = "zh-CN"
 
-   
+
     config.time_zone = 'Beijing'
- 
+
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.
@@ -69,13 +69,12 @@ module Mcai
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
-    
+
     config.assets.precompile += %w(application.css cpanel.css mobile.css)
 
     # 微信 API token
     config.weixin_token = "80peisitoto"
 
-    config.middleware.insert_after ActionDispatch::ParamsParser, ActionDispatch::XmlParamsParser
+    # config.middleware.insert_after ActionDispatch::ParamsParser, ActionDispatch::XmlParamsParser
   end
 end
-I18n.locale = 'zh-CN'

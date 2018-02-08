@@ -1,0 +1,29 @@
+defaults: &defaults
+  options:
+#    identity_map_enabled: true
+    raise_not_found_error: true
+
+development:
+  <<: *defaults
+  clients:
+    default:
+      hosts:
+        - 127.0.0.1:27017
+      database: mcai_dev
+
+test:
+  <<: *defaults
+  clients:
+    default:
+      hosts:
+        - 127.0.0.1:27017
+      database: mcai_test
+
+# set these environment variables on your prod server
+production:
+  <<: *defaults
+  clients:
+    default:
+      hosts:
+        - 127.0.0.1:27017
+      database: tuoshuiba

@@ -1,61 +1,52 @@
 # coding: utf-8
-source 'http://ruby.taobao.org'
+source 'https://ruby.taobao.org'
 
-gem 'rails', '4.0.0.rc2'
+gem 'rails', '5.1.4'
 
-gem 'sass-rails', "~> 4.0.0"
-gem 'coffee-rails', "~> 4.0.0"
-gem 'uglifier', '>= 1.3.0'
+gem 'sass-rails'
+gem 'coffee-rails'
+gem 'uglifier'
 
-gem "rails-i18n","0.1.8"
-gem "jquery-rails", "3.0.4"
+gem "rails-i18n"
+gem "jquery-rails"
 
 
 gem "wmd-rails"
 gem "redcarpet"
 
-#for wechat's xml 
+#for wechat's xml
 gem 'actionpack-xml_parser'
 
 # Mongoid 辅助插件
-gem "mongoid", github: 'mongoid/mongoid', ref: '11e45e5a30a45458b83db99ab6c9d9ccc337e66f'
+gem "mongoid", '6.3.0'
 #gem 'mongoid_auto_increment_id', "0.6.2"
 #gem 'mongoid_rails_migrations', '1.0.0'
 
-gem 'kaminari', '0.14.0'
-gem 'bootstrap-sass', '~> 3.1.1'
-
-#gem 'anjlab-bootstrap-rails', '~> 3.0.3.0', require: 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
-
-#gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
-#                              :github => 'anjlab/bootstrap-rails',
-#                              :branch => '3.0.0'
-
+gem 'kaminari'
+gem 'bootstrap-sass'
 
 gem "meta-tags"#, :require => "meta-tags", :git => "git://github.com/kpumuk/meta-tags.git"
 
 gem 'omniauth'
 
 # 分享功能
-gem "social-share-button", '0.1.4'
+gem "social-share-button"
 # 表单
-gem 'simple_form', "3.0.0.rc"
+gem 'simple_form'
 gem 'omniauth-identity'
 gem 'omniauth-weibo-oauth2'
 
 gem 'nokogiri'
 
-gem 'delayed_job_mongoid',   :git => 'git://github.com/sitoto/delayed_job_mongoid.git'
+gem 'delayed_job_mongoid', '2.3.0'
 gem "daemons"
 
 
 #  :path => "/home/administrator/sites/delayed_job_mongoid"
-group :development, :test do 
-  gem "capistrano", '2.9.0', require: false
-  gem 'rvm-capistrano', require: false
-  gem 'rspec-rails', '~> 2.13.2'
-  gem 'factory_girl_rails'
+group :development, :test do
+  gem "capistrano"
+  gem 'rspec-rails'
 end
 group :production do
-  gem 'unicorn'
+  gem 'unicorn', '5.4.0'
 end
